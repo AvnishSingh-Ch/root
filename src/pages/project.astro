@@ -1,0 +1,475 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseCard from "../components/BaseCard.astro";
+import ProjectJS from "../components/ProjectJS.astro";
+---
+
+<BaseLayout title="Projects">
+  <BaseCard title="Projects">
+    <div class="projects-hero">
+      <h1 class="hero-title">My Cybersecurity Projects</h1>
+      <p class="hero-subtitle">
+        Hands-on experience with real-world security tools and techniques
+      </p>
+    </div>
+  </BaseCard>
+
+  <div class="projects-grid">
+    <div class="project-card featured">
+      <div class="project-header">
+        <div class="project-badge featured-badge">Featured</div>
+        <h2 class="project-title">Cybersecurity Home Lab</h2>
+        <p class="project-subtitle">Complete Security Testing Environment</p>
+      </div>
+      
+      <div class="project-content">
+        <p class="project-description">
+          Built and configured a comprehensive home lab designed to simulate real-world security scenarios. 
+          This project allows me to explore and test various security tools, conduct penetration testing, 
+          and experiment with network security configurations in a controlled environment.
+        </p>
+        
+        <div class="project-features">
+          <div class="feature-item">
+            <span class="feature-icon">🔧</span>
+            <span>Virtual Machine Setup</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🛡️</span>
+            <span>Penetration Testing</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔍</span>
+            <span>Vulnerability Assessment</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📊</span>
+            <span>SIEM Configuration</span>
+          </div>
+        </div>
+        
+        <div class="project-tech">
+          <span class="tech-tag">Kali Linux</span>
+          <span class="tech-tag">VirtualBox</span>
+          <span class="tech-tag">Metasploit</span>
+          <span class="tech-tag">Splunk</span>
+        </div>
+      </div>
+      
+      <div class="project-actions">
+        <a href="https://blog.avnishsingh.tech/archive/category/Cybersecurity%20Home%20Lab/" 
+           class="project-link primary" target="_blank">
+          View Project
+        </a>
+        <a href="/blog" class="project-link secondary">
+          Read Blog
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-badge">Network Analysis</div>
+        <h2 class="project-title">Network Mapping & Traffic Analysis</h2>
+        <p class="project-subtitle">Nmap & Wireshark Implementation</p>
+      </div>
+      
+      <div class="project-content">
+        <p class="project-description">
+          Active network mapping and traffic analysis using industry-standard tools. 
+          Perform real-time network reconnaissance, identify live hosts, assess open ports, 
+          and monitor protocol behaviors to uncover potential vulnerabilities.
+        </p>
+        
+        <div class="project-features">
+          <div class="feature-item">
+            <span class="feature-icon">🗺️</span>
+            <span>Network Mapping</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📡</span>
+            <span>Port Scanning</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔍</span>
+            <span>Traffic Analysis</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">⚠️</span>
+            <span>Vulnerability Detection</span>
+          </div>
+        </div>
+        
+        <div class="project-tech">
+          <span class="tech-tag">Nmap</span>
+          <span class="tech-tag">Wireshark</span>
+          <span class="tech-tag">Network Security</span>
+        </div>
+      </div>
+      
+      <div class="project-actions">
+        <a href="https://blog.avnishsingh.tech" class="project-link primary" target="_blank">
+          View Details
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-badge">Network Analysis Tool</div>
+        <h2 class="project-title">Real-Time Network Analysis Tool</h2>
+        <p class="project-subtitle">Custom Dashboard for Live Network Insights</p>
+      </div>
+      
+      <div class="project-content">
+        <p class="project-description">
+          Developed a real-time network analysis tool with a modern dashboard. Visualizes live network traffic, detects anomalies, and provides actionable insights for network security and performance monitoring. Integrates with Nmap, Wireshark, and custom scripts for deep packet inspection and alerting.
+        </p>
+        
+        <div class="project-features">
+
+          <div class="feature-item">
+            <span class="feature-icon">⚡</span>
+            <span>Real-Time Anomaly Detection</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔔</span>
+            <span>Custom Alerts & Notifications</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🛠️</span>
+            <span>Integration with Nmap & Wireshark</span>
+          </div>
+        </div>
+        
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Flask</span>
+          <span class="tech-tag">Nmap</span>
+          <span class="tech-tag">Wireshark</span>
+          <span class="tech-tag">Socket.IO</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Dashboards</span>
+        </div>
+      </div>
+      
+      <div class="project-actions">
+        <a href="https://github.com/AvnishSingh-Ch/network-analysis-tool" class="project-link primary" target="_blank">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <BaseCard>
+    <div class="coming-soon">
+      <h2 class="section-title">More Projects Coming Soon</h2>
+      <p class="coming-soon-text">
+        I'm constantly working on new cybersecurity projects. Stay tuned for more hands-on 
+        implementations of security tools and techniques!
+      </p>
+      <div class="upcoming-projects">
+        <div class="upcoming-item">
+          <span class="upcoming-icon">🌐</span>
+          <span>Web Vulnerability Tracking Tool</span>
+        </div>
+        <div class="upcoming-item">
+          <span class="upcoming-icon">🔗</span>
+          <span>Network Intrusion Detection System (NIDS)</span>
+        </div>
+        <div class="upcoming-item">
+          <span class="upcoming-icon">🛡️</span>
+          <span>Advanced Penetration Testing Framework</span>
+        </div>
+      </div>
+    </div>
+  </BaseCard>
+</BaseLayout>
+
+<ProjectJS />
+
+<style>
+  .projects-hero {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .project-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #4ecdc4);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+    border-color: rgba(102, 126, 234, 0.3);
+  }
+
+  .project-card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+  }
+
+  .project-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .project-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .featured-badge {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  }
+
+  .project-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .project-subtitle {
+    color: #6c757d;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .project-content {
+    margin-bottom: 2rem;
+  }
+
+  .project-description {
+    color: #495057;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #495057;
+  }
+
+  .feature-icon {
+    font-size: 1.2rem;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tech-tag {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .project-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .project-link {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .project-link.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .project-link.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  }
+
+  .project-link.secondary {
+    background: transparent;
+    color: #667eea;
+    border-color: #667eea;
+  }
+
+  .project-link.secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .coming-soon {
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .coming-soon-text {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .upcoming-projects {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .upcoming-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 15px;
+    color: #495057;
+    font-weight: 500;
+  }
+
+  .upcoming-icon {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .project-card {
+      padding: 1.5rem;
+    }
+    
+    .project-features {
+      grid-template-columns: 1fr;
+    }
+    
+    .upcoming-projects {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  /* Dark theme adjustments */
+  html[data-theme="dracula"] {
+    .project-card {
+      background: rgba(26, 26, 46, 0.95);
+      border-color: rgba(102, 126, 234, 0.2);
+    }
+    
+    .project-card.featured {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    }
+    
+    .project-title {
+      color: #ffffff;
+    }
+    
+    .project-description {
+      color: #e9ecef;
+    }
+    
+    .feature-item {
+      background: rgba(102, 126, 234, 0.1);
+      color: #e9ecef;
+    }
+    
+    .upcoming-item {
+      background: rgba(102, 126, 234, 0.15);
+      color: #e9ecef;
+    }
+  }
+</style> 

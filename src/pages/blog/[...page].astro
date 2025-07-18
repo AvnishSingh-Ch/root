@@ -4,7 +4,6 @@ import EnvelopeCard from "../../components/EnvelopeCard.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BaseCard from "../../components/BaseCard.astro";
 import { getCollection } from "astro:content";
-import Search from "astro-pagefind/components/Search";
 import { t } from "i18next";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
@@ -70,14 +69,33 @@ const pageLinks = generatePageLinks(totalPages);
 ---
 
 <BaseLayout title="Blog">
-  <BaseCard title="search">
-    <Search
-      id="search"
-      className="pagefind-ui"
-      uiOptions={{ showImages: false }}
-    />
+  <BaseCard title="Blog">
+    <div class="blog-hero">
+      <h1 class="hero-title">Cybersecurity Blog</h1>
+      <p class="hero-subtitle">
+        Insights, tutorials, and discoveries from my cybersecurity journey
+      </p>
+    </div>
   </BaseCard>
-  <div class="mt-8 mb-8">
+
+
+
+  <div class="blog-stats">
+    <div class="stat-item">
+      <span class="stat-number">{page.total}</span>
+      <span class="stat-label">Articles</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">{page.current}</span>
+      <span class="stat-label">Page</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">{page.size}</span>
+      <span class="stat-label">Per Page</span>
+    </div>
+  </div>
+
+  <div class="blog-posts">
     {
       page.data.map((post: Post) => (
         <EnvelopeCard
@@ -96,15 +114,36 @@ const pageLinks = generatePageLinks(totalPages);
       ))
     }
   </div>
-  <div class="flex justify-between mb-8">
+
+  <BaseCard>
+    <div class="medium-section">
+      <div class="medium-content">
+        <h3 class="medium-title">Want More Cybersecurity Content?</h3>
+        <p class="medium-description">
+          Check out my Medium blog for in-depth articles, tutorials, and insights about cybersecurity, 
+          ethical hacking, and the latest security trends.
+        </p>
+        <a href="https://medium.com/@avnishsingh-ch" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="medium-button">
+          <span class="medium-icon">📝</span>
+          <span class="medium-text">Read More on Medium</span>
+          <span class="medium-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </BaseCard>
+
+  <div class="pagination-container">
     <a
       href={page.url.prev ? page.url.prev : `javascript:`}
       class={page.url.prev
-        ? `btn bg-base-100 shadow-xl`
-        : `btn btn-disabled bg-base-100 shadow-xl`}
+        ? `pagination-btn prev-btn`
+        : `pagination-btn prev-btn disabled`}
     >
       <svg
-        class="h-6 w-6 fill-current md:h-8 md:w-8"
+        class="btn-icon"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -113,30 +152,31 @@ const pageLinks = generatePageLinks(totalPages);
         <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"
         ></path>
       </svg>
-      <span class="hidden lg:inline ml-2">{t("label.prevPage")}</span>
+      <span class="btn-text">{t("label.prevPage")}</span>
     </a>
-    <div class="join">
+
+    <div class="pagination-pages">
       {
         totalPages > 4 ? (
           <>
             {pageLinks.active.map((link) =>
               link === "..." ? (
-                <div class="dropdown dropdown-top join-item rounded-none">
+                <div class="dropdown dropdown-top">
                   <div
                     tabindex="0"
                     role="button"
-                    class="btn bg-base-100 rounded-none w-[55px]"
+                    class="pagination-dropdown"
                   >
                     ...
                   </div>
-                  <ul class="menu dropdown-content bg-base-100 rounded-box z-[100] p-2 shadow-xl">
+                  <ul class="dropdown-menu">
                     {pageLinks.hidden.map((hidden) => (
                       <li>
                         <a
                           title={hidden}
                           aria-label={hidden}
                           href={hidden === "1" ? `/blog` : `/blog/${hidden}`}
-                          class={`menu-item bg-base-100 ${hidden === page.current ? "btn-active" : ""}`}
+                          class={`dropdown-item ${hidden === page.current ? "active" : ""}`}
                         >
                           {hidden}
                         </a>
@@ -149,7 +189,7 @@ const pageLinks = generatePageLinks(totalPages);
                   title={link}
                   aria-label={link}
                   href={link === "1" ? `/blog` : `/blog/${link}`}
-                  class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
+                  class={`pagination-page ${link === page.current ? "active" : ""}`}
                 >
                   {link}
                 </a>
@@ -162,7 +202,7 @@ const pageLinks = generatePageLinks(totalPages);
               title={link}
               aria-label={link}
               href={link === "1" ? `/blog` : `/blog/${link}`}
-              class={`join-item btn bg-base-100 ${link === page.current ? "btn-active" : ""}`}
+              class={`pagination-page ${link === page.current ? "active" : ""}`}
             >
               {link}
             </a>
@@ -170,15 +210,16 @@ const pageLinks = generatePageLinks(totalPages);
         )
       }
     </div>
+
     <a
       href={page.url.next ? page.url.next : `javascript:`}
       class={page.url.next
-        ? `btn bg-base-100 shadow-xl`
-        : `btn btn-disabled bg-base-100 shadow-xl`}
+        ? `pagination-btn next-btn`
+        : `pagination-btn next-btn disabled`}
     >
-      <span class="hidden lg:inline ml-2">{t("label.nextPage")}</span>
+      <span class="btn-text">{t("label.nextPage")}</span>
       <svg
-        class="h-6 w-6 fill-current md:h-8 md:w-8"
+        class="btn-icon"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -190,3 +231,298 @@ const pageLinks = generatePageLinks(totalPages);
     </a>
   </div>
 </BaseLayout>
+
+<style>
+  .blog-hero {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+
+
+  .blog-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    border-radius: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .blog-posts {
+    margin: 3rem 0;
+  }
+
+  .medium-section {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .medium-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .medium-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .medium-description {
+    font-size: 1rem;
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .medium-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  }
+
+  .medium-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .medium-icon {
+    font-size: 1.2rem;
+  }
+
+  .medium-text {
+    font-weight: 600;
+  }
+
+  .medium-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .medium-button:hover .medium-arrow {
+    transform: translateX(3px);
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .pagination-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .pagination-btn:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  }
+
+  .pagination-btn.disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+  }
+
+  .btn-text {
+    font-size: 0.9rem;
+  }
+
+  .pagination-pages {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .pagination-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    text-decoration: none;
+    border-radius: 50%;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-page:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .pagination-page.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .pagination-dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    border-radius: 50%;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-dropdown:hover {
+    background: rgba(102, 126, 234, 0.2);
+  }
+
+  .dropdown-menu {
+    background: white;
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: 15px;
+    padding: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    min-width: 3rem;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    text-decoration: none;
+    border-radius: 50%;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 0.25rem;
+  }
+
+  .dropdown-item:hover {
+    background: rgba(102, 126, 234, 0.2);
+  }
+
+  .dropdown-item.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .blog-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .pagination-container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .pagination-pages {
+      order: -1;
+    }
+    
+    .btn-text {
+      display: none;
+    }
+  }
+
+  /* Dark theme adjustments */
+  html[data-theme="dracula"] {
+    .blog-stats {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      border-color: rgba(102, 126, 234, 0.2);
+    }
+    
+    .pagination-container {
+      background: rgba(26, 26, 46, 0.95);
+      border-color: rgba(102, 126, 234, 0.2);
+    }
+    
+    .dropdown-menu {
+      background: rgba(26, 26, 46, 0.95);
+      border-color: rgba(102, 126, 234, 0.2);
+    }
+  }
+</style>

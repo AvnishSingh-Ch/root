@@ -1,0 +1,464 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseCard from "../components/BaseCard.astro";
+---
+
+<BaseLayout title="Home">
+  <BaseCard title="Home">
+    <div class="hero-section">
+      <div class="hero-content">
+        <div class="greeting">
+          <span class="wave">👋</span>
+          <h1 class="hero-title">
+            Hi there! I'm <span class="highlight">Avnish Singh</span>
+          </h1>
+          <p class="hero-subtitle">
+            Cybersecurity Student & Ethical Hacker
+          </p>
+          <div class="typing-effect">
+            <span class="typing-text">Penetration Testing</span>
+            <span class="typing-text">Network Security</span>
+            <span class="typing-text">Vulnerability Assessment</span>
+            <span class="typing-text">Digital Forensics</span>
+          </div>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Vulnerabilities Found</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Security Tools</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Learning Mode</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </BaseCard>
+
+  <BaseCard>
+    <div class="about-section">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-content">
+          <p class="about-text">
+            I'm a passionate cybersecurity student dedicated to understanding and securing the digital world. 
+            My journey began with ethical hacking, and I've been fascinated by how proactive security measures 
+            can protect organizations and individuals from ever-evolving cyber threats.
+          </p>
+          
+          <div class="skills-showcase">
+            <h3>Core Skills</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Penetration Testing</span>
+              <span class="skill-tag">Network Analysis</span>
+              <span class="skill-tag">Vulnerability Assessment</span>
+              <span class="skill-tag">Linux Administration</span>
+              <span class="skill-tag">Python Scripting</span>
+              <span class="skill-tag">Wireshark</span>
+              <span class="skill-tag">Metasploit</span>
+              <span class="skill-tag">Nmap</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">🔒</div>
+            <div class="highlight-content">
+              <h4>Ethical Hacking</h4>
+              <p>Passionate about finding vulnerabilities before the bad guys do</p>
+            </div>
+          </div>
+          
+          <div class="highlight-item">
+            <div class="highlight-icon">🐧</div>
+            <div class="highlight-content">
+              <h4>Linux Enthusiast</h4>
+              <p>Open-source advocate who believes in the power of community-driven security</p>
+            </div>
+          </div>
+          
+          <div class="highlight-item">
+            <div class="highlight-icon">🧠</div>
+            <div class="highlight-content">
+              <h4>Continuous Learning</h4>
+              <p>Always exploring the latest cybersecurity tools and techniques</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </BaseCard>
+
+  <BaseCard>
+    <div class="github-section">
+      <h2 class="section-title">GitHub Activity</h2>
+      <div class="github-stats">
+        <a href="https://git.io/streak-stats" target="_blank" rel="noopener noreferrer">
+          <img src="https://streak-stats.demolab.com?user=CybrAvnish&theme=dark&hide_border=true" alt="GitHub Streak" />
+        </a>
+      </div>
+    </div>
+  </BaseCard>
+
+  <BaseCard>
+    <div class="cta-section">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="cta-text">
+        Interested in cybersecurity, ethical hacking, or just want to chat about security? 
+        I'm always open to collaboration and knowledge sharing!
+      </p>
+      <div class="cta-buttons">
+        <a href="/project" class="cta-button primary">View My Projects</a>
+        <a href="mailto:avnishsinghch@outlook.com" class="cta-button secondary">Get In Touch</a>
+      </div>
+    </div>
+  </BaseCard>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .greeting {
+    margin-bottom: 3rem;
+  }
+
+  .wave {
+    font-size: 3rem;
+    animation: wave 2s infinite;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    75% { transform: rotate(-20deg); }
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .highlight {
+    color: #ff6b6b;
+    position: relative;
+  }
+
+  .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    border-radius: 2px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: #6c757d;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+
+  .typing-effect {
+    height: 2rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .typing-text {
+    display: block;
+    font-size: 1.2rem;
+    color: #4ecdc4;
+    font-weight: 600;
+    animation: typing 8s infinite;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .typing-text:nth-child(1) { animation-delay: 0s; }
+  .typing-text:nth-child(2) { animation-delay: 2s; }
+  .typing-text:nth-child(3) { animation-delay: 4s; }
+  .typing-text:nth-child(4) { animation-delay: 6s; }
+
+  @keyframes typing {
+    0%, 25% { opacity: 1; }
+    26%, 100% { opacity: 0; }
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .about-section {
+    padding: 2rem 0;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1024px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #495057;
+    margin-bottom: 2rem;
+  }
+
+  .skills-showcase h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+  }
+
+  .skill-tag:hover {
+    transform: scale(1.05);
+  }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    border-left: 4px solid #4ecdc4;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  }
+
+  .highlight-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .highlight-icon {
+    font-size: 2rem;
+    min-width: 3rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .highlight-content {
+    flex: 1;
+  }
+
+  .highlight-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  .highlight-content p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .highlight-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+    }
+    
+    .highlight-icon {
+      min-width: auto;
+    }
+    
+    .highlight-content h4 {
+      font-size: 1.1rem;
+    }
+    
+    .highlight-content p {
+      font-size: 0.95rem;
+    }
+  }
+
+  .github-section {
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  .github-stats {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .github-stats img {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .cta-section {
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .cta-text {
+    font-size: 1.2rem;
+    color: #495057;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .cta-button.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .cta-button.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    color: #667eea;
+    border-color: #667eea;
+  }
+
+  .cta-button.secondary:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .about-text {
+      font-size: 1rem;
+    }
+  }
+</style> 

@@ -2,8 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+// Cybersecurity theme colors
+:root {
+  --cyber-primary: #667eea;
+  --cyber-secondary: #764ba2;
+  --cyber-accent: #4ecdc4;
+  --cyber-danger: #ff6b6b;
+  --cyber-success: #51cf66;
+  --cyber-warning: #ffd43b;
+  --cyber-dark: #1a1a2e;
+  --cyber-darker: #16213e;
+  --cyber-light: #f8f9fa;
+  --cyber-text: #495057;
+  --cyber-text-light: #6c757d;
+}
+
 html {
   @apply scroll-smooth;
+}
+
+// Enhanced card styling
+.card {
+  @apply transition-all duration-300 ease-in-out;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Enhanced hover effects for different card types */
+.card:hover {
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+/* For cards without positioning transforms, add lift effect */
+.card:not([class*="-translate-x"]):hover {
+  transform: translateY(-5px);
+}
+
+/* For cards with positioning transforms, only add shadow and border effects */
+.card[class*="-translate-x"]:hover {
+  /* Keep existing transform, only change shadow and border */
+}
+
+// Dark theme card styling
+html[data-theme="dracula"] .card {
+  background: rgba(26, 26, 46, 0.95);
+  border-color: rgba(102, 126, 234, 0.2);
+}
+
+html[data-theme="dracula"] .card:hover {
+  border-color: rgba(102, 126, 234, 0.4);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
 }
 
 .no-card {
@@ -27,30 +77,32 @@ a {
   @apply rounded-xl;
 }
 
+// Enhanced link styling with cybersecurity theme
 .main-card p,
 .main-card li,
 .main-card blockquote {
   a {
     @apply px-0.5 rounded-md font-medium;
-    color: oklch(var(--p));
-    transition: background-color 0.3s, background-size 0.3s, background-position 0.3s ease;
+    color: var(--cyber-primary);
+    transition: all 0.3s ease;
     box-decoration-break: clone;
-    background-image: linear-gradient(oklch(var(--p)), oklch(var(--p)));
+    background-image: linear-gradient(var(--cyber-primary), var(--cyber-primary));
     background-size: 100% 2px;
     background-position: left bottom;
     background-repeat: no-repeat;
+    position: relative;
   }
 
   a:hover {
-    background-color: oklch(var(--p) / 0.3);
+    background-color: rgba(102, 126, 234, 0.1);
     background-size: 0% 2px;
+    transform: translateY(-1px);
   }
 
   a:active {
-    background-color: oklch(var(--p) / 0.2);
+    background-color: rgba(102, 126, 234, 0.2);
     background-size: 0% 2px;
   }
-
 }
 
 .alert,
@@ -59,6 +111,7 @@ a {
   @apply my-2;
 }
 
+// Enhanced dark theme styling
 html[data-theme="dracula"] {
   --pagefind-ui-primary: oklch(var(--nc));
   --pagefind-ui-text: oklch(var(--nc));
@@ -83,6 +136,22 @@ html[data-theme="dracula"] {
 body {
   @apply m-0 p-0 text-left bg-cover text-xl leading-7;
   background-size: 100% 600px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+// Enhanced background with subtle cybersecurity pattern
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 summary {
@@ -120,7 +189,7 @@ ul {
 
 li::marker,
 .toc-number {
-  color: oklch(var(--p));
+  color: var(--cyber-primary);
 }
 
 thead {
@@ -132,10 +201,11 @@ input {
   @apply text-base;
 }
 
+// Enhanced anchor styling
 .anchor {
   @apply p-0.5 rounded-xl font-medium;
   margin-left: 4px;
-  color: oklch(var(--p));
+  color: var(--cyber-primary);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -143,7 +213,7 @@ input {
   width: 1.25em;
   height: 1.25em;
   opacity: 0;
-  transition: opacity 0.3s, background-color 0.3s, color 0.3s, text-decoration 0.3s ease;
+  transition: all 0.3s ease;
 
   svg {
     @apply inline-block;
@@ -152,12 +222,12 @@ input {
 }
 
 .anchor:hover {
-  background-color: oklch(var(--p) / 0.3);
-  background-size: 1;
+  background-color: rgba(102, 126, 234, 0.1);
+  transform: scale(1.1);
 }
 
 .anchor:active {
-  background-color: oklch(var(--p) / 0.2);
+  background-color: rgba(102, 126, 234, 0.2);
 }
 
 h1:hover .anchor,
@@ -169,6 +239,7 @@ h6:hover .anchor {
   opacity: 1;
 }
 
+// Enhanced typography with cybersecurity theme
 h1,
 h2,
 h3,
@@ -176,196 +247,636 @@ h4,
 h5,
 h6 {
   @apply my-2 mb-1 font-semibold;
+  color: var(--cyber-dark);
 }
 
 h1 {
   @apply text-5xl leading-tight mt-7;
+  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 h2 {
   @apply text-4xl leading-snug mt-6;
+  color: var(--cyber-primary);
 }
 
 h3 {
   @apply text-3xl leading-normal mt-5;
+  color: var(--cyber-secondary);
 }
 
 h4 {
   @apply text-2xl leading-relaxed mt-4;
+  color: var(--cyber-text);
 }
 
 h5 {
   @apply text-xl leading-relaxed mt-3;
+  color: var(--cyber-text);
 }
 
-strong,
-b {
-  @apply font-bold my-2;
+h6 {
+  @apply text-lg leading-relaxed mt-2;
+  color: var(--cyber-text-light);
 }
 
-em {
-  @apply my-2;
+// Dark theme typography adjustments
+html[data-theme="dracula"] {
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+  }
+  
+  h1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  h2 {
+    color: #667eea;
+  }
+  
+  h3 {
+    color: #764ba2;
+  }
 }
 
+// Enhanced button styling
+.btn {
+  @apply transition-all duration-300 ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--cyber-primary);
+  color: var(--cyber-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--cyber-primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--cyber-accent) 0%, #44a08d 100%);
+  border: none;
+  color: white;
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(78, 205, 196, 0.3);
+}
+
+// Enhanced badge styling
+.badge {
+  @apply transition-all duration-300 ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
+  color: white;
+}
+
+.badge-secondary {
+  background: linear-gradient(135deg, var(--cyber-accent) 0%, #44a08d 100%);
+  color: white;
+}
+
+.badge-neutral {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+  color: white;
+}
+
+// Enhanced table styling
 table {
-  @apply border-collapse my-2;
-  table-layout: fixed;
+  @apply w-full border-collapse rounded-lg overflow-hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-table tr {
-  @apply h-10 border-0 border-gray-300;
-  border-color: oklch(var(--nc));
+th {
+  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+tr:hover {
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+// Enhanced code block styling
+pre {
+  @apply rounded-lg p-4 overflow-x-auto;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 code {
-  font-family: "Cascadia";
-  @apply text-xl p-[2px_5px] rounded-sm;
+  @apply rounded px-2 py-1;
+  background: rgba(102, 126, 234, 0.1);
+  color: var(--cyber-primary);
+  font-family: 'Cascadia', 'Fira Code', monospace;
 }
 
-pre {
-  font-family: "Cascadia";
-  padding: 10px;
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
 }
 
+// Enhanced blockquote styling
 blockquote {
-  @apply alert px-6;
+  @apply border-l-4 pl-4 py-2 my-4;
+  border-color: var(--cyber-primary);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  border-radius: 0 8px 8px 0;
 }
 
-pre>code {
-  all: unset;
+// Enhanced list styling
+ul li, ol li {
+  @apply mb-2;
+  position: relative;
 }
 
+ul li::marker {
+  color: var(--cyber-primary);
+  font-weight: bold;
+}
+
+ol li::marker {
+  color: var(--cyber-primary);
+  font-weight: bold;
+}
+
+// Enhanced hr styling
 hr {
-  @apply my-2;
+  @apply my-8;
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyber-primary), transparent);
 }
 
-tr:last-child td {
-  border-bottom: none;
+// Enhanced selection styling
+::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: inherit;
 }
 
-thead th {
-  border-bottom: 1px solid oklch(var(--bc) / 0.25);
+::-moz-selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: inherit;
 }
 
-.card figure {
-  @apply block;
-  @apply relative;
+// Enhanced scrollbar styling
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.frosti-code,
-.frosti-code span {
-  @apply text-sm;
-  background-color: oklch(var(--b2));
+::-webkit-scrollbar-track {
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 4px;
 }
 
-.highlight {
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--cyber-secondary) 0%, var(--cyber-primary) 100%);
+}
+
+// Enhanced focus styling
+*:focus {
+  outline: 2px solid var(--cyber-primary);
+  outline-offset: 2px;
+}
+
+// Touch-friendly mobile interactions
+@media (max-width: 768px) {
+  // Larger touch targets
+  .btn, .menu-item, .card {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  // Enhanced touch feedback
+  .btn:active, .menu-item:active, .card:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+  
+  // Improved mobile navigation
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  // Mobile content padding
+  .main-card {
+    margin-top: 80px;
+  }
+  
+  // Mobile-specific animations
+  .card {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Mobile swipe gestures support
+  .card {
+    touch-action: pan-y pinch-zoom;
+  }
+  
+  // Mobile performance optimizations
+  .card, .btn, .menu-item {
+    will-change: transform;
+  }
+  
+  // Mobile accessibility improvements
+  .btn:focus, .menu-item:focus {
+    outline: 3px solid var(--cyber-primary);
+    outline-offset: 3px;
+  }
+  
+  // Mobile loading states
+  .loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
+// Enhanced loading states
+.loading {
+  @apply animate-pulse;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// Enhanced responsive design
+@media (max-width: 768px) {
+  h1 {
+    @apply text-3xl;
+  }
+  
+  h2 {
+    @apply text-2xl;
+  }
+  
+  h3 {
+    @apply text-xl;
+  }
+  
+  .card {
+    @apply mx-2;
+    margin-bottom: 1.5rem;
+  }
+  
+  .menu {
+    min-width: 200px !important;
+    max-width: 90vw !important;
+  }
+  
+  .menu-item {
+    min-width: 180px;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  // Enhanced mobile navbar
+  .navbar {
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(20px);
+  }
+  
+  // Mobile-specific card enhancements
+  .card {
+    border-radius: 16px;
+    margin: 1rem 0.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25);
+  }
+  
+  // Mobile button enhancements
+  .btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
+  
+  // Mobile typography improvements
+  body {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  // Mobile spacing improvements
+  .main-card {
+    padding: 1.5rem !important;
+  }
+  
+  // Mobile image enhancements
+  img {
+    border-radius: 12px;
+  }
+  
+  // Mobile badge improvements
+  .badge {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+  }
+  
+  // Mobile table improvements
+  table {
+    font-size: 0.9rem;
+  }
+  
+  th, td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  // Mobile code block improvements
+  pre {
+    border-radius: 12px;
+    font-size: 0.85rem;
+    margin: 1rem 0;
+  }
+  
+  // Mobile blockquote improvements
+  blockquote {
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+  }
+  
+  // Mobile list improvements
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  // Mobile hr improvements
+  hr {
+    margin: 2rem 0;
+    height: 3px;
+    border-radius: 2px;
+  }
+  
+  // Mobile focus improvements
+  *:focus {
+    outline: 3px solid var(--cyber-primary);
+    outline-offset: 3px;
+  }
+  
+  // Mobile scrollbar improvements
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+  }
+  
+  // Mobile loading improvements
+  .loading {
+    border-radius: 8px;
+  }
+  
+  // Mobile menu improvements
+  .menu-item:hover {
+    transform: translateX(8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  }
+  
+  // Mobile navbar improvements
+  .btn-ghost:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+  }
+  
+  // Mobile site title improvements
+  .navbar-center .btn-ghost:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Enhanced print styles
+@media print {
+  .card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .btn {
+    display: none;
+  }
+}
+
+// Enhanced cybersecurity-themed menu styling
+.menu {
+  @apply transition-all duration-300 ease-in-out;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+  min-width: 220px !important;
+  width: auto !important;
+}
+
+html[data-theme="dracula"] .menu {
+  background: rgba(26, 26, 46, 0.95) !important;
+  border-color: rgba(102, 126, 234, 0.2);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+}
+
+.menu-item {
+  @apply transition-all duration-300 ease-in-out;
   position: relative;
-  border-radius: var(--rounded-box, 1rem);
   overflow: hidden;
-  margin: 0.5rem 0;
-  background-color: oklch(var(--b2));
+  border-radius: 8px;
+  margin: 2px 0;
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+  min-width: 200px;
 }
 
-.highlight-tools {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  background-color: oklch(var(--nc));
-}
-
-.highlight-code {
-  @apply flex;
-}
-
-.highlight-code .code {
-  @apply flex-auto;
-  overflow: auto;
-  padding-right: 4em;
-}
-
-.highlight-code .gutter {
-  @apply flex-none text-right;
-  user-select: none;
-  border-right: 1px solid #888;
-}
-
-.highlight .code-lang {
-  font-family: "Cascadia";
-  user-select: none;
-}
-
-.menu-item summary::after {
-  position: absolute;
-}
-
-.main-card p,
-.main-card ol,
-.main-card ul,
-.main-card li,
-.timeline-box {
-  @apply my-2 leading-normal;
-}
-
-
-.image-link {
-  position: relative;
-  display: inline-block;
-}
-
-.image-link img {
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.image-link:hover img {
-  transform: scale(1.2);
-  filter: brightness(0.5);
-}
-
-.image-link:active img {
-  transform: scale(1.1);
-  filter: brightness(0.5);
-}
-
-.image-link::after {
+.menu-item::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-  transform-origin: center;
-  opacity: 0;
-  width: 100px;
-  height: 100px;
-  background-image: url('data:image/svg+xml,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 width%3D%2224%22 height%3D%2224%22 viewBox%3D%220 0 24 24%22 fill%3D%22%23ffffff%22%3E%3Cpath d%3D%22M8.59%2C16.58L13.17%2C12L8.59%2C7.41L10%2C6L16%2C12L10%2C18L8.59%2C16.58Z%22%3E%3C/path%3E%3C/svg%3E');
-  background-size: cover;
-  transition: opacity 0.3s, transform 0.3s ease;
-  pointer-events: none;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.5s ease;
 }
 
-.image-link:hover::after {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+.menu-item:hover::before {
+  left: 100%;
 }
 
-.image-link:active::after {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(0.8);
+.menu-item:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  color: var(--cyber-primary);
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  max-width: 100%;
 }
 
-
-.timeline {
-  @apply pl-0;
+html[data-theme="dracula"] .menu-item:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  color: #667eea;
 }
 
-.timeline li {
-  @apply my-0 leading-none;
+// Enhanced navbar styling
+.navbar {
+  @apply transition-all duration-300 ease-in-out;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
 
-.footnotes {
-  @apply alert;
+html[data-theme="dracula"] .navbar {
+  background: rgba(26, 26, 46, 0.95) !important;
+  border-bottom-color: rgba(102, 126, 234, 0.2);
 }
 
-.swup-progress-bar {
-  background-color: oklch(var(--p));
+// Enhanced dropdown button styling
+.btn-ghost {
+  @apply transition-all duration-300 ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ghost::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-ghost:hover::before {
+  left: 100%;
+}
+
+.btn-ghost:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  color: var(--cyber-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+}
+
+html[data-theme="dracula"] .btn-ghost:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  color: #667eea;
+}
+
+// Enhanced site title styling
+.navbar-center .btn-ghost {
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.5rem;
+}
+
+html[data-theme="dracula"] .navbar-center .btn-ghost {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar-center .btn-ghost:hover {
+  transform: scale(1.05);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
