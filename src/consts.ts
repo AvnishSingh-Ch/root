@@ -22,7 +22,7 @@ export const menuItems = [
   {
     id: "credentials",
     text: "Credentials",
-    href: "credentials",
+    href: "/credentials",
     svg: "friend",
     target: "_self",
   }, // Education and certificates & Skills
@@ -44,7 +44,7 @@ export const menuItems = [
   {
     id: "resume",
     text: "Resume",
-    href: "resume.pdf", // Contact email
+    href: "/resume.pdf", // Contact email
     target: "_blank", // Open in a new tab
     svg: "cube",
   },
