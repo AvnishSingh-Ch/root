@@ -4,91 +4,154 @@ import BaseCard from "../components/BaseCard.astro";
 ---
 
 <BaseLayout title="Home">
-  <BaseCard title="Home">
-    <div class="hero-section">
-      <div class="hero-content">
-        <div class="greeting">
-          <span class="wave">👋</span>
-          <h1 class="hero-title">
-            Hi there! I'm <span class="highlight">Avnish Singh</span>
-          </h1>
-          <p class="hero-subtitle">
-            Cybersecurity Student & Ethical Hacker
-          </p>
-          <div class="typing-effect">
-            <span class="typing-text">Penetration Testing</span>
-            <span class="typing-text">Network Security</span>
-            <span class="typing-text">Vulnerability Assessment</span>
-            <span class="typing-text">Digital Forensics</span>
+  <BaseCard title="Terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <span class="terminal-button close"></span>
+          <span class="terminal-button minimize"></span>
+          <span class="terminal-button maximize"></span>
+        </div>
+        <div class="terminal-title">user@cybersec-terminal:~$</div>
+      </div>
+      <div class="terminal-content">
+        <div class="terminal-line">
+          <span class="prompt">user@cybersec-terminal:~$</span>
+          <span class="command">whoami</span>
+        </div>
+        <div class="terminal-output">
+          <div class="ascii-art">
+   ___              _     _       _____ _             _     
+  / _ \            (_)   | |     /  ___(_)           | |    
+ / /_\ \__   ___ __ _ ___| |__   \ `--. _ _ __   __ _| |__  
+ |  _  |\ \ / / '_ \ / __| '_ \   `--. \ | '_ \ / _` | '_ \ 
+ | | | | \ V /| | | \__ \ | | | /\__/ / | | | | (_| | | | |
+ \_| |_/  \_/ |_| |_|___/_| |_| \____/|_|_| |_|\__, |_| |_|
+                                                __/ |      
+                                               |___/       
+          </div>
+          <div class="user-info">
+            <span class="info-label">STATUS:</span> <span class="status-active">ACTIVE</span><br>
+            <span class="info-label">ROLE:</span> Cybersecurity Student & Ethical Hacker<br>
+            <span class="info-label">SPECIALIZATION:</span> Penetration Testing | Network Security<br>
+            <span class="info-label">LOCATION:</span> /home/cybersec/learning_mode<br>
           </div>
         </div>
         
-        <div class="hero-stats">
-          <div class="stat-card">
-            <div class="stat-number">100+</div>
-            <div class="stat-label">Vulnerabilities Found</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Security Tools</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">Learning Mode</div>
-          </div>
+        <div class="terminal-line">
+          <span class="prompt">user@cybersec-terminal:~$</span>
+          <span class="command">cat stats.txt</span>
         </div>
-      </div>
-    </div>
-  </BaseCard>
-
-  <BaseCard>
-    <div class="about-section">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-grid">
-        <div class="about-content">
-          <p class="about-text">
-            I'm a passionate cybersecurity student dedicated to understanding and securing the digital world. 
-            My journey began with ethical hacking, and I've been fascinated by how proactive security measures 
-            can protect organizations and individuals from ever-evolving cyber threats.
-          </p>
-          
-          <div class="skills-showcase">
-            <h3>Core Skills</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">Penetration Testing</span>
-              <span class="skill-tag">Network Analysis</span>
-              <span class="skill-tag">Vulnerability Assessment</span>
-              <span class="skill-tag">Linux Administration</span>
-              <span class="skill-tag">Python Scripting</span>
-              <span class="skill-tag">Wireshark</span>
-              <span class="skill-tag">Metasploit</span>
-              <span class="skill-tag">Nmap</span>
+        <div class="terminal-output">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-number">100+</span>
+              <span class="stat-label">vulnerabilities_found</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">50+</span>
+              <span class="stat-label">security_tools_mastered</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">learning_mode_active</span>
             </div>
           </div>
         </div>
         
-        <div class="about-highlights">
-          <div class="highlight-item">
-            <div class="highlight-icon">🔒</div>
-            <div class="highlight-content">
-              <h4>Ethical Hacking</h4>
-              <p>Passionate about finding vulnerabilities before the bad guys do</p>
+        <div class="terminal-line">
+          <span class="prompt">user@cybersec-terminal:~$</span>
+          <span class="command">ls -la skills/</span>
+        </div>
+        <div class="terminal-output">
+          <div class="file-listing">
+            <div class="file-item">drwxr-xr-x  2 user user 4096 Jan 15 10:30 <span class="dir">penetration_testing/</span></div>
+            <div class="file-item">drwxr-xr-x  2 user user 4096 Jan 15 10:30 <span class="dir">network_analysis/</span></div>
+            <div class="file-item">drwxr-xr-x  2 user user 4096 Jan 15 10:30 <span class="dir">vulnerability_assessment/</span></div>
+            <div class="file-item">-rwxr-xr-x  1 user user 2048 Jan 15 10:30 <span class="exec">python_scripting.py</span></div>
+            <div class="file-item">-rwxr-xr-x  1 user user 1024 Jan 15 10:30 <span class="exec">linux_admin.sh</span></div>
+            <div class="file-item">-rw-r--r--  1 user user  512 Jan 15 10:30 <span class="file">wireshark_configs.conf</span></div>
+          </div>
+        </div>
+        
+        <div class="terminal-line">
+          <span class="prompt">user@cybersec-terminal:~$</span>
+          <span class="cursor">_</span>
+        </div>
+      </div>
+    </div>
+  </BaseCard>
+
+  <BaseCard title="System Information">
+    <div class="system-info">
+      <div class="info-header">
+        <span class="prompt">user@cybersec-terminal:~$</span>
+        <span class="command">cat /proc/userinfo</span>
+      </div>
+      
+      <div class="info-content">
+        <div class="info-section">
+          <div class="section-header">[SYSTEM_PROFILE]</div>
+          <div class="info-text">
+            > Passionate cybersecurity student dedicated to understanding and securing the digital world.<br>
+            > Journey began with ethical hacking - fascinated by proactive security measures.<br>
+            > Mission: Protect organizations and individuals from evolving cyber threats.<br>
+          </div>
+        </div>
+        
+        <div class="info-section">
+          <div class="section-header">[CORE_MODULES]</div>
+          <div class="modules-grid">
+            <div class="module-item">
+              <span class="module-status">[ACTIVE]</span>
+              <span class="module-name">penetration_testing.exe</span>
+            </div>
+            <div class="module-item">
+              <span class="module-status">[ACTIVE]</span>
+              <span class="module-name">network_analysis.bin</span>
+            </div>
+            <div class="module-item">
+              <span class="module-status">[ACTIVE]</span>
+              <span class="module-name">vuln_assessment.sh</span>
+            </div>
+            <div class="module-item">
+              <span class="module-status">[ACTIVE]</span>
+              <span class="module-name">linux_admin.py</span>
+            </div>
+            <div class="module-item">
+              <span class="module-status">[ACTIVE]</span>
+              <span class="module-name">python_scripting.py</span>
+            </div>
+            <div class="module-item">
+              <span class="module-status">[ACTIVE]</span>
+              <span class="module-name">wireshark_analyzer</span>
             </div>
           </div>
-          
-          <div class="highlight-item">
-            <div class="highlight-icon">🐧</div>
-            <div class="highlight-content">
-              <h4>Linux Enthusiast</h4>
-              <p>Open-source advocate who believes in the power of community-driven security</p>
+        </div>
+        
+        <div class="info-section">
+          <div class="section-header">[SPECIALIZATIONS]</div>
+          <div class="specializations">
+            <div class="spec-item">
+              <span class="spec-icon">[🔒]</span>
+              <div class="spec-content">
+                <div class="spec-title">ETHICAL_HACKING</div>
+                <div class="spec-desc">Finding vulnerabilities before malicious actors</div>
+              </div>
             </div>
-          </div>
-          
-          <div class="highlight-item">
-            <div class="highlight-icon">🧠</div>
-            <div class="highlight-content">
-              <h4>Continuous Learning</h4>
-              <p>Always exploring the latest cybersecurity tools and techniques</p>
+            <div class="spec-item">
+              <span class="spec-icon">[🐧]</span>
+              <div class="spec-content">
+                <div class="spec-title">LINUX_SYSTEMS</div>
+                <div class="spec-desc">Open-source security and system administration</div>
+              </div>
+            </div>
+            <div class="spec-item">
+              <span class="spec-icon">[🧠]</span>
+              <div class="spec-content">
+                <div class="spec-title">CONTINUOUS_LEARNING</div>
+                <div class="spec-desc">Always exploring latest cybersecurity techniques</div>
+              </div>
             </div>
           </div>
         </div>
@@ -96,454 +159,434 @@ import BaseCard from "../components/BaseCard.astro";
     </div>
   </BaseCard>
 
-  <BaseCard>
-    <div class="github-section">
-      <h2 class="section-title">GitHub Activity</h2>
-      <div class="github-stats">
-        <a href="https://git.io/streak-stats" target="_blank" rel="noopener noreferrer">
-          <img src="https://streak-stats.demolab.com?user=AvnishSingh-Ch&theme=dark&hide_border=true" alt="GitHub Streak" loading="lazy" />
-        </a>
+  <BaseCard title="Git Repository Status">
+    <div class="git-section">
+      <div class="git-header">
+        <span class="prompt">user@cybersec-terminal:~$</span>
+        <span class="command">git log --oneline --graph</span>
+      </div>
+      <div class="git-content">
+        <div class="github-stats">
+          <a href="https://git.io/streak-stats" target="_blank" rel="noopener noreferrer">
+            <img src="https://streak-stats.demolab.com?user=AvnishSingh-Ch&theme=dark&hide_border=true" alt="GitHub Streak" loading="lazy" />
+          </a>
+        </div>
       </div>
     </div>
   </BaseCard>
 
-  <BaseCard>
-    <div class="cta-section">
-      <h2 class="section-title">Let's Connect</h2>
-      <p class="cta-text">
-        Interested in cybersecurity, ethical hacking, or just want to chat about security? 
-        I'm always open to collaboration and knowledge sharing!
-      </p>
-      <div class="cta-buttons">
-        <a href="/project" class="cta-button primary">View My Projects</a>
-        <a href="mailto:avnishsinghch@outlook.com" class="cta-button secondary">Get In Touch</a>
+  <BaseCard title="Network Connection">
+    <div class="connection-section">
+      <div class="connection-header">
+        <span class="prompt">user@cybersec-terminal:~$</span>
+        <span class="command">netstat -an | grep LISTEN</span>
+      </div>
+      <div class="connection-content">
+        <div class="connection-text">
+          > Interested in cybersecurity, ethical hacking, or security discussions?<br>
+          > Always open to collaboration and knowledge sharing!<br>
+          > Establishing secure connections with fellow security enthusiasts...<br>
+        </div>
+        <div class="connection-buttons">
+          <a href="/project" class="terminal-button-link">
+            <span class="button-prompt">$</span> ./view_projects.sh
+          </a>
+          <a href="mailto:avnishsinghch@outlook.com" class="terminal-button-link">
+            <span class="button-prompt">$</span> ./send_message.py
+          </a>
+        </div>
       </div>
     </div>
   </BaseCard>
 </BaseLayout>
 
 <style>
-  .hero-section {
-    padding: 2rem 0;
-    text-align: center;
+  :root {
+    --terminal-green: #00ff41;
+    --terminal-green-dim: #00cc33;
+    --terminal-green-bright: #66ff66;
+    --terminal-amber: #ffb000;
+    --terminal-red: #ff4444;
+    --terminal-blue: #4488ff;
+    --terminal-cyan: #44ffff;
+    --terminal-bg: #0a0a0a;
+    --terminal-bg-light: #1a1a1a;
+    --terminal-bg-card: #111111;
+    --terminal-border: #333333;
+    --terminal-text: #e0e0e0;
+    --terminal-text-dim: #999999;
+    --terminal-shadow: rgba(0, 255, 65, 0.3);
   }
 
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+  /* Terminal Window Styling */
+  .terminal-window {
+    background: var(--terminal-bg);
+    border: 2px solid var(--terminal-border);
+    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.4;
   }
 
-  .greeting {
-    margin-bottom: 3rem;
-  }
-
-  .wave {
-    font-size: 3rem;
-    animation: wave 2s infinite;
-  }
-
-  @keyframes wave {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(20deg); }
-    75% { transform: rotate(-20deg); }
-  }
-
-  /* Disable wave animation on mobile for better performance */
-  @media (max-width: 768px) {
-    .wave {
-      animation: none;
-    }
-  }
-
-  .hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin: 1rem 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .highlight {
-    color: #ff6b6b;
-    position: relative;
-  }
-
-  .highlight::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
-    border-radius: 2px;
-  }
-
-  .hero-subtitle {
-    font-size: 1.5rem;
-    color: #6c757d;
-    margin-bottom: 2rem;
-    font-weight: 500;
-  }
-
-  .typing-effect {
-    height: 2rem;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .typing-text {
-    display: block;
-    font-size: 1.2rem;
-    color: #4ecdc4;
-    font-weight: 600;
-    animation: typing 8s infinite;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .typing-text:nth-child(1) { animation-delay: 0s; }
-  .typing-text:nth-child(2) { animation-delay: 2s; }
-  .typing-text:nth-child(3) { animation-delay: 4s; }
-  .typing-text:nth-child(4) { animation-delay: 6s; }
-
-  @keyframes typing {
-    0%, 25% { opacity: 1; }
-    26%, 100% { opacity: 0; }
-  }
-
-  /* Disable typing animation on mobile for better performance */
-  @media (max-width: 768px) {
-    .typing-effect {
-      height: auto;
-      overflow: visible;
-    }
-    
-    .typing-text {
-      position: static;
-      opacity: 1;
-      animation: none;
-      transform: none;
-      margin-bottom: 0.5rem;
-    }
-    
-    .typing-text:not(:first-child) {
-      display: none;
-    }
-  }
-
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .stat-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1.5rem;
-    border-radius: 15px;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-
-  .stat-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    opacity: 0.9;
-  }
-
-  .about-section {
-    padding: 2rem 0;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  @media (max-width: 1024px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  }
-
-  .about-text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #495057;
-    margin-bottom: 2rem;
-  }
-
-  .skills-showcase h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-
-  .skill-tags {
+  .terminal-header {
+    background: var(--terminal-bg-light);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--terminal-border);
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .terminal-buttons {
+    display: flex;
     gap: 0.5rem;
   }
 
-  .skill-tag {
-    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: transform 0.3s ease;
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
   }
 
-  .skill-tag:hover {
-    transform: scale(1.05);
+  .terminal-button.close {
+    background: var(--terminal-red);
   }
 
-  .about-highlights {
+  .terminal-button.minimize {
+    background: var(--terminal-amber);
+  }
+
+  .terminal-button.maximize {
+    background: var(--terminal-green);
+  }
+
+  .terminal-title {
+    color: var(--terminal-text-dim);
+    font-size: 12px;
+  }
+
+  .terminal-content {
+    padding: 1rem;
+    min-height: 400px;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.5rem;
+  }
+
+  .prompt {
+    color: var(--terminal-green);
+    font-weight: bold;
+  }
+
+  .command {
+    color: var(--terminal-cyan);
+    margin-left: 0.5rem;
+  }
+
+  .terminal-output {
+    margin: 1rem 0 2rem 0;
+    padding-left: 1rem;
+  }
+
+  .ascii-art {
+    color: var(--terminal-green-bright);
+    font-size: 10px;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    white-space: pre;
+    text-shadow: 0 0 5px var(--terminal-shadow);
+  }
+
+  .user-info {
+    color: var(--terminal-text);
+    margin-bottom: 1rem;
+  }
+
+  .info-label {
+    color: var(--terminal-amber);
+    font-weight: bold;
+  }
+
+  .status-active {
+    color: var(--terminal-green-bright);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--terminal-shadow);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-bg-card);
+  }
+
+  .stat-number {
+    color: var(--terminal-green-bright);
+    font-weight: bold;
+  }
+
+  .stat-label {
+    color: var(--terminal-text-dim);
+  }
+
+  .file-listing {
+    font-family: monospace;
+    font-size: 13px;
+  }
+
+  .file-item {
+    margin-bottom: 0.25rem;
+    color: var(--terminal-text);
+  }
+
+  .dir {
+    color: var(--terminal-blue);
+    font-weight: bold;
+  }
+
+  .exec {
+    color: var(--terminal-green);
+    font-weight: bold;
+  }
+
+  .file {
+    color: var(--terminal-text);
+  }
+
+  .cursor {
+    color: var(--terminal-green);
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  /* System Info Styling */
+  .system-info {
+    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
+    font-size: 14px;
+  }
+
+  .info-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--terminal-border);
+  }
+
+  .info-content {
+    padding-left: 1rem;
+  }
+
+  .info-section {
+    margin-bottom: 2rem;
+  }
+
+  .section-header {
+    color: var(--terminal-amber);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .info-text {
+    color: var(--terminal-text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .module-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-bg-card);
+  }
+
+  .module-status {
+    color: var(--terminal-green);
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .module-name {
+    color: var(--terminal-text);
+  }
+
+  .specializations {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
-  .highlight-item {
+  .spec-item {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-radius: 15px;
-    border-left: 4px solid #4ecdc4;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    padding: 1rem;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-bg-card);
   }
 
-  .highlight-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  .spec-icon {
+    color: var(--terminal-amber);
+    font-size: 16px;
+    min-width: 2rem;
   }
 
-  .highlight-icon {
-    font-size: 2rem;
-    min-width: 3rem;
-    text-align: center;
-    flex-shrink: 0;
-  }
-
-  .highlight-content {
+  .spec-content {
     flex: 1;
   }
 
-  .highlight-content h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: white;
-    font-weight: 600;
+  .spec-title {
+    color: var(--terminal-green);
+    font-weight: bold;
+    margin-bottom: 0.25rem;
   }
 
-  .highlight-content p {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    margin: 0;
+  .spec-desc {
+    color: var(--terminal-text-dim);
+    font-size: 13px;
   }
 
-  @media (max-width: 768px) {
-    .highlight-item {
-      flex-direction: column;
-      text-align: center;
-      gap: 0.75rem;
-    }
-    
-    .highlight-icon {
-      min-width: auto;
-    }
-    
-    .highlight-content h4 {
-      font-size: 1.1rem;
-    }
-    
-    .highlight-content p {
-      font-size: 0.95rem;
-    }
+  /* Git Section Styling */
+  .git-section {
+    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
   }
 
-  .github-section {
-    padding: 2rem 0;
-    text-align: center;
+  .git-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--terminal-border);
+  }
+
+  .git-content {
+    padding-left: 1rem;
   }
 
   .github-stats {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin: 1rem 0;
   }
 
   .github-stats img {
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid var(--terminal-border);
+    box-shadow: 0 0 10px var(--terminal-shadow);
   }
 
-  .cta-section {
-    padding: 3rem 0;
-    text-align: center;
+  /* Connection Section Styling */
+  .connection-section {
+    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
   }
 
-  .cta-text {
-    font-size: 1.2rem;
-    color: #495057;
+  .connection-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--terminal-border);
+  }
+
+  .connection-content {
+    padding-left: 1rem;
+  }
+
+  .connection-text {
+    color: var(--terminal-text);
+    line-height: 1.6;
     margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .cta-buttons {
+  .connection-buttons {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    max-width: 400px;
   }
 
-  .cta-button {
-    padding: 1rem 2rem;
-    border-radius: 50px;
+  .terminal-button-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--terminal-border);
+    background: var(--terminal-bg-card);
+    color: var(--terminal-text);
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
+    font-family: monospace;
+    transition: all 0.2s ease;
   }
 
-  .cta-button.primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+  .terminal-button-link:hover {
+    border-color: var(--terminal-green);
+    color: var(--terminal-green);
+    box-shadow: 0 0 10px var(--terminal-shadow);
   }
 
-  .cta-button.primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  .button-prompt {
+    color: var(--terminal-green);
+    font-weight: bold;
   }
 
-  .cta-button.secondary {
-    background: transparent;
-    color: #667eea;
-    border-color: #667eea;
-  }
-
-  .cta-button.secondary:hover {
-    background: #667eea;
-    color: white;
-    transform: translateY(-3px);
-  }
-
+  /* Mobile Responsiveness */
   @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2rem;
-      line-height: 1.2;
+    .terminal-window {
+      font-size: 12px;
     }
-    
-    .hero-stats {
-      display: block;
-      gap: 1rem;
+
+    .ascii-art {
+      font-size: 8px;
     }
-    
-    .stat-card {
-      margin-bottom: 1rem;
-      padding: 1rem;
-      transform: none;
-      transition: none;
-    }
-    
-    .stat-card:hover {
-      transform: none;
-    }
-    
-    .cta-buttons {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    
-    .cta-button {
-      width: 100%;
-      max-width: 280px;
-      padding: 0.875rem 1.5rem;
-      transform: none;
-      transition: none;
-    }
-    
-    .cta-button:hover {
-      transform: none;
-      box-shadow: none;
-    }
-    
-    .section-title {
-      font-size: 1.75rem;
-    }
-    
-    .about-text {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    
-    .about-grid {
+
+    .stats-grid {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
     }
-    
-    .highlight-item {
-      padding: 1rem;
-      transform: none;
-      transition: none;
+
+    .modules-grid {
+      grid-template-columns: 1fr;
     }
-    
-    .highlight-item:hover {
-      transform: none;
-      box-shadow: none;
+
+    .connection-buttons {
+      max-width: 100%;
     }
-    
-    .skill-tag {
-      transform: none;
-      transition: none;
+
+    .terminal-button-link {
+      font-size: 14px;
     }
-    
-    .skill-tag:hover {
-      transform: none;
-    }
-    
+
     .github-stats img {
       max-width: 100%;
       height: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .terminal-content {
+      padding: 0.5rem;
+      min-height: 300px;
+    }
+
+    .terminal-window {
+      font-size: 11px;
+    }
+
+    .ascii-art {
+      font-size: 7px;
     }
   }
 </style> 

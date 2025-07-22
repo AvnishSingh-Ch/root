@@ -1,6 +1,24 @@
 // Mobile-first optimizations for better performance and UX
 // This file contains lightweight styles specifically for mobile devices
 
+// Terminal theme variables for mobile
+:root {
+  --terminal-green: #00ff41;
+  --terminal-green-dim: #00cc33;
+  --terminal-green-bright: #66ff66;
+  --terminal-amber: #ffb000;
+  --terminal-red: #ff4444;
+  --terminal-blue: #4488ff;
+  --terminal-cyan: #44ffff;
+  --terminal-bg: #0a0a0a;
+  --terminal-bg-light: #1a1a1a;
+  --terminal-bg-card: #111111;
+  --terminal-border: #333333;
+  --terminal-text: #e0e0e0;
+  --terminal-text-dim: #999999;
+  --terminal-shadow: rgba(0, 255, 65, 0.3);
+}
+
 // Mobile-first media queries
 @media (max-width: 768px) {
   // Disable heavy animations and effects for better performance
@@ -35,36 +53,43 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  // Remove heavy background effects
+  // Keep terminal background effects for mobile
   body::before {
-    display: none !important;
+    animation: none !important;
   }
 
-  // Optimize cards for mobile
+  // Optimize cards for mobile with terminal theme
   .card {
-    border-radius: 12px !important;
+    border-radius: 0 !important;
     margin: 0.75rem 0.5rem !important;
     padding: 1rem !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
     backdrop-filter: none !important;
-    background: #ffffff !important;
-    border: 1px solid #e9ecef !important;
+    background: var(--terminal-bg-card) !important;
+    border: 2px solid var(--terminal-border) !important;
+    color: var(--terminal-text) !important;
     transform: none !important;
     transition: none !important;
   }
 
   .card:hover {
     transform: none !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    border-color: var(--terminal-green) !important;
+    box-shadow: 0 0 5px var(--terminal-shadow) !important;
   }
 
-  // Optimize buttons for mobile
+  // Optimize buttons for mobile with terminal theme
   .btn {
     min-height: 48px !important;
     min-width: 48px !important;
     padding: 0.75rem 1.5rem !important;
     font-size: 16px !important;
-    border-radius: 8px !important;
+    border-radius: 0 !important;
+    border: 2px solid var(--terminal-border) !important;
+    background: var(--terminal-bg-card) !important;
+    color: var(--terminal-text) !important;
+    font-family: monospace !important;
+    text-transform: uppercase !important;
     transition: none !important;
     transform: none !important;
   }
@@ -75,16 +100,19 @@
 
   .btn:hover, .btn:active, .btn:focus {
     transform: none !important;
+    border-color: var(--terminal-green) !important;
+    color: var(--terminal-green) !important;
     box-shadow: none !important;
   }
 
-  // Optimize navigation for mobile
+  // Optimize navigation for mobile with terminal theme
   .navbar {
     padding: 0.5rem 1rem !important;
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(8px) !important;
-    border-bottom: 1px solid #e9ecef !important;
+    background: var(--terminal-bg-light) !important;
+    backdrop-filter: none !important;
+    border-bottom: 2px solid var(--terminal-border) !important;
     height: 64px !important;
+    font-family: monospace !important;
   }
 
   .navbar-start, .navbar-center, .navbar-end {
@@ -101,40 +129,51 @@
     padding: 0.5rem !important;
   }
 
-  // Optimize dropdown menu for mobile
+  // Optimize dropdown menu for mobile with terminal theme
   .dropdown {
     position: relative !important;
   }
 
   .menu {
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(8px) !important;
-    border: 1px solid #e9ecef !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    background: var(--terminal-bg-card) !important;
+    backdrop-filter: none !important;
+    border: 2px solid var(--terminal-border) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 10px var(--terminal-shadow) !important;
     min-width: 200px !important;
     max-width: 280px !important;
     padding: 0.5rem !important;
+    font-family: monospace !important;
   }
 
   .menu-item {
     padding: 0.75rem 1rem !important;
     margin: 0.25rem 0 !important;
-    border-radius: 8px !important;
+    border-radius: 0 !important;
     font-size: 16px !important;
     min-height: 48px !important;
     display: flex !important;
     align-items: center !important;
+    color: var(--terminal-text) !important;
+    border-left: 3px solid transparent !important;
     transition: none !important;
     transform: none !important;
   }
 
   .menu-item::before {
-    display: none !important;
+    content: '> ' !important;
+    color: var(--terminal-green) !important;
+    opacity: 0 !important;
+  }
+
+  .menu-item:hover::before, .menu-item:active::before {
+    opacity: 1 !important;
   }
 
   .menu-item:hover, .menu-item:active {
-    background: #f8f9fa !important;
+    background: rgba(0, 255, 65, 0.1) !important;
+    color: var(--terminal-green) !important;
+    border-left-color: var(--terminal-green) !important;
     transform: none !important;
     box-shadow: none !important;
   }
@@ -164,13 +203,30 @@
     margin: 0.625rem 0 !important;
   }
 
-  // Remove gradient text effects for better performance
+  // Terminal-style text effects for mobile
   h1, h2, h3, .hero-title, .section-title {
     background: none !important;
     -webkit-background-clip: unset !important;
     -webkit-text-fill-color: unset !important;
     background-clip: unset !important;
-    color: #333 !important;
+    color: var(--terminal-green) !important;
+    font-family: monospace !important;
+    text-shadow: 0 0 5px var(--terminal-shadow) !important;
+  }
+
+  h1::before {
+    content: '> ' !important;
+    color: var(--terminal-amber) !important;
+  }
+
+  h2::before {
+    content: '>> ' !important;
+    color: var(--terminal-cyan) !important;
+  }
+
+  h3::before {
+    content: '>>> ' !important;
+    color: var(--terminal-blue) !important;
   }
 
   // Optimize images for mobile

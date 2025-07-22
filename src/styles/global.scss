@@ -5,58 +5,73 @@
 // Import mobile-optimized styles
 @import './mobile.scss';
 
-// Cybersecurity theme colors
+// Retro terminal cybersecurity theme colors
 :root {
-  --cyber-primary: #667eea;
-  --cyber-secondary: #764ba2;
-  --cyber-accent: #4ecdc4;
-  --cyber-danger: #ff6b6b;
-  --cyber-success: #51cf66;
-  --cyber-warning: #ffd43b;
-  --cyber-dark: #1a1a2e;
-  --cyber-darker: #16213e;
-  --cyber-light: #f8f9fa;
-  --cyber-text: #495057;
-  --cyber-text-light: #6c757d;
+  --terminal-green: #00ff41;
+  --terminal-green-dim: #00cc33;
+  --terminal-green-bright: #66ff66;
+  --terminal-amber: #ffb000;
+  --terminal-red: #ff4444;
+  --terminal-blue: #4488ff;
+  --terminal-cyan: #44ffff;
+  --terminal-bg: #0a0a0a;
+  --terminal-bg-light: #1a1a1a;
+  --terminal-bg-card: #111111;
+  --terminal-border: #333333;
+  --terminal-text: #e0e0e0;
+  --terminal-text-dim: #999999;
+  --terminal-shadow: rgba(0, 255, 65, 0.3);
 }
 
 html {
   @apply scroll-smooth;
 }
 
-// Enhanced card styling
+// Terminal-style card styling
 .card {
-  @apply transition-all duration-300 ease-in-out;
-  border: 1px solid rgba(102, 126, 234, 0.1);
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
+  @apply transition-all duration-200 ease-in-out;
+  border: 2px solid var(--terminal-border);
+  background: var(--terminal-bg-card);
+  color: var(--terminal-text);
+  position: relative;
 }
 
-/* Enhanced hover effects for different card types */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--terminal-green), var(--terminal-cyan));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 .card:hover {
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: var(--terminal-green);
+  box-shadow: 
+    0 0 10px var(--terminal-shadow),
+    inset 0 0 10px rgba(0, 255, 65, 0.1);
 }
 
-/* For cards without positioning transforms, add lift effect */
-.card:not([class*="-translate-x"]):hover {
-  transform: translateY(-5px);
+.card:hover::before {
+  opacity: 1;
 }
 
-/* For cards with positioning transforms, only add shadow and border effects */
-.card[class*="-translate-x"]:hover {
-  /* Keep existing transform, only change shadow and border */
-}
-
-// Dark theme card styling
+// Dark theme card styling (same as default since we're going dark)
 html[data-theme="dracula"] .card {
-  background: rgba(26, 26, 46, 0.95);
-  border-color: rgba(102, 126, 234, 0.2);
+  background: var(--terminal-bg-card);
+  border-color: var(--terminal-border);
+  color: var(--terminal-text);
 }
 
 html[data-theme="dracula"] .card:hover {
-  border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+  border-color: var(--terminal-green);
+  box-shadow: 
+    0 0 10px var(--terminal-shadow),
+    inset 0 0 10px rgba(0, 255, 65, 0.1);
 }
 
 .no-card {
@@ -80,31 +95,29 @@ a {
   @apply rounded-xl;
 }
 
-// Enhanced link styling with cybersecurity theme
+// Terminal-style link styling
 .main-card p,
 .main-card li,
 .main-card blockquote {
   a {
-    @apply px-0.5 rounded-md font-medium;
-    color: var(--cyber-primary);
-    transition: all 0.3s ease;
-    box-decoration-break: clone;
-    background-image: linear-gradient(var(--cyber-primary), var(--cyber-primary));
-    background-size: 100% 2px;
-    background-position: left bottom;
-    background-repeat: no-repeat;
+    @apply px-1 font-mono;
+    color: var(--terminal-green);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--terminal-green);
+    transition: all 0.2s ease;
     position: relative;
   }
 
   a:hover {
-    background-color: rgba(102, 126, 234, 0.1);
-    background-size: 0% 2px;
-    transform: translateY(-1px);
+    color: var(--terminal-green-bright);
+    background-color: rgba(0, 255, 65, 0.1);
+    border-bottom: 1px solid var(--terminal-green-bright);
+    text-shadow: 0 0 5px var(--terminal-green);
   }
 
   a:active {
-    background-color: rgba(102, 126, 234, 0.2);
-    background-size: 0% 2px;
+    color: var(--terminal-amber);
+    border-bottom-color: var(--terminal-amber);
   }
 }
 
@@ -137,12 +150,13 @@ html[data-theme="dracula"] {
 }
 
 body {
-  @apply m-0 p-0 text-left bg-cover text-xl leading-7;
-  background-size: 100% 600px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  @apply m-0 p-0 text-left text-lg leading-6;
+  background: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
 }
 
-// Enhanced background with subtle cybersecurity pattern
+// Terminal-style scanline effect
 body::before {
   content: '';
   position: fixed;
@@ -151,10 +165,21 @@ body::before {
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.03) 0%, transparent 50%);
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.03) 2px,
+      rgba(0, 255, 65, 0.03) 4px
+    );
   pointer-events: none;
   z-index: -1;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
 }
 
 summary {
@@ -242,200 +267,262 @@ h6:hover .anchor {
   opacity: 1;
 }
 
-// Enhanced typography with cybersecurity theme
+// Terminal-style typography
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  @apply my-2 mb-1 font-semibold;
-  color: var(--cyber-dark);
+  @apply my-3 mb-2 font-mono font-bold;
+  color: var(--terminal-green);
+  text-shadow: 0 0 10px var(--terminal-shadow);
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  @apply text-5xl leading-tight mt-7;
-  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  @apply text-4xl leading-tight mt-8;
+  color: var(--terminal-green-bright);
+  position: relative;
+}
+
+h1::before {
+  content: '> ';
+  color: var(--terminal-amber);
 }
 
 h2 {
-  @apply text-4xl leading-snug mt-6;
-  color: var(--cyber-primary);
+  @apply text-3xl leading-snug mt-6;
+  color: var(--terminal-green);
+  position: relative;
+}
+
+h2::before {
+  content: '>> ';
+  color: var(--terminal-cyan);
 }
 
 h3 {
-  @apply text-3xl leading-normal mt-5;
-  color: var(--cyber-secondary);
+  @apply text-2xl leading-normal mt-5;
+  color: var(--terminal-green-dim);
+  position: relative;
+}
+
+h3::before {
+  content: '>>> ';
+  color: var(--terminal-blue);
 }
 
 h4 {
-  @apply text-2xl leading-relaxed mt-4;
-  color: var(--cyber-text);
+  @apply text-xl leading-relaxed mt-4;
+  color: var(--terminal-text);
 }
 
 h5 {
-  @apply text-xl leading-relaxed mt-3;
-  color: var(--cyber-text);
+  @apply text-lg leading-relaxed mt-3;
+  color: var(--terminal-text);
 }
 
 h6 {
-  @apply text-lg leading-relaxed mt-2;
-  color: var(--cyber-text-light);
+  @apply text-base leading-relaxed mt-2;
+  color: var(--terminal-text-dim);
 }
 
-// Dark theme typography adjustments
+// Dark theme typography (same as default)
 html[data-theme="dracula"] {
   h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+    color: var(--terminal-green);
   }
   
   h1 {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--terminal-green-bright);
   }
   
   h2 {
-    color: #667eea;
+    color: var(--terminal-green);
   }
   
   h3 {
-    color: #764ba2;
+    color: var(--terminal-green-dim);
   }
 }
 
-// Enhanced button styling
+// Terminal-style button styling
 .btn {
-  @apply transition-all duration-300 ease-in-out;
+  @apply transition-all duration-200 ease-in-out font-mono;
   position: relative;
-  overflow: hidden;
+  border: 2px solid var(--terminal-border);
+  background: var(--terminal-bg-card);
+  color: var(--terminal-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .btn::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 100%;
+  left: 0;
+  width: 0;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
+  background: var(--terminal-green);
+  transition: width 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover {
+  border-color: var(--terminal-green);
+  color: var(--terminal-bg);
+  box-shadow: 0 0 15px var(--terminal-shadow);
 }
 
 .btn:hover::before {
-  left: 100%;
+  width: 100%;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
-  border: none;
-  color: white;
+  border-color: var(--terminal-green);
+  color: var(--terminal-green);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  background: var(--terminal-green);
+  color: var(--terminal-bg);
 }
 
 .btn-secondary {
-  background: transparent;
-  border: 2px solid var(--cyber-primary);
-  color: var(--cyber-primary);
+  border-color: var(--terminal-cyan);
+  color: var(--terminal-cyan);
 }
 
 .btn-secondary:hover {
-  background: var(--cyber-primary);
-  color: white;
-  transform: translateY(-2px);
+  background: var(--terminal-cyan);
+  color: var(--terminal-bg);
+  box-shadow: 0 0 15px rgba(68, 255, 255, 0.3);
+}
+
+.btn-secondary::before {
+  background: var(--terminal-cyan);
 }
 
 .btn-accent {
-  background: linear-gradient(135deg, var(--cyber-accent) 0%, #44a08d 100%);
-  border: none;
-  color: white;
+  border-color: var(--terminal-amber);
+  color: var(--terminal-amber);
 }
 
 .btn-accent:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(78, 205, 196, 0.3);
+  background: var(--terminal-amber);
+  color: var(--terminal-bg);
+  box-shadow: 0 0 15px rgba(255, 176, 0, 0.3);
 }
 
-// Enhanced badge styling
+.btn-accent::before {
+  background: var(--terminal-amber);
+}
+
+// Terminal-style badge styling
 .badge {
-  @apply transition-all duration-300 ease-in-out;
+  @apply transition-all duration-200 ease-in-out font-mono text-xs;
+  border: 1px solid var(--terminal-border);
+  background: var(--terminal-bg-card);
+  color: var(--terminal-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   position: relative;
-  overflow: hidden;
 }
 
 .badge-primary {
-  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
-  color: white;
+  border-color: var(--terminal-green);
+  color: var(--terminal-green);
+  background: rgba(0, 255, 65, 0.1);
 }
 
 .badge-secondary {
-  background: linear-gradient(135deg, var(--cyber-accent) 0%, #44a08d 100%);
-  color: white;
+  border-color: var(--terminal-cyan);
+  color: var(--terminal-cyan);
+  background: rgba(68, 255, 255, 0.1);
 }
 
 .badge-neutral {
-  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-  color: white;
+  border-color: var(--terminal-text-dim);
+  color: var(--terminal-text-dim);
+  background: rgba(153, 153, 153, 0.1);
 }
 
-// Enhanced table styling
+// Terminal-style table styling
 table {
-  @apply w-full border-collapse rounded-lg overflow-hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  @apply w-full border-collapse font-mono;
+  border: 2px solid var(--terminal-border);
+  background: var(--terminal-bg-card);
 }
 
 th {
-  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
-  color: white;
-  padding: 1rem;
+  background: var(--terminal-bg-light);
+  color: var(--terminal-green);
+  padding: 0.75rem;
   text-align: left;
-  font-weight: 600;
+  font-weight: bold;
+  border-bottom: 2px solid var(--terminal-border);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 td {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--terminal-border);
+  color: var(--terminal-text);
 }
 
 tr:hover {
-  background-color: rgba(102, 126, 234, 0.05);
+  background-color: rgba(0, 255, 65, 0.05);
 }
 
-// Enhanced code block styling
+// Terminal-style code block styling
 pre {
-  @apply rounded-lg p-4 overflow-x-auto;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  border: 1px solid rgba(102, 126, 234, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  @apply p-4 overflow-x-auto font-mono;
+  background: var(--terminal-bg);
+  border: 2px solid var(--terminal-border);
+  color: var(--terminal-text);
+  position: relative;
+}
+
+pre::before {
+  content: '[user@terminal ~]$ ';
+  color: var(--terminal-green);
+  display: block;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--terminal-border);
+  padding-bottom: 0.5rem;
 }
 
 code {
-  @apply rounded px-2 py-1;
-  background: rgba(102, 126, 234, 0.1);
-  color: var(--cyber-primary);
-  font-family: 'Cascadia', 'Fira Code', monospace;
+  @apply px-1 py-0.5 font-mono;
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--terminal-green);
+  border: 1px solid var(--terminal-border);
+  font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
 }
 
 pre code {
   background: transparent;
   color: inherit;
   padding: 0;
+  border: none;
 }
 
-// Enhanced blockquote styling
+// Terminal-style blockquote styling
 blockquote {
-  @apply border-l-4 pl-4 py-2 my-4;
-  border-color: var(--cyber-primary);
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-  border-radius: 0 8px 8px 0;
+  @apply border-l-4 pl-4 py-2 my-4 font-mono;
+  border-color: var(--terminal-amber);
+  background: rgba(255, 176, 0, 0.05);
+  color: var(--terminal-text);
+  position: relative;
+}
+
+blockquote::before {
+  content: '> ';
+  color: var(--terminal-amber);
+  font-weight: bold;
 }
 
 // Enhanced list styling
@@ -757,129 +844,128 @@ hr {
   }
 }
 
-// Enhanced cybersecurity-themed menu styling
+// Terminal-style menu styling
 .menu {
-  @apply transition-all duration-300 ease-in-out;
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(102, 126, 234, 0.1);
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+  @apply transition-all duration-200 ease-in-out font-mono;
+  background: var(--terminal-bg-card) !important;
+  border: 2px solid var(--terminal-border);
+  box-shadow: 0 0 20px var(--terminal-shadow);
   min-width: 220px !important;
   width: auto !important;
 }
 
 html[data-theme="dracula"] .menu {
-  background: rgba(26, 26, 46, 0.95) !important;
-  border-color: rgba(102, 126, 234, 0.2);
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+  background: var(--terminal-bg-card) !important;
+  border-color: var(--terminal-border);
 }
 
 .menu-item {
-  @apply transition-all duration-300 ease-in-out;
+  @apply transition-all duration-200 ease-in-out font-mono;
   position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  margin: 2px 0;
+  margin: 1px 0;
   width: 100%;
   text-align: left;
   white-space: nowrap;
   min-width: 200px;
+  color: var(--terminal-text);
+  border-left: 3px solid transparent;
 }
 
 .menu-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-  transition: left 0.5s ease;
+  content: '> ';
+  color: var(--terminal-green);
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .menu-item:hover::before {
-  left: 100%;
+  opacity: 1;
 }
 
 .menu-item:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  color: var(--cyber-primary);
-  transform: translateX(5px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-  max-width: 100%;
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--terminal-green);
+  border-left-color: var(--terminal-green);
+  text-shadow: 0 0 5px var(--terminal-shadow);
 }
 
 html[data-theme="dracula"] .menu-item:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-  color: #667eea;
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--terminal-green);
 }
 
-// Enhanced navbar styling
+// Terminal-style navbar styling
 .navbar {
-  @apply transition-all duration-300 ease-in-out;
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+  @apply transition-all duration-200 ease-in-out font-mono;
+  background: var(--terminal-bg-light) !important;
+  border-bottom: 2px solid var(--terminal-border);
 }
 
 html[data-theme="dracula"] .navbar {
-  background: rgba(26, 26, 46, 0.95) !important;
-  border-bottom-color: rgba(102, 126, 234, 0.2);
+  background: var(--terminal-bg-light) !important;
+  border-bottom-color: var(--terminal-border);
 }
 
-// Enhanced dropdown button styling
+// Terminal-style dropdown button styling
 .btn-ghost {
-  @apply transition-all duration-300 ease-in-out;
+  @apply transition-all duration-200 ease-in-out font-mono;
   position: relative;
-  overflow: hidden;
+  color: var(--terminal-text);
 }
 
 .btn-ghost::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-  transition: left 0.5s ease;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--terminal-green);
+  transition: width 0.3s ease;
 }
 
 .btn-ghost:hover::before {
-  left: 100%;
+  width: 100%;
 }
 
 .btn-ghost:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  color: var(--cyber-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--terminal-green);
+  text-shadow: 0 0 5px var(--terminal-shadow);
 }
 
 html[data-theme="dracula"] .btn-ghost:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-  color: #667eea;
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--terminal-green);
 }
 
-// Enhanced site title styling
+// Terminal-style site title styling
 .navbar-center .btn-ghost {
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: bold;
+  color: var(--terminal-green-bright);
   font-size: 1.5rem;
+  text-shadow: 0 0 10px var(--terminal-shadow);
+  position: relative;
+}
+
+.navbar-center .btn-ghost::before {
+  content: '[';
+  color: var(--terminal-amber);
+  margin-right: 0.25rem;
+}
+
+.navbar-center .btn-ghost::after {
+  content: ']';
+  color: var(--terminal-amber);
+  margin-left: 0.25rem;
 }
 
 html[data-theme="dracula"] .navbar-center .btn-ghost {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--terminal-green-bright);
 }
 
 .navbar-center .btn-ghost:hover {
-  transform: scale(1.05);
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  transform: none;
+  color: var(--terminal-green-bright);
+  text-shadow: 0 0 15px var(--terminal-shadow);
 }
