@@ -1,5 +1,6 @@
 ---
 import Menu from "../components/HeaderMenu.astro";
+import MobileNav from "../components/MobileNav.astro";
 import { SITE_TITLE } from "../consts";
 ---
 
@@ -7,7 +8,8 @@ import { SITE_TITLE } from "../consts";
   class="navbar max-md:translate-y-0 fixed px-2 w-full transform -translate-y-full text-center z-50 transition-transform bg-base-100 shadow-xl"
 >
   <div class="navbar-start">
-    <details class="dropdown" id="dropdown">
+    <!-- Desktop Menu -->
+    <details class="dropdown desktop-menu" id="dropdown">
       <summary
         tabindex="0"
         role="button"
@@ -28,6 +30,24 @@ import { SITE_TITLE } from "../consts";
       </summary>
       <Menu />
     </details>
+    
+    <!-- Mobile Menu Button -->
+    <button
+      class="btn btn-ghost mobile-menu-btn"
+      id="mobileMenuBtn"
+      title="Menu"
+    >
+      <svg
+        class="fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 512 512"
+        ><path
+          d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+        ></path></svg
+      >
+    </button>
   </div>
   <div class="navbar-center">
     <a class="btn btn-ghost text-xl" href="/">{SITE_TITLE}</a>
@@ -87,4 +107,60 @@ import { SITE_TITLE } from "../consts";
       }
     });
   });
+
+  // Mobile menu button handler
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", function() {
+      const overlay = document.getElementById('mobileNavOverlay');
+      if (overlay) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
 </script>
+
+<!-- Mobile Navigation -->
+<MobileNav />
+
+<style>
+  @media (max-width: 768px) {
+    .desktop-menu {
+      display: none !important;
+    }
+    
+    .mobile-menu-btn {
+      display: flex !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-menu-btn {
+      display: none !important;
+    }
+  }
+
+  .navbar {
+    height: 64px;
+    min-height: 64px;
+  }
+
+  .navbar-center .btn-ghost {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(8px);
+    }
+    
+    .navbar-center .btn-ghost {
+      font-size: 1.1rem;
+      padding: 0.5rem;
+    }
+  }
+</style>

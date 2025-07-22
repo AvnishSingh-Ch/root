@@ -101,7 +101,7 @@ import BaseCard from "../components/BaseCard.astro";
       <h2 class="section-title">GitHub Activity</h2>
       <div class="github-stats">
         <a href="https://git.io/streak-stats" target="_blank" rel="noopener noreferrer">
-          <img src="https://streak-stats.demolab.com?user=CybrAvnish&theme=dark&hide_border=true" alt="GitHub Streak" />
+          <img src="https://streak-stats.demolab.com?user=AvnishSingh-Ch&theme=dark&hide_border=true" alt="GitHub Streak" loading="lazy" />
         </a>
       </div>
     </div>
@@ -146,6 +146,13 @@ import BaseCard from "../components/BaseCard.astro";
     0%, 100% { transform: rotate(0deg); }
     25% { transform: rotate(20deg); }
     75% { transform: rotate(-20deg); }
+  }
+
+  /* Disable wave animation on mobile for better performance */
+  @media (max-width: 768px) {
+    .wave {
+      animation: none;
+    }
   }
 
   .hero-title {
@@ -208,6 +215,26 @@ import BaseCard from "../components/BaseCard.astro";
   @keyframes typing {
     0%, 25% { opacity: 1; }
     26%, 100% { opacity: 0; }
+  }
+
+  /* Disable typing animation on mobile for better performance */
+  @media (max-width: 768px) {
+    .typing-effect {
+      height: auto;
+      overflow: visible;
+    }
+    
+    .typing-text {
+      position: static;
+      opacity: 1;
+      animation: none;
+      transform: none;
+      margin-bottom: 0.5rem;
+    }
+    
+    .typing-text:not(:first-child) {
+      display: none;
+    }
   }
 
   .hero-stats {
@@ -441,24 +468,82 @@ import BaseCard from "../components/BaseCard.astro";
 
   @media (max-width: 768px) {
     .hero-title {
-      font-size: 2.5rem;
+      font-size: 2rem;
+      line-height: 1.2;
     }
     
     .hero-stats {
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      display: block;
+      gap: 1rem;
+    }
+    
+    .stat-card {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      transform: none;
+      transition: none;
+    }
+    
+    .stat-card:hover {
+      transform: none;
     }
     
     .cta-buttons {
       flex-direction: column;
       align-items: center;
+      gap: 1rem;
+    }
+    
+    .cta-button {
+      width: 100%;
+      max-width: 280px;
+      padding: 0.875rem 1.5rem;
+      transform: none;
+      transition: none;
+    }
+    
+    .cta-button:hover {
+      transform: none;
+      box-shadow: none;
     }
     
     .section-title {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
     
     .about-text {
       font-size: 1rem;
+      line-height: 1.6;
+    }
+    
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .highlight-item {
+      padding: 1rem;
+      transform: none;
+      transition: none;
+    }
+    
+    .highlight-item:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .skill-tag {
+      transform: none;
+      transition: none;
+    }
+    
+    .skill-tag:hover {
+      transform: none;
+    }
+    
+    .github-stats img {
+      max-width: 100%;
+      height: auto;
     }
   }
 </style> 

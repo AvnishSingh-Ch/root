@@ -1,0 +1,82 @@
+---
+// Mobile-optimized component wrapper
+const { class: className = "", ...props } = Astro.props;
+---
+
+<div class={`mobile-optimized ${className}`} {...props}>
+  <slot />
+</div>
+
+<style>
+  .mobile-optimized {
+    /* Optimize for mobile touch */
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Allow text selection for content areas */
+  .mobile-optimized p,
+  .mobile-optimized h1,
+  .mobile-optimized h2,
+  .mobile-optimized h3,
+  .mobile-optimized h4,
+  .mobile-optimized h5,
+  .mobile-optimized h6,
+  .mobile-optimized li,
+  .mobile-optimized blockquote {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-optimized {
+      /* Optimize scrolling performance */
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: auto;
+      
+      /* Reduce paint complexity */
+      will-change: auto;
+      
+      /* Optimize touch interactions */
+      touch-action: manipulation;
+    }
+
+    /* Optimize buttons and interactive elements */
+    .mobile-optimized button,
+    .mobile-optimized a,
+    .mobile-optimized .btn {
+      min-height: 44px;
+      min-width: 44px;
+      touch-action: manipulation;
+    }
+
+    /* Optimize images */
+    .mobile-optimized img {
+      max-width: 100%;
+      height: auto;
+      loading: lazy;
+      decoding: async;
+    }
+
+    /* Optimize animations */
+    .mobile-optimized * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    /* Respect user's motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-optimized * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  }
+</style>

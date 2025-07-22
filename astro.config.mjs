@@ -36,14 +36,14 @@ export default defineConfig({
     icon(),
     swup({
       cache: true,
-      progress: true,
+      progress: false, // Disable progress bar on mobile for better performance
       accessibility: true,
-      smoothScrolling: true,
+      smoothScrolling: false, // Disable smooth scrolling on mobile
       preload: {
-        hover: true,
+        hover: false, // Disable hover preload on mobile
         visible: false
       },
-      theme: 'slide',
+      theme: 'fade', // Use fade instead of slide for better mobile performance
       containers: ["#swup"],
     }),
     terser({
@@ -54,7 +54,13 @@ export default defineConfig({
     tailwind(),
     pagefind(),
     astroI18next(),
-    playformCompress(),
+    playformCompress({
+      CSS: true,
+      HTML: true,
+      Image: true,
+      JavaScript: true,
+      SVG: true,
+    }),
   ],
   markdown: {
     shikiConfig: {

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+// Import mobile-optimized styles
+@import './mobile.scss';
+
 // Cybersecurity theme colors
 :root {
   --cyber-primary: #667eea;
