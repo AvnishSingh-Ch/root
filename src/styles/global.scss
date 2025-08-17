@@ -2,77 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-// Import mobile-optimized styles
-@import './mobile.scss';
+// Performance optimizations
+* {
+  box-sizing: border-box;
+}
 
-// Retro terminal cybersecurity theme colors
+// Premium Retro Minimal theme colors
 :root {
-  --terminal-green: #00ff41;
-  --terminal-green-dim: #00cc33;
-  --terminal-green-bright: #66ff66;
-  --terminal-amber: #ffb000;
-  --terminal-red: #ff4444;
-  --terminal-blue: #4488ff;
-  --terminal-cyan: #44ffff;
-  --terminal-bg: #0a0a0a;
-  --terminal-bg-light: #1a1a1a;
-  --terminal-bg-card: #111111;
-  --terminal-border: #333333;
-  --terminal-text: #e0e0e0;
-  --terminal-text-dim: #999999;
-  --terminal-shadow: rgba(0, 255, 65, 0.3);
+  --retro-bg: #FAF9F6;
+  --retro-bg-alt: #F5F5DC;
+  --retro-primary: #2E2B23;
+  --retro-accent-green: #355E3B;
+  --retro-accent-burgundy: #6E2C2C;
+  --retro-accent-gold: #C5A46D;
+  --retro-text: #2E2B23;
+  --retro-text-light: #5A5A5A;
+  --retro-border: #E5E5E5;
+  --retro-shadow: rgba(46, 43, 35, 0.1);
+}
+
+// Dark theme color overrides
+html[data-theme="retro-dark"], html[data-theme="dracula"] {
+  --retro-bg: #1A1A1A;
+  --retro-bg-alt: #2A2A2A;
+  --retro-primary: #E5E5E5;
+  --retro-text: #C5C5C5;
+  --retro-text-light: #A0A0A0;
+  --retro-border: #404040;
+  --retro-shadow: rgba(0, 0, 0, 0.3);
 }
 
 html {
   @apply scroll-smooth;
+  /* Performance optimizations */
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// Terminal-style card styling
+body {
+  @apply m-0 p-0 text-left text-xl leading-7;
+  background-color: var(--retro-bg);
+  color: var(--retro-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Performance optimizations */
+  will-change: scroll-position;
+  contain: layout style paint;
+}
+
+// Premium retro card styling
 .card {
-  @apply transition-all duration-200 ease-in-out;
-  border: 2px solid var(--terminal-border);
-  background: var(--terminal-bg-card);
-  color: var(--terminal-text);
-  position: relative;
+  @apply transition-all duration-200 ease-out;
+  border: 1px solid var(--retro-border);
+  background: var(--retro-bg);
+  box-shadow: 0 2px 8px var(--retro-shadow);
+  /* Performance optimizations */
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, var(--terminal-green), var(--terminal-cyan));
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
+/* Subtle hover effects */
 .card:hover {
-  border-color: var(--terminal-green);
-  box-shadow: 
-    0 0 10px var(--terminal-shadow),
-    inset 0 0 10px rgba(0, 255, 65, 0.1);
+  border-color: var(--retro-accent-green);
+  box-shadow: 0 4px 12px var(--retro-shadow);
 }
 
-.card:hover::before {
-  opacity: 1;
+/* Minimal lift effect */
+.card:not([class*="-translate-x"]):hover {
+  transform: translateY(-2px);
 }
 
-// Dark theme card styling (same as default since we're going dark)
-html[data-theme="dracula"] .card {
-  background: var(--terminal-bg-card);
-  border-color: var(--terminal-border);
-  color: var(--terminal-text);
-}
-
-html[data-theme="dracula"] .card:hover {
-  border-color: var(--terminal-green);
-  box-shadow: 
-    0 0 10px var(--terminal-shadow),
-    inset 0 0 10px rgba(0, 255, 65, 0.1);
-}
+// Card styling now uses CSS variables that automatically adapt to dark mode
 
 .no-card {
   border-radius: var(--rounded-box, 1rem);
@@ -83,41 +83,31 @@ a {
   @apply relative no-underline;
 }
 
-.katex-display {
-  overflow-x: auto;
-}
 
-.medium-zoom-image--opened {
-  @apply rounded-xl shadow-xl;
-}
 
 .main-card img {
   @apply rounded-xl;
 }
 
-// Terminal-style link styling
+// Clean retro link styling
 .main-card p,
 .main-card li,
 .main-card blockquote {
   a {
-    @apply px-1 font-mono;
-    color: var(--terminal-green);
-    text-decoration: none;
-    border-bottom: 1px dotted var(--terminal-green);
+    @apply font-medium;
+    color: var(--retro-accent-green);
     transition: all 0.2s ease;
-    position: relative;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
   }
 
   a:hover {
-    color: var(--terminal-green-bright);
-    background-color: rgba(0, 255, 65, 0.1);
-    border-bottom: 1px solid var(--terminal-green-bright);
-    text-shadow: 0 0 5px var(--terminal-green);
+    color: var(--retro-accent-burgundy);
+    border-bottom-color: var(--retro-accent-burgundy);
   }
 
   a:active {
-    color: var(--terminal-amber);
-    border-bottom-color: var(--terminal-amber);
+    color: var(--retro-primary);
   }
 }
 
@@ -128,7 +118,7 @@ a {
 }
 
 // Enhanced dark theme styling
-html[data-theme="dracula"] {
+html[data-theme="retro-dark"], html[data-theme="dracula"] {
   --pagefind-ui-primary: oklch(var(--nc));
   --pagefind-ui-text: oklch(var(--nc));
   --pagefind-ui-background: oklch(var(--b1));
@@ -149,14 +139,7 @@ html[data-theme="dracula"] {
   }
 }
 
-body {
-  @apply m-0 p-0 text-left text-lg leading-6;
-  background: var(--terminal-bg);
-  color: var(--terminal-text);
-  font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
-}
-
-// Terminal-style scanline effect
+// Subtle retro background pattern
 body::before {
   content: '';
   position: fixed;
@@ -165,21 +148,17 @@ body::before {
   width: 100%;
   height: 100%;
   background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 255, 65, 0.03) 2px,
-      rgba(0, 255, 65, 0.03) 4px
-    );
+    radial-gradient(circle at 20% 80%, rgba(53, 94, 59, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(110, 44, 44, 0.02) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
-  animation: scanlines 0.1s linear infinite;
 }
 
-@keyframes scanlines {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(4px); }
+// Dark mode background pattern
+html[data-theme="retro-dark"] body::before, html[data-theme="dracula"] body::before {
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(197, 164, 109, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(53, 94, 59, 0.03) 0%, transparent 50%);
 }
 
 summary {
@@ -217,7 +196,7 @@ ul {
 
 li::marker,
 .toc-number {
-  color: var(--cyber-primary);
+  color: var(--retro-accent-green);
 }
 
 thead {
@@ -229,11 +208,11 @@ input {
   @apply text-base;
 }
 
-// Enhanced anchor styling
+// Clean anchor styling
 .anchor {
-  @apply p-0.5 rounded-xl font-medium;
+  @apply p-0.5 rounded font-medium;
   margin-left: 4px;
-  color: var(--cyber-primary);
+  color: var(--retro-accent-green);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -241,7 +220,7 @@ input {
   width: 1.25em;
   height: 1.25em;
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
   svg {
     @apply inline-block;
@@ -250,12 +229,12 @@ input {
 }
 
 .anchor:hover {
-  background-color: rgba(102, 126, 234, 0.1);
-  transform: scale(1.1);
+  background-color: var(--retro-bg-alt);
+  color: var(--retro-accent-burgundy);
 }
 
 .anchor:active {
-  background-color: rgba(102, 126, 234, 0.2);
+  background-color: var(--retro-border);
 }
 
 h1:hover .anchor,
@@ -267,321 +246,249 @@ h6:hover .anchor {
   opacity: 1;
 }
 
-// Terminal-style typography
+// Premium retro typography
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  @apply my-3 mb-2 font-mono font-bold;
-  color: var(--terminal-green);
-  text-shadow: 0 0 10px var(--terminal-shadow);
-  letter-spacing: -0.02em;
+  @apply my-3 mb-2 font-semibold;
+  color: var(--retro-primary);
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
 }
 
 h1 {
-  @apply text-4xl leading-tight mt-8;
-  color: var(--terminal-green-bright);
-  position: relative;
-}
-
-h1::before {
-  content: '> ';
-  color: var(--terminal-amber);
+  @apply text-5xl leading-tight mt-8;
+  color: var(--retro-primary);
 }
 
 h2 {
-  @apply text-3xl leading-snug mt-6;
-  color: var(--terminal-green);
-  position: relative;
-}
-
-h2::before {
-  content: '>> ';
-  color: var(--terminal-cyan);
+  @apply text-4xl leading-snug mt-7;
+  color: var(--retro-accent-green);
 }
 
 h3 {
-  @apply text-2xl leading-normal mt-5;
-  color: var(--terminal-green-dim);
-  position: relative;
-}
-
-h3::before {
-  content: '>>> ';
-  color: var(--terminal-blue);
+  @apply text-3xl leading-normal mt-6;
+  color: var(--retro-accent-burgundy);
 }
 
 h4 {
-  @apply text-xl leading-relaxed mt-4;
-  color: var(--terminal-text);
+  @apply text-2xl leading-relaxed mt-5;
+  color: var(--retro-text);
 }
 
 h5 {
-  @apply text-lg leading-relaxed mt-3;
-  color: var(--terminal-text);
+  @apply text-xl leading-relaxed mt-4;
+  color: var(--retro-text);
 }
 
 h6 {
-  @apply text-base leading-relaxed mt-2;
-  color: var(--terminal-text-dim);
+  @apply text-lg leading-relaxed mt-3;
+  color: var(--retro-text-light);
 }
 
-// Dark theme typography (same as default)
-html[data-theme="dracula"] {
+// Body text styling
+p, li, span {
+  font-family: 'Inter', 'Lato', sans-serif;
+  color: var(--retro-text);
+  line-height: 1.7;
+}
+
+// Additional dark mode text contrast improvements
+html[data-theme="retro-dark"], html[data-theme="dracula"] {
+  // Ensure better text contrast in dark mode
+  .hero-subtitle, .project-subtitle, .about-text, .cta-text, .coming-soon-text {
+    color: var(--retro-text-light) !important;
+  }
+  
+  // Ensure headings are visible
   h1, h2, h3, h4, h5, h6 {
-    color: var(--terminal-green);
+    color: var(--retro-primary) !important;
   }
   
-  h1 {
-    color: var(--terminal-green-bright);
+  // Ensure links are visible
+  a {
+    color: var(--retro-accent-gold) !important;
   }
   
-  h2 {
-    color: var(--terminal-green);
-  }
-  
-  h3 {
-    color: var(--terminal-green-dim);
+  a:hover {
+    color: var(--retro-accent-green) !important;
   }
 }
 
-// Terminal-style button styling
+// Clean retro button styling
 .btn {
-  @apply transition-all duration-200 ease-in-out font-mono;
-  position: relative;
-  border: 2px solid var(--terminal-border);
-  background: var(--terminal-bg-card);
-  color: var(--terminal-text);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: var(--terminal-green);
-  transition: width 0.3s ease;
-  z-index: -1;
-}
-
-.btn:hover {
-  border-color: var(--terminal-green);
-  color: var(--terminal-bg);
-  box-shadow: 0 0 15px var(--terminal-shadow);
-}
-
-.btn:hover::before {
-  width: 100%;
+  @apply transition-all duration-200 ease-in-out;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
 }
 
 .btn-primary {
-  border-color: var(--terminal-green);
-  color: var(--terminal-green);
+  background: var(--retro-accent-green);
+  border: 1px solid var(--retro-accent-green);
+  color: white;
 }
 
 .btn-primary:hover {
-  background: var(--terminal-green);
-  color: var(--terminal-bg);
+  background: var(--retro-accent-burgundy);
+  border-color: var(--retro-accent-burgundy);
 }
 
 .btn-secondary {
-  border-color: var(--terminal-cyan);
-  color: var(--terminal-cyan);
+  background: transparent;
+  border: 1px solid var(--retro-accent-green);
+  color: var(--retro-accent-green);
 }
 
 .btn-secondary:hover {
-  background: var(--terminal-cyan);
-  color: var(--terminal-bg);
-  box-shadow: 0 0 15px rgba(68, 255, 255, 0.3);
-}
-
-.btn-secondary::before {
-  background: var(--terminal-cyan);
+  background: var(--retro-accent-green);
+  color: white;
 }
 
 .btn-accent {
-  border-color: var(--terminal-amber);
-  color: var(--terminal-amber);
+  background: var(--retro-accent-gold);
+  border: 1px solid var(--retro-accent-gold);
+  color: var(--retro-primary);
 }
 
 .btn-accent:hover {
-  background: var(--terminal-amber);
-  color: var(--terminal-bg);
-  box-shadow: 0 0 15px rgba(255, 176, 0, 0.3);
+  background: var(--retro-primary);
+  color: var(--retro-bg);
 }
 
-.btn-accent::before {
-  background: var(--terminal-amber);
-}
-
-// Terminal-style badge styling
+// Clean badge styling
 .badge {
-  @apply transition-all duration-200 ease-in-out font-mono text-xs;
-  border: 1px solid var(--terminal-border);
-  background: var(--terminal-bg-card);
-  color: var(--terminal-text);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  position: relative;
+  @apply transition-all duration-200 ease-in-out;
+  border-radius: 4px;
 }
 
 .badge-primary {
-  border-color: var(--terminal-green);
-  color: var(--terminal-green);
-  background: rgba(0, 255, 65, 0.1);
+  background: var(--retro-accent-green);
+  color: white;
 }
 
 .badge-secondary {
-  border-color: var(--terminal-cyan);
-  color: var(--terminal-cyan);
-  background: rgba(68, 255, 255, 0.1);
+  background: var(--retro-accent-burgundy);
+  color: white;
 }
 
 .badge-neutral {
-  border-color: var(--terminal-text-dim);
-  color: var(--terminal-text-dim);
-  background: rgba(153, 153, 153, 0.1);
+  background: var(--retro-text-light);
+  color: white;
 }
 
-// Terminal-style table styling
+// Clean table styling
 table {
-  @apply w-full border-collapse font-mono;
-  border: 2px solid var(--terminal-border);
-  background: var(--terminal-bg-card);
+  @apply w-full border-collapse rounded-lg overflow-hidden;
+  box-shadow: 0 2px 8px var(--retro-shadow);
+  border: 1px solid var(--retro-border);
 }
 
 th {
-  background: var(--terminal-bg-light);
-  color: var(--terminal-green);
-  padding: 0.75rem;
+  background: var(--retro-accent-green);
+  color: white;
+  padding: 1rem;
   text-align: left;
-  font-weight: bold;
-  border-bottom: 2px solid var(--terminal-border);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 td {
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--terminal-border);
-  color: var(--terminal-text);
+  padding: 1rem;
+  border-bottom: 1px solid var(--retro-border);
 }
 
 tr:hover {
-  background-color: rgba(0, 255, 65, 0.05);
+  background-color: var(--retro-bg-alt);
 }
 
-// Terminal-style code block styling
+// Clean code block styling
 pre {
-  @apply p-4 overflow-x-auto font-mono;
-  background: var(--terminal-bg);
-  border: 2px solid var(--terminal-border);
-  color: var(--terminal-text);
-  position: relative;
-}
-
-pre::before {
-  content: '[user@terminal ~]$ ';
-  color: var(--terminal-green);
-  display: block;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid var(--terminal-border);
-  padding-bottom: 0.5rem;
+  @apply rounded-lg p-4 overflow-x-auto;
+  background: #2A2A2A;
+  border: 1px solid var(--retro-border);
+  box-shadow: 0 2px 8px var(--retro-shadow);
 }
 
 code {
-  @apply px-1 py-0.5 font-mono;
-  background: rgba(0, 255, 65, 0.1);
-  color: var(--terminal-green);
-  border: 1px solid var(--terminal-border);
-  font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
+  @apply rounded px-2 py-1;
+  background: var(--retro-bg-alt);
+  color: var(--retro-accent-green);
+  font-family: 'Cascadia', 'Fira Code', monospace;
 }
 
 pre code {
   background: transparent;
-  color: inherit;
+  color: #E5E5E5;
   padding: 0;
-  border: none;
 }
 
-// Terminal-style blockquote styling
+// Clean blockquote styling
 blockquote {
-  @apply border-l-4 pl-4 py-2 my-4 font-mono;
-  border-color: var(--terminal-amber);
-  background: rgba(255, 176, 0, 0.05);
-  color: var(--terminal-text);
-  position: relative;
+  @apply border-l-4 pl-4 py-2 my-4;
+  border-color: var(--retro-accent-gold);
+  background: var(--retro-bg-alt);
+  border-radius: 0 4px 4px 0;
 }
 
-blockquote::before {
-  content: '> ';
-  color: var(--terminal-amber);
-  font-weight: bold;
-}
-
-// Enhanced list styling
+// Clean list styling
 ul li, ol li {
   @apply mb-2;
   position: relative;
 }
 
 ul li::marker {
-  color: var(--cyber-primary);
+  color: var(--retro-accent-green);
   font-weight: bold;
 }
 
 ol li::marker {
-  color: var(--cyber-primary);
+  color: var(--retro-accent-green);
   font-weight: bold;
 }
 
-// Enhanced hr styling
+// Clean hr styling
 hr {
   @apply my-8;
   border: none;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cyber-primary), transparent);
+  height: 1px;
+  background: var(--retro-border);
 }
 
-// Enhanced selection styling
+// Clean selection styling
 ::selection {
-  background: rgba(102, 126, 234, 0.3);
+  background: rgba(53, 94, 59, 0.3);
   color: inherit;
 }
 
 ::-moz-selection {
-  background: rgba(102, 126, 234, 0.3);
+  background: rgba(53, 94, 59, 0.3);
   color: inherit;
 }
 
-// Enhanced scrollbar styling
+// Clean scrollbar styling
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(102, 126, 234, 0.1);
+  background: var(--retro-bg-alt);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--cyber-primary) 0%, var(--cyber-secondary) 100%);
+  background: var(--retro-accent-green);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--cyber-secondary) 0%, var(--cyber-primary) 100%);
+  background: var(--retro-accent-burgundy);
 }
 
-// Enhanced focus styling
+// Clean focus styling
 *:focus {
-  outline: 2px solid var(--cyber-primary);
+  outline: 2px solid var(--retro-accent-green);
   outline-offset: 2px;
 }
 
@@ -660,17 +567,10 @@ hr {
   }
 }
 
-// Enhanced loading states
+// Clean loading states
 .loading {
   @apply animate-pulse;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  background: var(--retro-bg-alt);
 }
 
 // Enhanced responsive design
@@ -711,25 +611,25 @@ hr {
   
   // Mobile-specific card enhancements
   .card {
-    border-radius: 16px;
+    border-radius: 8px;
     margin: 1rem 0.5rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
   }
   
   .card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(102, 126, 234, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--retro-shadow);
   }
   
   // Mobile button enhancements
   .btn {
-    border-radius: 12px;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
   }
   
   .btn:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: none;
   }
   
   // Mobile typography improvements
@@ -790,13 +690,12 @@ hr {
   // Mobile hr improvements
   hr {
     margin: 2rem 0;
-    height: 3px;
-    border-radius: 2px;
+    height: 1px;
   }
   
   // Mobile focus improvements
   *:focus {
-    outline: 3px solid var(--cyber-primary);
+    outline: 3px solid var(--retro-accent-green);
     outline-offset: 3px;
   }
   
@@ -811,24 +710,24 @@ hr {
   
   // Mobile loading improvements
   .loading {
-    border-radius: 8px;
+    border-radius: 4px;
   }
   
   // Mobile menu improvements
   .menu-item:hover {
-    transform: translateX(8px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    transform: none;
+    background: var(--retro-bg-alt);
   }
   
   // Mobile navbar improvements
   .btn-ghost:hover {
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+    transform: none;
+    background: var(--retro-bg-alt);
   }
   
   // Mobile site title improvements
   .navbar-center .btn-ghost:hover {
-    transform: scale(1.1);
+    transform: none;
   }
 }
 
@@ -844,128 +743,82 @@ hr {
   }
 }
 
-// Terminal-style menu styling
+// Clean retro menu styling
 .menu {
-  @apply transition-all duration-200 ease-in-out font-mono;
-  background: var(--terminal-bg-card) !important;
-  border: 2px solid var(--terminal-border);
-  box-shadow: 0 0 20px var(--terminal-shadow);
-  min-width: 220px !important;
+  @apply transition-all duration-200 ease-in-out;
+  background: var(--retro-bg) !important;
+  border: 1px solid var(--retro-border);
+  box-shadow: 0 4px 12px var(--retro-shadow);
+  min-width: 200px !important;
   width: auto !important;
 }
 
 html[data-theme="dracula"] .menu {
-  background: var(--terminal-bg-card) !important;
-  border-color: var(--terminal-border);
+  background: #2A2A2A !important;
+  border-color: #404040;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .menu-item {
-  @apply transition-all duration-200 ease-in-out font-mono;
-  position: relative;
+  @apply transition-all duration-200 ease-in-out;
+  border-radius: 4px;
   margin: 1px 0;
   width: 100%;
   text-align: left;
   white-space: nowrap;
-  min-width: 200px;
-  color: var(--terminal-text);
-  border-left: 3px solid transparent;
-}
-
-.menu-item::before {
-  content: '> ';
-  color: var(--terminal-green);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.menu-item:hover::before {
-  opacity: 1;
+  min-width: 180px;
 }
 
 .menu-item:hover {
-  background: rgba(0, 255, 65, 0.1);
-  color: var(--terminal-green);
-  border-left-color: var(--terminal-green);
-  text-shadow: 0 0 5px var(--terminal-shadow);
+  background: var(--retro-bg-alt);
+  color: var(--retro-accent-green);
+  border-left: 3px solid var(--retro-accent-gold);
 }
 
 html[data-theme="dracula"] .menu-item:hover {
-  background: rgba(0, 255, 65, 0.1);
-  color: var(--terminal-green);
+  background: #3A3A3A;
+  color: var(--retro-accent-gold);
 }
 
-// Terminal-style navbar styling
+// Clean retro navbar styling
 .navbar {
-  @apply transition-all duration-200 ease-in-out font-mono;
-  background: var(--terminal-bg-light) !important;
-  border-bottom: 2px solid var(--terminal-border);
+  @apply transition-all duration-200 ease-in-out;
+  background: var(--retro-bg) !important;
+  border-bottom: 1px solid var(--retro-border);
 }
 
 html[data-theme="dracula"] .navbar {
-  background: var(--terminal-bg-light) !important;
-  border-bottom-color: var(--terminal-border);
+  background: #2A2A2A !important;
+  border-bottom-color: #404040;
 }
 
-// Terminal-style dropdown button styling
+// Clean button styling
 .btn-ghost {
-  @apply transition-all duration-200 ease-in-out font-mono;
-  position: relative;
-  color: var(--terminal-text);
-}
-
-.btn-ghost::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--terminal-green);
-  transition: width 0.3s ease;
-}
-
-.btn-ghost:hover::before {
-  width: 100%;
+  @apply transition-all duration-200 ease-in-out;
 }
 
 .btn-ghost:hover {
-  background: rgba(0, 255, 65, 0.1);
-  color: var(--terminal-green);
-  text-shadow: 0 0 5px var(--terminal-shadow);
+  background: var(--retro-bg-alt);
+  color: var(--retro-accent-green);
 }
 
 html[data-theme="dracula"] .btn-ghost:hover {
-  background: rgba(0, 255, 65, 0.1);
-  color: var(--terminal-green);
+  background: #3A3A3A;
+  color: var(--retro-accent-gold);
 }
 
-// Terminal-style site title styling
+// Clean site title styling
 .navbar-center .btn-ghost {
-  font-weight: bold;
-  color: var(--terminal-green-bright);
+  font-weight: 700;
+  color: var(--retro-primary);
   font-size: 1.5rem;
-  text-shadow: 0 0 10px var(--terminal-shadow);
-  position: relative;
-}
-
-.navbar-center .btn-ghost::before {
-  content: '[';
-  color: var(--terminal-amber);
-  margin-right: 0.25rem;
-}
-
-.navbar-center .btn-ghost::after {
-  content: ']';
-  color: var(--terminal-amber);
-  margin-left: 0.25rem;
+  font-family: 'Playfair Display', serif;
 }
 
 html[data-theme="dracula"] .navbar-center .btn-ghost {
-  color: var(--terminal-green-bright);
+  color: #E5E5E5;
 }
 
 .navbar-center .btn-ghost:hover {
-  transform: none;
-  color: var(--terminal-green-bright);
-  text-shadow: 0 0 15px var(--terminal-shadow);
+  color: var(--retro-accent-green);
 }

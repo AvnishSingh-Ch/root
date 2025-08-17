@@ -1,64 +1,43 @@
 ---
 import Menu from "../components/HeaderMenu.astro";
-import MobileNav from "../components/MobileNav.astro";
 import { SITE_TITLE } from "../consts";
 ---
 
-<div
-  class="navbar max-md:translate-y-0 fixed px-2 w-full transform -translate-y-full text-center z-50 transition-transform bg-base-100 shadow-xl"
->
-  <div class="navbar-start">
-    <!-- Desktop Menu -->
-    <details class="dropdown desktop-menu" id="dropdown">
-      <summary
-        tabindex="0"
-        role="button"
-        class="btn btn-ghost"
-        id="content"
-        title="Content"
-      >
-        <svg
-          class="swap-off fill-current"
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 512 512"
-          ><path
-            d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-          ></path></svg
+<header class="header">
+  <div class="header-container">
+    <div class="header-start">
+      <details class="dropdown" id="dropdown">
+        <summary
+          tabindex="0"
+          role="button"
+          class="dropdown-toggle"
+          id="content"
+          title="Content"
+        >
+          <svg
+            class="menu-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512"
+            ><path
+              d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+            ></path></svg
         >
       </summary>
       <Menu />
     </details>
-    
-    <!-- Mobile Menu Button -->
-    <button
-      class="btn btn-ghost mobile-menu-btn"
-      id="mobileMenuBtn"
-      title="Menu"
-    >
-      <svg
-        class="fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 512 512"
-        ><path
-          d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-        ></path></svg
-      >
-    </button>
   </div>
-  <div class="navbar-center">
-    <a class="btn btn-ghost text-xl" href="/">{SITE_TITLE}</a>
+  <div class="header-center">
+    <a class="site-title" href="/">{SITE_TITLE}</a>
   </div>
-  <div class="navbar-end">
-    <div class="flex justify-center card bg-base-100 w-12 h-12">
-      <label for="themeToggle2" id="themeLabel2" class="hidden"
-        ><span class="sr-only">Theme Toggle</span>
+  <div class="header-end">
+    <div class="theme-toggle">
+      <label for="themeToggle2" id="themeLabel2">
+        <span class="sr-only">Theme Toggle</span>
         <input type="checkbox" id="themeToggle2" />
         <svg
-          class="swap-on fill-current w-10 h-10"
+          class="theme-icon sun"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -67,7 +46,7 @@ import { SITE_TITLE } from "../consts";
           ></path>
         </svg>
         <svg
-          class="swap-off fill-current w-10 h-10"
+          class="theme-icon moon"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -78,7 +57,8 @@ import { SITE_TITLE } from "../consts";
       </label>
     </div>
   </div>
-</div>
+</header>
+
 <script>
   // 当用户点击菜单区域外部区域的时候, 关闭菜单
   document.addEventListener("click", function (event) {
@@ -107,60 +87,118 @@ import { SITE_TITLE } from "../consts";
       }
     });
   });
-
-  // Mobile menu button handler
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener("click", function() {
-      const overlay = document.getElementById('mobileNavOverlay');
-      if (overlay) {
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  }
 </script>
 
-<!-- Mobile Navigation -->
-<MobileNav />
-
 <style>
-  @media (max-width: 768px) {
-    .desktop-menu {
-      display: none !important;
-    }
-    
-    .mobile-menu-btn {
-      display: flex !important;
-    }
+  .header {
+    background: var(--retro-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--retro-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 0.5rem 0;
   }
-
-  @media (min-width: 769px) {
-    .mobile-menu-btn {
-      display: none !important;
-    }
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-
-  .navbar {
-    height: 64px;
-    min-height: 64px;
+  
+  .header-start,
+  .header-center,
+  .header-end {
+    display: flex;
+    align-items: center;
   }
-
-  .navbar-center .btn-ghost {
-    font-size: 1.25rem;
+  
+  .dropdown-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    background: var(--retro-bg-alt);
+  }
+  
+  .menu-icon {
+    fill: var(--retro-text);
+    transition: fill 0.2s ease;
+  }
+  
+  .dropdown-toggle:hover .menu-icon {
+    fill: var(--retro-accent-green);
+  }
+  
+  .site-title {
+    font-size: 1.5rem;
     font-weight: 700;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
+    text-decoration: none;
+    transition: color 0.2s ease;
   }
-
+  
+  .site-title:hover {
+    color: var(--retro-accent-green);
+  }
+  
+  .theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    background: var(--retro-bg-alt);
+    border-radius: 0.375rem;
+    border: 1px solid var(--retro-border);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .theme-toggle:hover {
+    border-color: var(--retro-accent-green);
+    background: var(--retro-accent-green);
+  }
+  
+  .theme-toggle:hover .theme-icon {
+    fill: white;
+  }
+  
+  .theme-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: var(--retro-text);
+    transition: fill 0.2s ease;
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
   @media (max-width: 768px) {
-    .navbar {
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(8px);
+    .header-container {
+      padding: 0 0.5rem;
     }
     
-    .navbar-center .btn-ghost {
-      font-size: 1.1rem;
-      padding: 0.5rem;
+    .site-title {
+      font-size: 1.25rem;
     }
   }
 </style>

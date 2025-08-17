@@ -1,101 +1,25 @@
 ---
-import dayjs from "dayjs";
 import { Image } from "astro:assets";
 import type { EnvelopeInfo } from "../types";
-import { t } from "i18next";
+
 const {
   title,
   desc,
   image,
-  pubDate,
-  badge,
-  categories,
-  tags,
-  word,
-  time,
   url,
 } = Astro.props as EnvelopeInfo;
-const displayDate = dayjs(pubDate).format("ddd MMM DD YYYY");
-const hasTategories = categories && categories.length > 0;
-const hasTags = tags && tags.length > 0;
 const target = "_self";
 ---
 
-<div
-  class="mt-8 relative w-full overflow-hidden card bg-base-100 shadow-xl flex flex-col lg:flex-row"
->
-  <div
-    class="relative w-full h-auto rounded-3xl overflow-hidden card bg-base-100 flex-1 lg:order-1 order-2 flex"
-  >
-    <div class="relative w-full h-full p-6 flex flex-col justify-between">
+<div class="envelope-card">
+  <div class="envelope-content">
+    <div class="envelope-text">
       <a href={url} target={target}>
-        <h1 id={title} class="text-4xl leading-snug m-0 p-2">
+        <h1 id={title} class="envelope-title">
           {title}
         </h1>
       </a>
-      <div class="m-2">{desc}</div>
-      <div class="m-2">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2 flex-wrap">
-            {
-              displayDate && (
-                <div class="badge badge-neutral">{displayDate}</div>
-              )
-            }
-            {badge && <div class="badge badge-primary">{badge}</div>}
-          </div>
-          {
-            time && (
-              <div class="badge  whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
-            )
-          }
-        </div>
-        <div class="flex items-center justify-between mt-2">
-          <div class="flex items-center gap-2 flex-wrap">
-            {
-              hasTategories ? (
-                categories.map((categoroy) => (
-                  <>
-                    <a
-                      href={`/blog/categories/${categoroy}`}
-                      class="btn btn-xs btn-accent"
-                    >
-                      {categoroy}
-                    </a>
-                  </>
-                ))
-              ) : (
-                <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
-                  {t("label.noCategory")}
-                </div>
-              )
-            }
-            {
-              hasTags ? (
-                tags.map((tag) => (
-                  <>
-                    <a
-                      href={`/blog/tag/${tag}`}
-                      class="btn btn-xs btn-secondary"
-                    >
-                      {tag}
-                    </a>
-                  </>
-                ))
-              ) : (
-                <div class="btn btn-xs btn-secondary btn-disabled">
-                  {t("label.noTag")}
-                </div>
-              )
-            }
-          </div>
-          {
-            word && (
-              <div class="badge whitespace-nowrap">{`${word} ${t("label.wordCount")}`}</div>
-            )
-          }
-        </div>
-      </div>
+      <div class="envelope-description">{desc}</div>
     </div>
   </div>
 
@@ -104,7 +28,7 @@ const target = "_self";
       <a
         href={url}
         target={target}
-        class="image-link relative w-full lg:w-2/5 h-auto rounded-none overflow-hidden lg:order-2 order-1"
+        class="envelope-image-link"
       >
         <Image
           src={image}
@@ -113,9 +37,97 @@ const target = "_self";
           height="200"
           format="webp"
           loading="eager"
-          class="object-cover w-full h-full"
+          class="envelope-image"
         />
       </a>
     )
   }
 </div>
+
+<style>
+  .envelope-card {
+    background: var(--retro-bg);
+    border: 1px solid var(--retro-border);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--retro-shadow);
+    margin: 2rem 0;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .envelope-card:hover {
+    border-color: var(--retro-accent-green);
+    box-shadow: 0 4px 12px var(--retro-shadow);
+    transform: translateY(-2px);
+  }
+  
+  .envelope-content {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .envelope-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+  
+  .envelope-description {
+    color: var(--retro-text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .envelope-image-link {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .envelope-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .envelope-image:hover {
+    transform: scale(1.05);
+  }
+  
+  @media (min-width: 1024px) {
+    .envelope-card {
+      flex-direction: row;
+    }
+    
+    .envelope-content {
+      order: 1;
+      flex: 1;
+    }
+    
+    .envelope-image-link {
+      order: 2;
+      width: 40%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .envelope-content {
+      padding: 2rem;
+    }
+    
+    .envelope-title {
+      font-size: 2.5rem;
+    }
+  }
+</style>

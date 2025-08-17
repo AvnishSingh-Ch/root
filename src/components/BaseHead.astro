@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.scss";
-import "../styles/waline.scss";
+
 interface Props {
   title: string;
   description: string;
@@ -14,6 +14,150 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image } = Astro.props;
 ---
 
+<!-- Critical CSS for above-the-fold content -->
+<style is:inline>
+  /* Critical CSS - Above the fold */
+  :root {
+    --retro-bg: #FAF9F6;
+    --retro-bg-alt: #F5F5DC;
+    --retro-primary: #2E2B23;
+    --retro-accent-green: #355E3B;
+    --retro-accent-burgundy: #6E2C2C;
+    --retro-accent-gold: #C5A46D;
+    --retro-text: #2E2B23;
+    --retro-text-light: #5A5A5A;
+    --retro-border: #E5E5E5;
+    --retro-shadow: rgba(46, 43, 35, 0.1);
+  }
+  
+  html[data-theme="retro-dark"] {
+    --retro-bg: #1A1A1A;
+    --retro-bg-alt: #2A2A2A;
+    --retro-primary: #E5E5E5;
+    --retro-text: #C5C5C5;
+    --retro-text-light: #A0A0A0;
+    --retro-border: #404040;
+    --retro-shadow: rgba(0, 0, 0, 0.3);
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--retro-bg);
+    color: var(--retro-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  .navbar {
+    background: var(--retro-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--retro-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .hero-title {
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .card {
+    background: var(--retro-bg);
+    border: 1px solid var(--retro-border);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--retro-shadow);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    transition: all 0.2s ease;
+  }
+  
+  .card:hover {
+    border-color: var(--retro-accent-green);
+    box-shadow: 0 4px 12px var(--retro-shadow);
+    transform: translateY(-2px);
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background: var(--retro-accent-green);
+    color: white;
+    border-color: var(--retro-accent-green);
+  }
+  
+  .btn-primary:hover {
+    background: var(--retro-accent-gold);
+    border-color: var(--retro-accent-gold);
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--retro-accent-green);
+    border-color: var(--retro-accent-green);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--retro-accent-green);
+    color: white;
+    transform: translateY(-1px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  
+  @media (max-width: 768px) {
+    .grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-cols-3 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    .grid-cols-4 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  }
+</style>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=0.9" />
@@ -23,7 +167,7 @@ const { title, description, image } = Astro.props;
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
 <link rel="shortcut icon" href="/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
-<meta name="theme-color" content="#667eea" />
+<meta name="theme-color" content="#355E3B" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Page Specific Metadata -->
@@ -32,7 +176,12 @@ const { title, description, image } = Astro.props;
 {image && <meta property="og:image" content={image} />}
 <link rel="canonical" href={canonicalURL.toString()} />
 
-<!-- Font preloads -->
+<!-- Google Fonts with performance optimizations -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" rel="stylesheet">
+
+<!-- Critical font preloads -->
 <link
   rel="preload"
   href="/fonts/CascadiaCode.woff2"
@@ -40,3 +189,62 @@ const { title, description, image } = Astro.props;
   type="font/woff2"
   crossorigin
 />
+
+<!-- DNS prefetch for external resources -->
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//upload.wikimedia.org">
+<link rel="dns-prefetch" href="//1000logos.net">
+<link rel="dns-prefetch" href="//encrypted-tbn0.gstatic.com">
+
+<!-- Performance hints -->
+<link rel="preload" href="/avnishsingh.png" as="image">
+<link rel="modulepreload" href="/_astro/astro.js">
+
+<!-- Performance optimization script -->
+<script is:inline>
+  // Performance optimizations
+  (function() {
+    // Preload critical resources
+    const criticalResources = [
+      '/fonts/CascadiaCode.woff2',
+      '/avnishsingh.png'
+    ];
+    
+    criticalResources.forEach(resource => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = resource;
+      if (resource.endsWith('.woff2')) {
+        link.as = 'font';
+        link.type = 'font/woff2';
+        link.crossOrigin = 'anonymous';
+      } else {
+        link.as = 'image';
+      }
+      document.head.appendChild(link);
+    });
+
+    // Optimize images
+    if ('loading' in HTMLImageElement.prototype) {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      images.forEach(img => {
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+        }
+      });
+    }
+
+    // Performance monitoring
+    if ('performance' in window) {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          if (perfData) {
+            console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+            console.log('DOM Content Loaded:', perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart, 'ms');
+          }
+        }, 0);
+      });
+    }
+  })();
+</script>

@@ -1,0 +1,185 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseCard from "../components/BaseCard.astro";
+import TimeLine from "../components/page/TimeLine.astro";
+import LinkCard from "../components/page/LinkCard.astro";
+---
+
+<BaseLayout title="About">
+  <BaseCard title="About">
+    <div class="about-content">
+      <h1>Avnish Singh — Cybersecurity Student & Ethical Hacker</h1>
+      
+      <hr class="my-8" />
+      
+      <h2>Brief Introduction</h2>
+      <p>
+        I am a passionate cybersecurity student with extensive knowledge in the cybersecurity field and unwavering motivation. My goal is to contribute to enhancing cybersecurity practices and improving online safety through ethical hacking and proactive security measures.
+      </p>
+      
+      <p class="my-6">
+        <a href="/resume.pdf" class="btn btn-primary">Download Resume</a>
+      </p>
+      
+      <h3>Connect with Me</h3>
+      <p>I actively engage with the cybersecurity community and share insights across various platforms:</p>
+      
+      <div class="social-links my-4">
+        <a href="https://www.linkedin.com/in/avnishsingh-ch" class="btn btn-secondary mr-4">LinkedIn</a>
+        <a href="https://x.com/AvnishSingh_Ch" class="btn btn-secondary mr-4">X (Twitter)</a>
+        <a href="https://medium.com/@avnishsingh-ch" class="btn btn-secondary">Medium</a>
+      </div>
+      
+      <p class="my-4">
+        <strong>Email:</strong> avnishsinghch@outlook.com
+      </p>
+      
+      <h3>Who Am I?</h3>
+      <ul class="list-disc pl-6 my-4 space-y-2">
+        <li>I'm <strong>Avnish Singh</strong>, a dedicated cybersecurity specialist with a passion for ethical hacking and digital security.</li>
+        <li>My interest in cybersecurity sparked when I first learned about ethical hacking. It's remarkable how proactive security measures can make a significant difference for organizations and individuals.</li>
+        <li>I'm a constant learner, whether exploring the latest cybersecurity tools or mastering new skills. I believe the best way to stay sharp in this field is through hands-on projects and continuous improvement.</li>
+        <li>I'm passionate about <strong>Linux</strong> because it's open-source, secure, and provides the flexibility needed for cybersecurity work. My first experience with Linux was transformative.</li>
+        <li>When I'm not diving into cybersecurity projects, you'll find me playing chess or exploring new technologies.</li>
+        <li>Feel free to check out my work and reach out if you're interested in collaborating or discussing cybersecurity.</li>
+      </ul>
+      
+      <h3>My Strengths</h3>
+      
+      <h4>Technical Strengths</h4>
+      <ul class="list-disc pl-6 my-4 space-y-2">
+        <li><strong>Linux Proficiency:</strong> Comfortable navigating and troubleshooting in Linux environments, with a focus on open-source tools.</li>
+        <li><strong>Programming Expertise:</strong> Skilled in Python and Bash scripting for automation and cybersecurity tasks.</li>
+        <li><strong>Cybersecurity Tools Mastery:</strong> Hands-on experience with Wireshark, Metasploit, and Nmap for vulnerability assessment and network analysis.</li>
+      </ul>
+      
+      <h4>Soft Skills</h4>
+      <ul class="list-disc pl-6 my-4 space-y-2">
+        <li><strong>Problem-Solver:</strong> Adept at identifying and resolving complex challenges efficiently.</li>
+        <li><strong>Critical Thinker:</strong> Approach problems with a logical, analytical mindset.</li>
+        <li><strong>Creativity:</strong> Always looking for innovative solutions to tackle challenges.</li>
+        <li><strong>Detail-Oriented:</strong> Focused on accuracy and thoroughness in every project.</li>
+        <li><strong>Quick Learner:</strong> Thrive in fast-paced environments and adapt to new technologies with ease.</li>
+      </ul>
+      
+      <h4>Core Values</h4>
+      <ul class="list-disc pl-6 my-4 space-y-2">
+        <li><strong>Integrity:</strong> Believe in doing the right thing, even when no one is watching.</li>
+        <li><strong>Collaboration:</strong> Value teamwork and knowledge sharing to achieve goals effectively.</li>
+        <li><strong>Continuous Learning:</strong> Driven by curiosity to explore and understand emerging trends and technologies.</li>
+      </ul>
+    </div>
+  </BaseCard>
+</BaseLayout>
+
+<style>
+  .about-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+  }
+  
+  .about-content h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--retro-accent-green);
+    font-family: 'Playfair Display', serif;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .about-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--retro-accent-green);
+    font-family: 'Playfair Display', serif;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .about-content h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--retro-accent-gold);
+    font-family: 'Playfair Display', serif;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .about-content p {
+    color: var(--retro-text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .about-content ul {
+    margin-bottom: 1rem;
+  }
+  
+  .about-content li {
+    color: var(--retro-text);
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .btn-primary {
+    background: var(--retro-accent-green);
+    color: white;
+    border: 1px solid var(--retro-accent-green);
+  }
+  
+  .btn-primary:hover {
+    background: var(--retro-accent-gold);
+    border-color: var(--retro-accent-gold);
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--retro-accent-green);
+    border: 1px solid var(--retro-accent-green);
+  }
+  
+  .btn-secondary:hover {
+    background: var(--retro-accent-green);
+    color: white;
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 768px) {
+    .about-content h1 {
+      font-size: 2rem;
+    }
+    
+    .about-content h2 {
+      font-size: 1.5rem;
+    }
+    
+    .social-links {
+      flex-direction: column;
+    }
+    
+    .btn {
+      text-align: center;
+    }
+  }
+</style>

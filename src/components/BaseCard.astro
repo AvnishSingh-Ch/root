@@ -1,32 +1,14 @@
 ---
-import dayjs from "dayjs";
 import { Image } from "astro:assets";
-import License from "../components/License.astro";
-import CommentWaline from "./CommentWaline.astro";
-import { DATE_FORMAT } from "../consts";
 import type { CardInfo } from "../types";
-import { t } from "i18next";
+
 const {
   title = "undefined",
   image,
-  pubDate,
-  badge,
-  categories,
-  tags,
-  word,
-  time,
-  isBlog = false,
-  url = decodeURIComponent(Astro.url.toString()),
 } = Astro.props as CardInfo;
-const displayDate = dayjs(pubDate).format(DATE_FORMAT);
-const hasTategories = categories && categories.length > 0;
-const hasTags = tags && tags.length > 0;
 ---
 
-<div
-  class="mb-8 relative left-1/2 transform -translate-x-1/2 overflow-hidden card bg-base-100 shadow-xl mobile-card"
-  title={title}
->
+<div class="card-container" title={title}>
   {
     image && (
       <Image
@@ -35,115 +17,54 @@ const hasTags = tags && tags.length > 0;
         height="1080"
         format="webp"
         alt={title}
-        class="card-img"
-        loading="lazy"
+        class="card-image"
+        loading="eager"
       />
     )
   }
-  <div
-    class="main-card relative leading-6 z-10 p-6 md:p-6 lg:p-8 card bg-base-100"
-  >
-    {
-      isBlog && (
-        <>
-          <h1 id="h1" class="mt-2">
-            {title}
-          </h1>
-          <div class="info mt-2">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                {displayDate && (
-                  <div class="badge badge-neutral">{displayDate}</div>
-                )}
-                {badge && <div class="badge badge-primary">{badge}</div>}
-              </div>
-              {time && (
-                <div class="badge  whitespace-nowrap">{`${time} ${t("label.readTime")}`}</div>
-              )}
-            </div>
-            <div class="flex items-center justify-between mt-2">
-              <div class="flex items-center gap-2 flex-wrap">
-                {hasTategories ? (
-                  categories.map((categoroy) => (
-                    <>
-                      <a
-                        href={`/blog/categories/${categoroy}`}
-                        class="btn btn-xs btn-accent"
-                      >
-                        {categoroy}
-                      </a>
-                    </>
-                  ))
-                ) : (
-                  <div class="btn btn-xs btn-secondary btn-disabled rounded-full">
-                    {t("label.noCategory")}
-                  </div>
-                )}
-                {hasTags ? (
-                  tags.map((tag) => (
-                    <>
-                      <a
-                        href={`/blog/tag/${tag}`}
-                        class="btn btn-xs btn-secondary"
-                      >
-                        {tag}
-                      </a>
-                    </>
-                  ))
-                ) : (
-                  <div class="btn btn-xs btn-secondary btn-disabled">
-                    {t("label.noTag")}
-                  </div>
-                )}
-              </div>
-              {word && (
-                <div class="badge  whitespace-nowrap">{`${word} ${t("label.wordCount")}`}</div>
-              )}
-            </div>
-          </div>
-          <hr class="mt-6" />
-        </>
-      )
-    }
+  <div class="card-content">
     <slot />
-    {
-      isBlog && (
-        <>
-          <License title={title} url={url} />
-          <CommentWaline />
-        </>
-      )
-    }
   </div>
 </div>
 
 <style>
-  @media (max-width: 768px) {
-    .mobile-card {
-      margin: 0.5rem 0.25rem 1.5rem 0.25rem !important;
-      left: 0 !important;
-      transform: none !important;
-      border-radius: 12px !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  .card-container {
+    background: var(--retro-bg);
+    border: 1px solid var(--retro-border);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px var(--retro-shadow);
+    margin: 2rem 0;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  
+  .card-container:hover {
+    border-color: var(--retro-accent-green);
+    box-shadow: 0 4px 12px var(--retro-shadow);
+    transform: translateY(-2px);
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+  
+  @media (min-width: 768px) {
+    .card-content {
+      padding: 2rem;
     }
-
-    .main-card {
-      padding: 1rem !important;
-    }
-
-    .card-img {
-      border-radius: 12px 12px 0 0 !important;
-    }
-
-    .badge {
-      font-size: 0.75rem !important;
-      padding: 0.25rem 0.5rem !important;
-    }
-
-    .btn-xs {
-      font-size: 0.7rem !important;
-      padding: 0.25rem 0.5rem !important;
-      min-height: 1.5rem !important;
+  }
+  
+  @media (min-width: 1024px) {
+    .card-content {
+      padding: 2.5rem;
     }
   }
 </style>

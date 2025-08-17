@@ -1,6 +1,4 @@
 ---
-import "medium-zoom/dist/style.css";
-import "/node_modules/katex/dist/katex.min.css";
 import Profile from "../components/ProfileCard.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
@@ -16,10 +14,10 @@ const { title, image, includeSidebar = true } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={i18next.language} class="bg-base-300" data-theme="dark">
+<html lang={i18next.language} data-theme="retro">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title class="sr-only">{`${title} - ${SITE_TAB}`}</title>
     <script is:inline>
       (function () {
@@ -27,8 +25,8 @@ const { title, image, includeSidebar = true } = Astro.props;
         const userPreferredTheme = window.matchMedia(
           "(prefers-color-scheme: dark)",
         ).matches
-          ? "dark"
-          : "dracula";
+          ? "retro-dark"
+          : "retro";
         const theme = storedTheme || userPreferredTheme;
         document.documentElement.setAttribute("data-theme", theme);
       })();
@@ -37,112 +35,29 @@ const { title, image, includeSidebar = true } = Astro.props;
   </head>
   <body>
     <Header title={SITE_TITLE} />
-    <div class="max-w-7xl m-auto">
-      <div
-        class="relative grid grid-cols-1 md:grid-cols-5 lg:grid-cols-4 gap-4 p-0 md:p-0 lg:p-4 top-16 md:top-0"
-      >
-        <div
-          class="md:col-span-1 top-4 bg-white bg-opacity-0 p-2 hidden max-md:hidden md:inline order-2 md:order-1"
-        >
-          {
-            includeSidebar && (
-              <>
-                <Profile />
-                <CategoryCard />
-                <TagCard />
-                <Content />
-              </>
-            )
-          }
-        </div>
-        <div
-          class="col-span-3 md:col-span-4 lg:col-span-3 bg-white bg-opacity-0 p-2 order-1 md:order-2"
-        >
-          <div>
-            <main id="swup" class="detail transition-main">
-              <slot />
-              <Footer />
-            </main>
-            <br />
-          </div>
-        </div>
+    <div class="layout-container">
+      <div class="layout-grid">
+        {
+          includeSidebar && (
+            <aside class="sidebar">
+              <Profile />
+              <CategoryCard />
+              <TagCard />
+              <Content />
+            </aside>
+          )
+        }
+        <main class="main-content" id="swup">
+          <slot />
+          <Footer />
+        </main>
       </div>
     </div>
   </body>
 </html>
+
 <script>
-  function addCopyButton() {
-    let codeBlocks = document.querySelectorAll(".code");
-    let toolsBlocks = document.querySelectorAll(".highlight-tools");
-
-    codeBlocks.forEach(function (codeBlock, index) {
-      let toolsBlock = toolsBlocks[index];
-
-      let container = document.createElement("div");
-      container.className = "code-container";
-      container.style.position = "relative";
-      container.style.height = "24px";
-      container.style.width = "24px";
-
-      let copyButton = document.createElement("button");
-      copyButton.className = "copy";
-      copyButton.title = "Copy Button";
-      copyButton.innerHTML =
-        '<svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.676 14.248C17.676 15.8651 16.3651 17.176 14.748 17.176H7.428C5.81091 17.176 4.5 15.8651 4.5 14.248V6.928C4.5 5.31091 5.81091 4 7.428 4H14.748C16.3651 4 17.676 5.31091 17.676 6.928V14.248Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M10.252 20H17.572C19.1891 20 20.5 18.689 20.5 17.072V9.75195" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>';
-      copyButton.style.border = "none";
-      copyButton.style.zIndex = "100";
-      copyButton.style.bottom = "0";
-
-      container.appendChild(copyButton);
-      toolsBlock.appendChild(container);
-
-      copyButton.addEventListener("click", function () {
-        let code = codeBlock.textContent ?? "";
-        navigator.clipboard.writeText(code).then(
-          function () {
-            copyButton.innerHTML =
-              '<svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.5 12.5L10.167 17L19.5 8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>';
-            setTimeout(() => {
-              copyButton.innerHTML =
-                '<svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.676 14.248C17.676 15.8651 16.3651 17.176 14.748 17.176H7.428C5.81091 17.176 4.5 15.8651 4.5 14.248V6.928C4.5 5.31091 5.81091 4 7.428 4H14.748C16.3651 4 17.676 5.31091 17.676 6.928V14.248Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M10.252 20H17.572C19.1891 20 20.5 18.689 20.5 17.072V9.75195" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>';
-            }, 1500);
-          },
-          function (err) {
-            console.error("error", err);
-          },
-        );
-      });
-    });
-  }
-
-  import mediumZoom from "medium-zoom/dist/pure";
-  mediumZoom(".main-card img:not(.link-card img)", {
-    margin: 24,
-    background: "#00000080",
-  });
-
-  document.addEventListener("swup:page:view", () => {
-    mediumZoom(".main-card img:not(.link-card img)", {
-      margin: 24,
-      background: "#00000080",
-    });
-  });
-
-  document.addEventListener("DOMContentLoaded", addCopyButton);
-
-  document.addEventListener("swup:page:view", addCopyButton);
-
-  document.addEventListener("swup:page:view", () => {
-    const astroPageLoadEvent = new Event("astro:page-load");
-    document.dispatchEvent(astroPageLoadEvent);
-  });
-</script>
-
-<!-- Mobile Performance Optimizations -->
-<script src="/src/scripts/mobile-performance.js" is:inline></script>
-
-<!-- Service Worker Registration -->
-<script is:inline>
+  // Service Worker Registration for Performance
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js')
@@ -154,4 +69,69 @@ const { title, image, includeSidebar = true } = Astro.props;
         });
     });
   }
+
+  // Performance optimization: Intersection Observer for lazy loading
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            observer.unobserve(img);
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+  }
 </script>
+
+<style>
+  .layout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .layout-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .layout-grid {
+      grid-template-columns: 1fr 3fr;
+      gap: 2rem;
+    }
+    
+    .sidebar {
+      display: block;
+      order: 1;
+    }
+    
+    .main-content {
+      order: 2;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .layout-grid {
+      grid-template-columns: 1fr 4fr;
+      gap: 3rem;
+    }
+  }
+</style>

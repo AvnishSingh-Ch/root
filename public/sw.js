@@ -1,91 +1,123 @@
-// Service Worker for mobile performance optimization
-const CACHE_NAME = 'avnish-portfolio-v1';
-const STATIC_ASSETS = [
+// Service Worker for Performance Optimization
+const CACHE_NAME = 'portfolio-v1';
+const STATIC_CACHE = 'static-v1';
+const DYNAMIC_CACHE = 'dynamic-v1';
+
+// Files to cache immediately
+const STATIC_FILES = [
   '/',
-  '/credentials',
-  '/project',
-  '/blog',
-  '/styles/global.css',
-  '/styles/mobile.css'
+  '/index.html',
+  '/credentials.html',
+  '/project.html',
+  '/about.html',
+  '/friend.html',
+  '/favicon.png',
+  '/avnishsingh.png',
+  '/fonts/CascadiaCode.woff2'
 ];
 
-// Install event - cache static assets
+// Install event - cache static files
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .then(() => {
-        return self.skipWaiting();
-      })
+    caches.open(STATIC_CACHE)
+      .then((cache) => cache.addAll(STATIC_FILES))
+      .then(() => self.skipWaiting())
   );
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys()
-      .then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            if (cacheName !== CACHE_NAME) {
-              return caches.delete(cacheName);
-            }
-          })
-        );
-      })
-      .then(() => {
-        return self.clients.claim();
-      })
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - implement caching strategy
 self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') {
-    return;
+  const { request } = event;
+  const url = new URL(request.url);
+
+  // Skip non-GET requests
+  if (request.method !== 'GET') return;
+
+  // Handle different types of requests
+  if (url.pathname.startsWith('/_astro/') || url.pathname.startsWith('/assets/')) {
+    // Cache-first for build assets
+    event.respondWith(cacheFirst(request, DYNAMIC_CACHE));
+  } else if (url.pathname.startsWith('/fonts/') || url.pathname.startsWith('/images/')) {
+    // Cache-first for static assets
+    event.respondWith(cacheFirst(request, STATIC_CACHE));
+  } else if (url.pathname.startsWith('http')) {
+    // Network-first for external resources
+    event.respondWith(networkFirst(request, DYNAMIC_CACHE));
+  } else {
+    // Stale-while-revalidate for HTML pages
+    event.respondWith(staleWhileRevalidate(request, STATIC_CACHE));
   }
-
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
-
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version if available
-        if (response) {
-          return response;
-        }
-
-        // Otherwise fetch from network
-        return fetch(event.request)
-          .then((response) => {
-            // Don't cache non-successful responses
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response
-            const responseToCache = response.clone();
-
-            // Cache the response for future use
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          });
-      })
-      .catch(() => {
-        // Return offline page if available
-        if (event.request.destination === 'document') {
-          return caches.match('/offline.html');
-        }
-      })
-  );
 });
+
+// Cache-first strategy
+async function cacheFirst(request, cacheName) {
+  const cachedResponse = await caches.match(request);
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+  
+  try {
+    const networkResponse = await fetch(request);
+    const cache = await caches.open(cacheName);
+    cache.put(request, networkResponse.clone());
+    return networkResponse;
+  } catch (error) {
+    return new Response('Network error', { status: 408 });
+  }
+}
+
+// Network-first strategy
+async function networkFirst(request, cacheName) {
+  try {
+    const networkResponse = await fetch(request);
+    const cache = await caches.open(cacheName);
+    cache.put(request, networkResponse.clone());
+    return networkResponse;
+  } catch (error) {
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    return new Response('Network error', { status: 408 });
+  }
+}
+
+// Stale-while-revalidate strategy
+async function staleWhileRevalidate(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  const cachedResponse = await cache.match(request);
+  
+  const fetchPromise = fetch(request).then((networkResponse) => {
+    cache.put(request, networkResponse.clone());
+    return networkResponse;
+  });
+  
+  return cachedResponse || fetchPromise;
+}
+
+// Background sync for offline actions
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'background-sync') {
+    event.waitUntil(doBackgroundSync());
+  }
+});
+
+async function doBackgroundSync() {
+  // Handle any background sync tasks
+  console.log('Background sync completed');
+}

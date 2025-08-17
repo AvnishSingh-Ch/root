@@ -31,19 +31,15 @@ import ProjectJS from "../components/ProjectJS.astro";
         
         <div class="project-features">
           <div class="feature-item">
-            <span class="feature-icon">🔧</span>
             <span>Virtual Machine Setup</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">🛡️</span>
             <span>Penetration Testing</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">🔍</span>
             <span>Vulnerability Assessment</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">📊</span>
             <span>SIEM Configuration</span>
           </div>
         </div>
@@ -61,9 +57,7 @@ import ProjectJS from "../components/ProjectJS.astro";
            class="project-link primary" target="_blank">
           View Project
         </a>
-        <a href="/blog" class="project-link secondary">
-          Read Blog
-        </a>
+
       </div>
     </div>
 
@@ -83,19 +77,15 @@ import ProjectJS from "../components/ProjectJS.astro";
         
         <div class="project-features">
           <div class="feature-item">
-            <span class="feature-icon">🗺️</span>
             <span>Network Mapping</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">📡</span>
             <span>Port Scanning</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">🔍</span>
             <span>Traffic Analysis</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">⚠️</span>
             <span>Vulnerability Detection</span>
           </div>
         </div>
@@ -127,17 +117,13 @@ import ProjectJS from "../components/ProjectJS.astro";
         </p>
         
         <div class="project-features">
-
           <div class="feature-item">
-            <span class="feature-icon">⚡</span>
             <span>Real-Time Anomaly Detection</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">🔔</span>
             <span>Custom Alerts & Notifications</span>
           </div>
           <div class="feature-item">
-            <span class="feature-icon">🛠️</span>
             <span>Integration with Nmap & Wireshark</span>
           </div>
         </div>
@@ -170,15 +156,12 @@ import ProjectJS from "../components/ProjectJS.astro";
       </p>
       <div class="upcoming-projects">
         <div class="upcoming-item">
-          <span class="upcoming-icon">🌐</span>
           <span>Web Vulnerability Tracking Tool</span>
         </div>
         <div class="upcoming-item">
-          <span class="upcoming-icon">🔗</span>
           <span>Network Intrusion Detection System (NIDS)</span>
         </div>
         <div class="upcoming-item">
-          <span class="upcoming-icon">🛡️</span>
           <span>Advanced Penetration Testing Framework</span>
         </div>
       </div>
@@ -196,19 +179,18 @@ import ProjectJS from "../components/ProjectJS.astro";
 
   .hero-title {
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
   }
 
   .hero-subtitle {
     font-size: 1.2rem;
-    color: #6c757d;
+    color: var(--retro-text-light);
     max-width: 600px;
     margin: 0 auto;
+    font-family: 'Inter', sans-serif;
   }
 
   .projects-grid {
@@ -219,41 +201,25 @@ import ProjectJS from "../components/ProjectJS.astro";
   }
 
   .project-card {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(102, 126, 234, 0.1);
-    border-radius: 20px;
+    background: var(--retro-bg);
+    border: 1px solid var(--retro-border);
+    border-radius: 8px;
     padding: 2rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     position: relative;
-    overflow: hidden;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #4ecdc4);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-
-  .project-card:hover::before {
-    transform: scaleX(1);
+    box-shadow: 0 2px 8px var(--retro-shadow);
   }
 
   .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
-    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--retro-shadow);
+    border-color: var(--retro-accent-green);
   }
 
   .project-card.featured {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-    border: 2px solid rgba(102, 126, 234, 0.2);
+    background: var(--retro-bg-alt);
+    border: 2px solid var(--retro-accent-gold);
   }
 
   .project-header {
@@ -262,30 +228,32 @@ import ProjectJS from "../components/ProjectJS.astro";
 
   .project-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    background: var(--retro-accent-green);
     color: white;
     padding: 0.5rem 1rem;
-    border-radius: 25px;
+    border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: 1rem;
   }
 
   .featured-badge {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    background: var(--retro-accent-burgundy);
   }
 
   .project-title {
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
   }
 
   .project-subtitle {
-    color: #6c757d;
+    color: var(--retro-text-light);
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
   }
 
   .project-content {
@@ -293,9 +261,10 @@ import ProjectJS from "../components/ProjectJS.astro";
   }
 
   .project-description {
-    color: #495057;
+    color: var(--retro-text);
     line-height: 1.7;
     margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
   }
 
   .project-features {
@@ -308,16 +277,14 @@ import ProjectJS from "../components/ProjectJS.astro";
   .feature-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
     padding: 0.75rem;
-    background: rgba(102, 126, 234, 0.05);
-    border-radius: 10px;
+    background: var(--retro-bg-alt);
+    border-radius: 4px;
     font-size: 0.9rem;
-    color: #495057;
-  }
-
-  .feature-icon {
-    font-size: 1.2rem;
+    color: var(--retro-text);
+    border: 1px solid var(--retro-border);
+    text-align: center;
   }
 
   .project-tech {
@@ -328,10 +295,10 @@ import ProjectJS from "../components/ProjectJS.astro";
   }
 
   .tech-tag {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--retro-accent-green);
     color: white;
     padding: 0.4rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
   }
@@ -344,33 +311,33 @@ import ProjectJS from "../components/ProjectJS.astro";
 
   .project-link {
     padding: 0.75rem 1.5rem;
-    border-radius: 25px;
+    border-radius: 4px;
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
   }
 
   .project-link.primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--retro-accent-green);
     color: white;
+    border-color: var(--retro-accent-green);
   }
 
   .project-link.primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    background: var(--retro-accent-burgundy);
+    border-color: var(--retro-accent-burgundy);
   }
 
   .project-link.secondary {
     background: transparent;
-    color: #667eea;
-    border-color: #667eea;
+    color: var(--retro-accent-green);
+    border-color: var(--retro-accent-green);
   }
 
   .project-link.secondary:hover {
-    background: #667eea;
+    background: var(--retro-accent-green);
     color: white;
-    transform: translateY(-2px);
   }
 
   .coming-soon {
@@ -380,21 +347,20 @@ import ProjectJS from "../components/ProjectJS.astro";
 
   .section-title {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
   }
 
   .coming-soon-text {
     font-size: 1.1rem;
-    color: #6c757d;
+    color: var(--retro-text-light);
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Inter', sans-serif;
   }
 
   .upcoming-projects {
@@ -407,119 +373,39 @@ import ProjectJS from "../components/ProjectJS.astro";
   .upcoming-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
     padding: 1rem 1.5rem;
-    background: rgba(102, 126, 234, 0.1);
-    border-radius: 15px;
-    color: #495057;
+    background: var(--retro-bg-alt);
+    border-radius: 4px;
+    color: var(--retro-text);
     font-weight: 500;
-  }
-
-  .upcoming-icon {
-    font-size: 1.5rem;
+    border: 1px solid var(--retro-border);
+    text-align: center;
   }
 
   @media (max-width: 768px) {
     .hero-title {
-      font-size: 1.75rem;
-      line-height: 1.2;
+      font-size: 2rem;
     }
     
     .projects-grid {
-      display: block;
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
     
     .project-card {
-      padding: 1.25rem;
-      margin-bottom: 1.5rem;
-      transform: none;
-      transition: none;
-    }
-    
-    .project-card::before {
-      display: none;
-    }
-    
-    .project-card:hover {
-      transform: none;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .project-card.featured {
-      grid-column: auto;
+      padding: 1.5rem;
     }
     
     .project-features {
-      display: block;
-      gap: 0.5rem;
-    }
-    
-    .feature-item {
-      margin-bottom: 0.5rem;
-      padding: 0.75rem;
-    }
-    
-    .project-actions {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    
-    .project-link {
-      width: 100%;
-      text-align: center;
-      transform: none;
-      transition: none;
-    }
-    
-    .project-link:hover {
-      transform: none;
-      box-shadow: none;
+      grid-template-columns: 1fr;
     }
     
     .upcoming-projects {
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
-    }
-    
-    .upcoming-item {
-      width: 100%;
-      max-width: 300px;
-    }
-    
-    .section-title {
-      font-size: 1.5rem;
     }
   }
 
-  /* Dark theme adjustments */
-  html[data-theme="dracula"] {
-    .project-card {
-      background: rgba(26, 26, 46, 0.95);
-      border-color: rgba(102, 126, 234, 0.2);
-    }
-    
-    .project-card.featured {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    }
-    
-    .project-title {
-      color: #ffffff;
-    }
-    
-    .project-description {
-      color: #e9ecef;
-    }
-    
-    .feature-item {
-      background: rgba(102, 126, 234, 0.1);
-      color: #e9ecef;
-    }
-    
-    .upcoming-item {
-      background: rgba(102, 126, 234, 0.15);
-      color: #e9ecef;
-    }
-  }
+  /* Dark theme now handled automatically by CSS variables */
 </style> 

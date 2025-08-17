@@ -4,154 +4,81 @@ import BaseCard from "../components/BaseCard.astro";
 ---
 
 <BaseLayout title="Home">
-  <BaseCard title="Terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-buttons">
-          <span class="terminal-button close"></span>
-          <span class="terminal-button minimize"></span>
-          <span class="terminal-button maximize"></span>
-        </div>
-        <div class="terminal-title">user@cybersec-terminal:~$</div>
-      </div>
-      <div class="terminal-content">
-        <div class="terminal-line">
-          <span class="prompt">user@cybersec-terminal:~$</span>
-          <span class="command">whoami</span>
-        </div>
-        <div class="terminal-output">
-          <div class="ascii-art">
-   ___              _     _       _____ _             _     
-  / _ \            (_)   | |     /  ___(_)           | |    
- / /_\ \__   ___ __ _ ___| |__   \ `--. _ _ __   __ _| |__  
- |  _  |\ \ / / '_ \ / __| '_ \   `--. \ | '_ \ / _` | '_ \ 
- | | | | \ V /| | | \__ \ | | | /\__/ / | | | | (_| | | | |
- \_| |_/  \_/ |_| |_|___/_| |_| \____/|_|_| |_|\__, |_| |_|
-                                                __/ |      
-                                               |___/       
-          </div>
-          <div class="user-info">
-            <span class="info-label">STATUS:</span> <span class="status-active">ACTIVE</span><br>
-            <span class="info-label">ROLE:</span> Cybersecurity Student & Ethical Hacker<br>
-            <span class="info-label">SPECIALIZATION:</span> Penetration Testing | Network Security<br>
-            <span class="info-label">LOCATION:</span> /home/cybersec/learning_mode<br>
-          </div>
+  <BaseCard title="Home">
+    <div class="hero-section">
+      <div class="hero-content">
+        <div class="greeting">
+          <h1 class="hero-title">
+            Avnish Singh — Cybersecurity Student & Ethical Hacker
+          </h1>
+          <p class="hero-subtitle">
+            Specializing in Penetration Testing, Network Security & Digital Forensics
+          </p>
         </div>
         
-        <div class="terminal-line">
-          <span class="prompt">user@cybersec-terminal:~$</span>
-          <span class="command">cat stats.txt</span>
-        </div>
-        <div class="terminal-output">
-          <div class="stats-grid">
-            <div class="stat-item">
-              <span class="stat-number">100+</span>
-              <span class="stat-label">vulnerabilities_found</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">50+</span>
-              <span class="stat-label">security_tools_mastered</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-number">24/7</span>
-              <span class="stat-label">learning_mode_active</span>
-            </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Vulnerabilities Found</div>
           </div>
-        </div>
-        
-        <div class="terminal-line">
-          <span class="prompt">user@cybersec-terminal:~$</span>
-          <span class="command">ls -la skills/</span>
-        </div>
-        <div class="terminal-output">
-          <div class="file-listing">
-            <div class="file-item">drwxr-xr-x  2 user user 4096 Jan 15 10:30 <span class="dir">penetration_testing/</span></div>
-            <div class="file-item">drwxr-xr-x  2 user user 4096 Jan 15 10:30 <span class="dir">network_analysis/</span></div>
-            <div class="file-item">drwxr-xr-x  2 user user 4096 Jan 15 10:30 <span class="dir">vulnerability_assessment/</span></div>
-            <div class="file-item">-rwxr-xr-x  1 user user 2048 Jan 15 10:30 <span class="exec">python_scripting.py</span></div>
-            <div class="file-item">-rwxr-xr-x  1 user user 1024 Jan 15 10:30 <span class="exec">linux_admin.sh</span></div>
-            <div class="file-item">-rw-r--r--  1 user user  512 Jan 15 10:30 <span class="file">wireshark_configs.conf</span></div>
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Security Tools</div>
           </div>
-        </div>
-        
-        <div class="terminal-line">
-          <span class="prompt">user@cybersec-terminal:~$</span>
-          <span class="cursor">_</span>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Learning Mode</div>
+          </div>
         </div>
       </div>
     </div>
   </BaseCard>
 
-  <BaseCard title="System Information">
-    <div class="system-info">
-      <div class="info-header">
-        <span class="prompt">user@cybersec-terminal:~$</span>
-        <span class="command">cat /proc/userinfo</span>
-      </div>
-      
-      <div class="info-content">
-        <div class="info-section">
-          <div class="section-header">[SYSTEM_PROFILE]</div>
-          <div class="info-text">
-            > Passionate cybersecurity student dedicated to understanding and securing the digital world.<br>
-            > Journey began with ethical hacking - fascinated by proactive security measures.<br>
-            > Mission: Protect organizations and individuals from evolving cyber threats.<br>
-          </div>
-        </div>
-        
-        <div class="info-section">
-          <div class="section-header">[CORE_MODULES]</div>
-          <div class="modules-grid">
-            <div class="module-item">
-              <span class="module-status">[ACTIVE]</span>
-              <span class="module-name">penetration_testing.exe</span>
-            </div>
-            <div class="module-item">
-              <span class="module-status">[ACTIVE]</span>
-              <span class="module-name">network_analysis.bin</span>
-            </div>
-            <div class="module-item">
-              <span class="module-status">[ACTIVE]</span>
-              <span class="module-name">vuln_assessment.sh</span>
-            </div>
-            <div class="module-item">
-              <span class="module-status">[ACTIVE]</span>
-              <span class="module-name">linux_admin.py</span>
-            </div>
-            <div class="module-item">
-              <span class="module-status">[ACTIVE]</span>
-              <span class="module-name">python_scripting.py</span>
-            </div>
-            <div class="module-item">
-              <span class="module-status">[ACTIVE]</span>
-              <span class="module-name">wireshark_analyzer</span>
+  <BaseCard>
+    <div class="about-section">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-content">
+          <p class="about-text">
+            I'm a passionate cybersecurity student dedicated to understanding and securing the digital world. 
+            My journey began with ethical hacking, and I've been fascinated by how proactive security measures 
+            can protect organizations and individuals from ever-evolving cyber threats.
+          </p>
+          
+          <div class="skills-showcase">
+            <h3>Core Skills</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Penetration Testing</span>
+              <span class="skill-tag">Network Analysis</span>
+              <span class="skill-tag">Vulnerability Assessment</span>
+              <span class="skill-tag">Linux Administration</span>
+              <span class="skill-tag">Python Scripting</span>
+              <span class="skill-tag">Wireshark</span>
+              <span class="skill-tag">Metasploit</span>
+              <span class="skill-tag">Nmap</span>
             </div>
           </div>
         </div>
         
-        <div class="info-section">
-          <div class="section-header">[SPECIALIZATIONS]</div>
-          <div class="specializations">
-            <div class="spec-item">
-              <span class="spec-icon">[🔒]</span>
-              <div class="spec-content">
-                <div class="spec-title">ETHICAL_HACKING</div>
-                <div class="spec-desc">Finding vulnerabilities before malicious actors</div>
-              </div>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-content">
+              <h4>Ethical Hacking</h4>
+              <p>Passionate about finding vulnerabilities before the bad guys do</p>
             </div>
-            <div class="spec-item">
-              <span class="spec-icon">[🐧]</span>
-              <div class="spec-content">
-                <div class="spec-title">LINUX_SYSTEMS</div>
-                <div class="spec-desc">Open-source security and system administration</div>
-              </div>
+          </div>
+          
+          <div class="highlight-item">
+            <div class="highlight-content">
+              <h4>Linux Enthusiast</h4>
+              <p>Open-source advocate who believes in the power of community-driven security</p>
             </div>
-            <div class="spec-item">
-              <span class="spec-icon">[🧠]</span>
-              <div class="spec-content">
-                <div class="spec-title">CONTINUOUS_LEARNING</div>
-                <div class="spec-desc">Always exploring latest cybersecurity techniques</div>
-              </div>
+          </div>
+          
+          <div class="highlight-item">
+            <div class="highlight-content">
+              <h4>Continuous Learning</h4>
+              <p>Always exploring the latest cybersecurity tools and techniques</p>
             </div>
           </div>
         </div>
@@ -159,434 +86,311 @@ import BaseCard from "../components/BaseCard.astro";
     </div>
   </BaseCard>
 
-  <BaseCard title="Git Repository Status">
-    <div class="git-section">
-      <div class="git-header">
-        <span class="prompt">user@cybersec-terminal:~$</span>
-        <span class="command">git log --oneline --graph</span>
-      </div>
-      <div class="git-content">
-        <div class="github-stats">
-          <a href="https://git.io/streak-stats" target="_blank" rel="noopener noreferrer">
-            <img src="https://streak-stats.demolab.com?user=AvnishSingh-Ch&theme=dark&hide_border=true" alt="GitHub Streak" loading="lazy" />
-          </a>
-        </div>
+  <BaseCard>
+    <div class="github-section">
+      <h2 class="section-title">GitHub Activity</h2>
+      <div class="github-stats">
+        <a href="https://git.io/streak-stats" target="_blank" rel="noopener noreferrer">
+          <img src="https://streak-stats.demolab.com?user=CybrAvnish&theme=dark&hide_border=true" alt="GitHub Streak" />
+        </a>
       </div>
     </div>
   </BaseCard>
 
-  <BaseCard title="Network Connection">
-    <div class="connection-section">
-      <div class="connection-header">
-        <span class="prompt">user@cybersec-terminal:~$</span>
-        <span class="command">netstat -an | grep LISTEN</span>
-      </div>
-      <div class="connection-content">
-        <div class="connection-text">
-          > Interested in cybersecurity, ethical hacking, or security discussions?<br>
-          > Always open to collaboration and knowledge sharing!<br>
-          > Establishing secure connections with fellow security enthusiasts...<br>
-        </div>
-        <div class="connection-buttons">
-          <a href="/project" class="terminal-button-link">
-            <span class="button-prompt">$</span> ./view_projects.sh
-          </a>
-          <a href="mailto:avnishsinghch@outlook.com" class="terminal-button-link">
-            <span class="button-prompt">$</span> ./send_message.py
-          </a>
-        </div>
+  <BaseCard>
+    <div class="cta-section">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="cta-text">
+        Interested in cybersecurity, ethical hacking, or just want to chat about security? 
+        I'm always open to collaboration and knowledge sharing!
+      </p>
+      <div class="cta-buttons">
+        <a href="/project" class="cta-button primary">View My Projects</a>
+        <a href="mailto:avnishsinghch@outlook.com" class="cta-button secondary">Get In Touch</a>
       </div>
     </div>
   </BaseCard>
 </BaseLayout>
 
 <style>
-  :root {
-    --terminal-green: #00ff41;
-    --terminal-green-dim: #00cc33;
-    --terminal-green-bright: #66ff66;
-    --terminal-amber: #ffb000;
-    --terminal-red: #ff4444;
-    --terminal-blue: #4488ff;
-    --terminal-cyan: #44ffff;
-    --terminal-bg: #0a0a0a;
-    --terminal-bg-light: #1a1a1a;
-    --terminal-bg-card: #111111;
-    --terminal-border: #333333;
-    --terminal-text: #e0e0e0;
-    --terminal-text-dim: #999999;
-    --terminal-shadow: rgba(0, 255, 65, 0.3);
+  .hero-section {
+    padding: 3rem 0;
+    text-align: center;
   }
 
-  /* Terminal Window Styling */
-  .terminal-window {
-    background: var(--terminal-bg);
-    border: 2px solid var(--terminal-border);
-    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
-    font-size: 14px;
-    line-height: 1.4;
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
   }
 
-  .terminal-header {
-    background: var(--terminal-bg-light);
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid var(--terminal-border);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  .greeting {
+    margin-bottom: 4rem;
   }
 
-  .terminal-buttons {
-    display: flex;
-    gap: 0.5rem;
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 2rem 0;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
+    line-height: 1.3;
   }
 
-  .terminal-button {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+  .hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--retro-text-light);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
   }
 
-  .terminal-button.close {
-    background: var(--terminal-red);
-  }
 
-  .terminal-button.minimize {
-    background: var(--terminal-amber);
-  }
 
-  .terminal-button.maximize {
-    background: var(--terminal-green);
-  }
-
-  .terminal-title {
-    color: var(--terminal-text-dim);
-    font-size: 12px;
-  }
-
-  .terminal-content {
-    padding: 1rem;
-    min-height: 400px;
-  }
-
-  .terminal-line {
-    margin-bottom: 0.5rem;
-  }
-
-  .prompt {
-    color: var(--terminal-green);
-    font-weight: bold;
-  }
-
-  .command {
-    color: var(--terminal-cyan);
-    margin-left: 0.5rem;
-  }
-
-  .terminal-output {
-    margin: 1rem 0 2rem 0;
-    padding-left: 1rem;
-  }
-
-  .ascii-art {
-    color: var(--terminal-green-bright);
-    font-size: 10px;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    white-space: pre;
-    text-shadow: 0 0 5px var(--terminal-shadow);
-  }
-
-  .user-info {
-    color: var(--terminal-text);
-    margin-bottom: 1rem;
-  }
-
-  .info-label {
-    color: var(--terminal-amber);
-    font-weight: bold;
-  }
-
-  .status-active {
-    color: var(--terminal-green-bright);
-    font-weight: bold;
-    text-shadow: 0 0 5px var(--terminal-shadow);
-  }
-
-  .stats-grid {
+  .hero-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
   }
 
-  .stat-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    border: 1px solid var(--terminal-border);
-    background: var(--terminal-bg-card);
+  .stat-card {
+    background: var(--retro-bg-alt);
+    color: var(--retro-primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid var(--retro-border);
+  }
+
+  .stat-card:hover {
+    border-color: var(--retro-accent-green);
+    transform: translateY(-2px);
   }
 
   .stat-number {
-    color: var(--terminal-green-bright);
-    font-weight: bold;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--retro-accent-green);
   }
 
   .stat-label {
-    color: var(--terminal-text-dim);
+    font-size: 0.9rem;
+    color: var(--retro-text-light);
   }
 
-  .file-listing {
-    font-family: monospace;
-    font-size: 13px;
+  .about-section {
+    padding: 2rem 0;
   }
 
-  .file-item {
-    margin-bottom: 0.25rem;
-    color: var(--terminal-text);
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
   }
 
-  .dir {
-    color: var(--terminal-blue);
-    font-weight: bold;
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
   }
 
-  .exec {
-    color: var(--terminal-green);
-    font-weight: bold;
+  @media (max-width: 1024px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
   }
 
-  .file {
-    color: var(--terminal-text);
-  }
-
-  .cursor {
-    color: var(--terminal-green);
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-
-  /* System Info Styling */
-  .system-info {
-    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
-    font-size: 14px;
-  }
-
-  .info-header {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--terminal-border);
-  }
-
-  .info-content {
-    padding-left: 1rem;
-  }
-
-  .info-section {
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--retro-text);
     margin-bottom: 2rem;
   }
 
-  .section-header {
-    color: var(--terminal-amber);
-    font-weight: bold;
+  .skills-showcase h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    text-transform: uppercase;
+    color: var(--retro-accent-green);
+    font-family: 'Playfair Display', serif;
   }
 
-  .info-text {
-    color: var(--terminal-text);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .modules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
-  .module-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem;
-    border: 1px solid var(--terminal-border);
-    background: var(--terminal-bg-card);
+  .skill-tag {
+    background: var(--retro-bg-alt);
+    color: var(--retro-accent-green);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--retro-border);
+    transition: all 0.2s ease;
   }
 
-  .module-status {
-    color: var(--terminal-green);
-    font-weight: bold;
-    font-size: 12px;
+  .skill-tag:hover {
+    border-color: var(--retro-accent-green);
+    background: var(--retro-accent-green);
+    color: white;
   }
 
-  .module-name {
-    color: var(--terminal-text);
-  }
-
-  .specializations {
+  .about-highlights {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
-  .spec-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1rem;
-    border: 1px solid var(--terminal-border);
-    background: var(--terminal-bg-card);
+  .highlight-item {
+    padding: 1.5rem;
+    background: var(--retro-bg-alt);
+    color: var(--retro-text);
+    border-radius: 8px;
+    border-left: 4px solid var(--retro-accent-gold);
+    transition: all 0.2s ease;
+    border: 1px solid var(--retro-border);
   }
 
-  .spec-icon {
-    color: var(--terminal-amber);
-    font-size: 16px;
-    min-width: 2rem;
+  .highlight-item:hover {
+    border-color: var(--retro-accent-green);
+    transform: translateY(-2px);
   }
 
-  .spec-content {
-    flex: 1;
+  .highlight-content {
+    width: 100%;
   }
 
-  .spec-title {
-    color: var(--terminal-green);
-    font-weight: bold;
-    margin-bottom: 0.25rem;
+  .highlight-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--retro-accent-green);
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
   }
 
-  .spec-desc {
-    color: var(--terminal-text-dim);
-    font-size: 13px;
+  .highlight-content p {
+    color: var(--retro-text);
+    line-height: 1.6;
+    margin: 0;
   }
 
-  /* Git Section Styling */
-  .git-section {
-    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
+  @media (max-width: 768px) {
+    .highlight-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+    }
+    
+    .highlight-icon {
+      min-width: auto;
+    }
+    
+    .highlight-content h4 {
+      font-size: 1.1rem;
+    }
+    
+    .highlight-content p {
+      font-size: 0.95rem;
+    }
   }
 
-  .git-header {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--terminal-border);
-  }
-
-  .git-content {
-    padding-left: 1rem;
+  .github-section {
+    padding: 2rem 0;
+    text-align: center;
   }
 
   .github-stats {
     display: flex;
     justify-content: center;
-    margin: 1rem 0;
+    margin-top: 2rem;
   }
 
   .github-stats img {
-    border: 2px solid var(--terminal-border);
-    box-shadow: 0 0 10px var(--terminal-shadow);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
 
-  /* Connection Section Styling */
-  .connection-section {
-    font-family: 'Cascadia', 'Fira Code', 'JetBrains Mono', monospace;
+  .cta-section {
+    padding: 3rem 0;
+    text-align: center;
   }
 
-  .connection-header {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--terminal-border);
-  }
-
-  .connection-content {
-    padding-left: 1rem;
-  }
-
-  .connection-text {
-    color: var(--terminal-text);
-    line-height: 1.6;
+  .cta-text {
+    font-size: 1.2rem;
+    color: var(--retro-text);
     margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .connection-buttons {
+  .cta-buttons {
     display: flex;
-    flex-direction: column;
     gap: 1rem;
-    max-width: 400px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .terminal-button-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--terminal-border);
-    background: var(--terminal-bg-card);
-    color: var(--terminal-text);
+  .cta-button {
+    padding: 1rem 2rem;
+    border-radius: 4px;
     text-decoration: none;
-    font-family: monospace;
+    font-weight: 500;
     transition: all 0.2s ease;
+    border: 1px solid transparent;
   }
 
-  .terminal-button-link:hover {
-    border-color: var(--terminal-green);
-    color: var(--terminal-green);
-    box-shadow: 0 0 10px var(--terminal-shadow);
+  .cta-button.primary {
+    background: var(--retro-accent-green);
+    color: white;
+    border-color: var(--retro-accent-green);
   }
 
-  .button-prompt {
-    color: var(--terminal-green);
-    font-weight: bold;
+  .cta-button.primary:hover {
+    background: var(--retro-accent-burgundy);
+    border-color: var(--retro-accent-burgundy);
   }
 
-  /* Mobile Responsiveness */
+  .cta-button.secondary {
+    background: transparent;
+    color: var(--retro-accent-green);
+    border-color: var(--retro-accent-green);
+  }
+
+  .cta-button.secondary:hover {
+    background: var(--retro-accent-green);
+    color: white;
+  }
+
   @media (max-width: 768px) {
-    .terminal-window {
-      font-size: 12px;
+    .hero-title {
+      font-size: 2.5rem;
     }
-
-    .ascii-art {
-      font-size: 8px;
+    
+    .hero-stats {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
-
-    .stats-grid {
-      grid-template-columns: 1fr;
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
     }
-
-    .modules-grid {
-      grid-template-columns: 1fr;
+    
+    .section-title {
+      font-size: 2rem;
     }
-
-    .connection-buttons {
-      max-width: 100%;
-    }
-
-    .terminal-button-link {
-      font-size: 14px;
-    }
-
-    .github-stats img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .terminal-content {
-      padding: 0.5rem;
-      min-height: 300px;
-    }
-
-    .terminal-window {
-      font-size: 11px;
-    }
-
-    .ascii-art {
-      font-size: 7px;
+    
+    .about-text {
+      font-size: 1rem;
     }
   }
 </style> 

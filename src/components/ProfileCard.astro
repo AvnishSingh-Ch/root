@@ -6,19 +6,39 @@ import { USER_AVATAR } from "../consts";
 ---
 
 <div
-  class="flex-col gap-4 mb-8 w-full sticky md:sticky lg:relative card bg-base-100 shadow-xl p-4"
+  class="flex-col gap-3 mb-6 w-full sticky md:sticky lg:relative card bg-base-100 p-3"
 >
-  <div class="avatar p-4">
-    <Image
-      class="mask mask-circle"
-      format="webp"
-      width={300}
-      height={300}
-      src={USER_AVATAR}
-      alt="Profile"
-      loading="eager"
-    />
+  <div class="avatar p-2">
+    <div class="profile-image-container">
+      <Image
+        class="mask mask-circle sepia-effect"
+        format="webp"
+        width={240}
+        height={240}
+        src={USER_AVATAR}
+        alt="Profile"
+        loading="eager"
+      />
+    </div>
   </div>
   <Menu />
   <Footer />
 </div>
+
+<style>
+  .profile-image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .sepia-effect {
+    filter: sepia(0.3) contrast(1.1);
+    border: 2px solid var(--retro-accent-gold);
+    transition: all 0.3s ease;
+  }
+  
+  .sepia-effect:hover {
+    filter: sepia(0.1) contrast(1.2);
+    border-color: var(--retro-accent-green);
+  }
+</style>

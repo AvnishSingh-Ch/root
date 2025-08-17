@@ -5,24 +5,38 @@ import terser from "@rollup/plugin-terser";
 import sitemap from "@astrojs/sitemap";
 import pagefind from "astro-pagefind";
 import tailwind from "@astrojs/tailwind";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import rehypeExternalLinks from "rehype-external-links";
 import playformCompress from "@playform/compress";
 
 import astroI18next from "astro-i18next";
 
 import swup from "@swup/astro";
 
-import { remarkAddAnchor } from "./src/plugins/remark-add-anchor.mjs";
-import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
-
-const { USER_SITE } = await import("./src/consts.ts");
+const { USER_SITE } = await import('./src/consts.ts');
 
 // https://astro.build/config
 export default defineConfig({
   site: USER_SITE,
-  output: "static",
+  output: 'static',
+  build: {
+    assets: 'assets',
+  },
+  vite: {
+    build: {
+      cssMinify: true,
+      minify: 'terser',
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor': ['swup'],
+            'ui': ['tailwindcss'],
+          }
+        }
+      }
+    },
+    optimizeDeps: {
+      include: ['swup']
+    }
+  },
   style: {
     scss: {
       includePaths: ["./src/styles"],
@@ -30,21 +44,31 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    icon(),
+    icon({
+      include: {
+        // Only include icons you actually use
+        'menu': ['home', 'about', 'blog', 'contact', 'friend', 'heart', 'project', 'cube', 'resume'],
+        'social': ['github', 'linkedin', 'x', 'blog', 'support']
+      }
+    }),
     swup({
       cache: true,
-      progress: false, // Disable progress bar on mobile for better performance
+      progress: false,
       accessibility: true,
-      smoothScrolling: false, // Disable smooth scrolling on mobile
+      smoothScrolling: false,
       preload: {
-        hover: false, // Disable hover preload on mobile
-        visible: false,
+        hover: false,
+        visible: false
       },
-      theme: "fade", // Use fade instead of slide for better mobile performance
+      theme: 'fade',
       containers: ["#swup"],
     }),
     terser({
-      compress: true,
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
+      },
       mangle: true,
     }),
     sitemap(),
@@ -52,11 +76,13 @@ export default defineConfig({
     pagefind(),
     astroI18next(),
     playformCompress({
-      CSS: true,
-      HTML: true,
-      Image: true,
-      JavaScript: true,
-      SVG: true,
+      // Enhanced compression settings
+      css: true,
+      html: true,
+      js: true,
+      img: true,
+      svg: true,
+      font: true
     }),
   ],
   markdown: {
@@ -141,76 +167,6 @@ export default defineConfig({
         },
       ],
     },
-    remarkPlugins: [remarkMath, remarkAddAnchor, remarkReadingTime],
-    rehypePlugins: [
-      rehypeKatex,
-      [
-        rehypeExternalLinks,
-        {
-          content: {
-            type: "element",
-            tagName: "svg",
-            properties: {
-              width: "1em",
-              height: "1em",
-              viewBox: "0 0 24 24",
-              fill: "none",
-              xmlns: "http://www.w3.org/2000/svg",
-            },
-            children: [
-              {
-                type: "element",
-                tagName: "g",
-                properties: {
-                  id: "SVGRepo_bgCarrier",
-                  "stroke-width": "0",
-                },
-                children: [],
-              },
-              {
-                type: "element",
-                tagName: "g",
-                properties: {
-                  id: "SVGRepo_tracerCarrier",
-                  "stroke-linecap": "round",
-                  "stroke-linejoin": "round",
-                },
-                children: [],
-              },
-              {
-                type: "element",
-                tagName: "g",
-                properties: {
-                  id: "SVGRepo_iconCarrier",
-                },
-                children: [
-                  {
-                    type: "element",
-                    tagName: "g",
-                    properties: {
-                      id: "SVGRepo_iconCarrier",
-                    },
-                    children: [
-                      {
-                        type: "element",
-                        tagName: "path",
-                        properties: {
-                          d: "M10.0002 5H8.2002C7.08009 5 6.51962 5 6.0918 5.21799C5.71547 5.40973 5.40973 5.71547 5.21799 6.0918C5 6.51962 5 7.08009 5 8.2002V15.8002C5 16.9203 5 17.4801 5.21799 17.9079C5.40973 18.2842 5.71547 18.5905 6.0918 18.7822C6.5192 19 7.07899 19 8.19691 19H15.8031C16.921 19 17.48 19 17.9074 18.7822C18.2837 18.5905 18.5905 18.2839 18.7822 17.9076C19 17.4802 19 16.921 19 15.8031V14M20 9V4M20 4H15M20 4L13 11",
-                          stroke: "#888",
-                          "stroke-width": "2",
-                          "stroke-linecap": "round",
-                          "stroke-linejoin": "round",
-                        },
-                        children: [],
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        },
-      ],
-    ],
+
   },
 });

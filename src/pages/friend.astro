@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseCard from "../components/BaseCard.astro";
+import TimeLine from "../components/page/TimeLine.astro";
+import LinkCard from "../components/page/LinkCard.astro";
+---
+
+<BaseLayout title="Friend">
+  <BaseCard title="Friend">
+    <div class="friend-content">
+      <h1>Friend</h1>
+      
+      <hr class="my-8" />
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <LinkCard
+          title="EveSunMaple"
+          desc="一位普通的高中学生"
+          url="https://www.saroprock.com"
+          img="https://www.saroprock.com/profile.webp"
+        />
+        <LinkCard
+          title="EveSunMaple"
+          desc="Author of Frosti Theme Template"
+          url="https://www.saroprock.com"
+          img="https://www.saroprock.com/profile.webp"
+        />
+      </div>
+    </div>
+  </BaseCard>
+</BaseLayout>
+
+<style>
+  .friend-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .friend-content {
+    padding: 1rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .friend-content h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -3,7 +3,7 @@
 
 // Site title and description
 export const SITE_TAB = "Avnish Singh - Cybersecurity Specialist";
-export const SITE_TITLE = "Avnish Singh 🔒";
+export const SITE_TITLE = "Avnish Singh";
 export const SITE_DESCRIPTION = "Cybersecurity Student & Ethical Hacker | Penetration Testing | Network Security | Digital Forensics";
 export const DATE_FORMAT = "ddd MMM DD YYYY";
 
@@ -37,9 +37,9 @@ export const menuItems = [
   {
     id: "blog",
     text: "Blog",
-    href: "/blog",
+    href: "https://blog.avnishsingh.tech",
     svg: "blog",
-    target: "_self",
+    target: "_blank",
   },
   {
     id: "resume",
