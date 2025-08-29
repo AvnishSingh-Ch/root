@@ -31,16 +31,17 @@ const {
   .card-container {
     background: var(--retro-bg);
     border: 1px solid var(--retro-border);
-    border-radius: 12px;
-    box-shadow: 0 2px 8px var(--retro-shadow);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     margin: 2rem 0;
     overflow: hidden;
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    will-change: transform;
   }
   
   .card-container:hover {
     border-color: var(--retro-accent-green);
-    box-shadow: 0 4px 12px var(--retro-shadow);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
   }
   
@@ -51,20 +52,40 @@ const {
   }
   
   .card-content {
-    padding: 1.5rem;
+    padding: 2rem;
     position: relative;
     z-index: 10;
   }
   
   @media (min-width: 768px) {
     .card-content {
-      padding: 2rem;
+      padding: 2.5rem;
+    }
+    
+    .card-container {
+      margin: 3rem 0;
     }
   }
   
   @media (min-width: 1024px) {
     .card-content {
-      padding: 2.5rem;
+      padding: 3rem;
     }
+    
+    .card-container {
+      margin: 3.5rem 0;
+      border-radius: 24px;
+    }
+  }
+  
+  /* Dark theme adjustments */
+  html[data-theme="retro-dark"] .card-container,
+  html[data-theme="dracula"] .card-container {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  html[data-theme="retro-dark"] .card-container:hover,
+  html[data-theme="dracula"] .card-container:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
   }
 </style>

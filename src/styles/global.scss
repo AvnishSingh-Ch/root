@@ -7,6 +7,23 @@
   box-sizing: border-box;
 }
 
+/* Performance optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 // Premium Retro Minimal theme colors
 :root {
   --retro-bg: #FAF9F6;
@@ -33,11 +50,11 @@ html[data-theme="retro-dark"], html[data-theme="dracula"] {
 }
 
 html {
-  @apply scroll-smooth;
   /* Performance optimizations */
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: auto; /* Remove smooth scrolling for better performance */
 }
 
 body {
@@ -52,24 +69,15 @@ body {
 
 // Premium retro card styling
 .card {
-  @apply transition-all duration-200 ease-out;
   border: 1px solid var(--retro-border);
   background: var(--retro-bg);
   box-shadow: 0 2px 8px var(--retro-shadow);
-  /* Performance optimizations */
-  will-change: transform, box-shadow;
-  transform: translateZ(0);
+  transition: border-color 0.2s ease;
 }
 
 /* Subtle hover effects */
 .card:hover {
   border-color: var(--retro-accent-green);
-  box-shadow: 0 4px 12px var(--retro-shadow);
-}
-
-/* Minimal lift effect */
-.card:not([class*="-translate-x"]):hover {
-  transform: translateY(-2px);
 }
 
 // Card styling now uses CSS variables that automatically adapt to dark mode
@@ -139,27 +147,7 @@ html[data-theme="retro-dark"], html[data-theme="dracula"] {
   }
 }
 
-// Subtle retro background pattern
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(53, 94, 59, 0.02) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(110, 44, 44, 0.02) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: -1;
-}
-
-// Dark mode background pattern
-html[data-theme="retro-dark"] body::before, html[data-theme="dracula"] body::before {
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(197, 164, 109, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(53, 94, 59, 0.03) 0%, transparent 50%);
-}
+// Background pattern removed to eliminate green grid overlay
 
 summary {
   list-style: none;
@@ -486,8 +474,23 @@ hr {
   background: var(--retro-accent-burgundy);
 }
 
-// Clean focus styling
+// Clean focus styling - only show for keyboard navigation
 *:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--retro-accent-green);
+  outline-offset: 2px;
+  outline-style: solid;
+}
+
+// Specific focus styles for interactive elements
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--retro-accent-green);
   outline-offset: 2px;
 }
@@ -506,18 +509,9 @@ hr {
     transition: transform 0.1s ease;
   }
   
-  // Improved mobile navigation
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
-  
-  // Mobile content padding
+  // Mobile content spacing
   .main-card {
-    margin-top: 80px;
+    margin-top: 1rem;
   }
   
   // Mobile-specific animations
@@ -603,10 +597,9 @@ hr {
     padding: 0.75rem 1rem;
   }
   
-  // Enhanced mobile navbar
-  .navbar {
-    padding: 0.5rem 1rem;
-    backdrop-filter: blur(20px);
+  // Enhanced mobile header
+  .header {
+    padding: 0.75rem 0;
   }
   
   // Mobile-specific card enhancements
@@ -694,9 +687,9 @@ hr {
   }
   
   // Mobile focus improvements
-  *:focus {
-    outline: 3px solid var(--retro-accent-green);
-    outline-offset: 3px;
+  *:focus-visible {
+    outline: 2px solid var(--retro-accent-green);
+    outline-offset: 2px;
   }
   
   // Mobile scrollbar improvements
@@ -719,15 +712,10 @@ hr {
     background: var(--retro-bg-alt);
   }
   
-  // Mobile navbar improvements
+  // Mobile button improvements
   .btn-ghost:hover {
     transform: none;
     background: var(--retro-bg-alt);
-  }
-  
-  // Mobile site title improvements
-  .navbar-center .btn-ghost:hover {
-    transform: none;
   }
 }
 
@@ -780,14 +768,14 @@ html[data-theme="dracula"] .menu-item:hover {
   color: var(--retro-accent-gold);
 }
 
-// Clean retro navbar styling
-.navbar {
+// Clean retro header styling
+.header {
   @apply transition-all duration-200 ease-in-out;
   background: var(--retro-bg) !important;
   border-bottom: 1px solid var(--retro-border);
 }
 
-html[data-theme="dracula"] .navbar {
+html[data-theme="dracula"] .header {
   background: #2A2A2A !important;
   border-bottom-color: #404040;
 }
@@ -808,17 +796,17 @@ html[data-theme="dracula"] .btn-ghost:hover {
 }
 
 // Clean site title styling
-.navbar-center .btn-ghost {
+.site-title {
   font-weight: 700;
   color: var(--retro-primary);
   font-size: 1.5rem;
   font-family: 'Playfair Display', serif;
 }
 
-html[data-theme="dracula"] .navbar-center .btn-ghost {
+html[data-theme="dracula"] .site-title {
   color: #E5E5E5;
 }
 
-.navbar-center .btn-ghost:hover {
+.site-title:hover {
   color: var(--retro-accent-green);
 }

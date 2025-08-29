@@ -5,40 +5,152 @@ import Footer from "../components/ProfileCardFooter.astro";
 import { USER_AVATAR } from "../consts";
 ---
 
-<div
-  class="flex-col gap-3 mb-6 w-full sticky md:sticky lg:relative card bg-base-100 p-3"
->
-  <div class="avatar p-2">
-    <div class="profile-image-container">
+<div class="premium-sidebar-card">
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <div class="profile-image-wrapper">
       <Image
-        class="mask mask-circle sepia-effect"
+        class="profile-image"
         format="webp"
-        width={240}
-        height={240}
+        width={120}
+        height={120}
         src={USER_AVATAR}
         alt="Profile"
         loading="eager"
       />
     </div>
+
+    <!-- Site title for desktop users -->
+    <div class="hidden md:block profile-info">
+      <h1 class="profile-name">Avnish Singh</h1>
+      <p class="profile-title">Cybersecurity Specialist</p>
+    </div>
   </div>
-  <Menu />
-  <Footer />
+
+  <!-- Navigation Section -->
+  <div class="nav-section">
+    <Menu />
+  </div>
+
+  <!-- Social Section -->
+  <div class="social-section">
+    <Footer />
+  </div>
 </div>
 
 <style>
-  .profile-image-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .sepia-effect {
-    filter: sepia(0.3) contrast(1.1);
-    border: 2px solid var(--retro-accent-gold);
+  .premium-sidebar-card {
+    background: var(--retro-bg);
+    border: 1px solid var(--retro-border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+    position: sticky;
+    top: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
   }
-  
-  .sepia-effect:hover {
-    filter: sepia(0.1) contrast(1.2);
+
+  .premium-sidebar-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .profile-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--retro-border);
+  }
+
+  .profile-image-wrapper {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid var(--retro-accent-gold);
+    transition: border-color 0.2s ease;
+    filter: grayscale(0.1) contrast(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-image:hover {
     border-color: var(--retro-accent-green);
+    filter: grayscale(0) contrast(1.1);
+  }
+
+  .profile-info {
+    margin-top: 1rem;
+  }
+
+  .profile-name {
+    font-family: "Playfair Display", serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--retro-primary);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .profile-title {
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    color: var(--retro-text-light);
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .nav-section {
+    margin-bottom: 2rem;
+  }
+
+  .social-section {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--retro-border);
+  }
+
+  /* Dark theme adjustments */
+  html[data-theme="retro-dark"] .premium-sidebar-card,
+  html[data-theme="dracula"] .premium-sidebar-card {
+    background: var(--retro-bg);
+    border-color: var(--retro-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  html[data-theme="retro-dark"] .premium-sidebar-card:hover,
+  html[data-theme="dracula"] .premium-sidebar-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .premium-sidebar-card {
+      padding: 1.5rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+    }
+
+    .profile-section {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
   }
 </style>

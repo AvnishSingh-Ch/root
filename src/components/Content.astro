@@ -2,27 +2,205 @@
 import ThemeIcon from "../components/ThemeIcon.astro";
 ---
 
-<div class="flex-col gap-4 w-full sticky top-8">
-  <div
-    class="grid gap-4 grid-cols-2 md:grid-cols-1 lg:grid-cols-2 justify-center mb-b w-full max-h-[600px] overflow-hide card bg-base-100 shadow-xl p-4"
-    id="button-box"
-  >
+<div class="premium-content-sidebar">
+  <!-- Tools Section -->
+  <div class="tools-card">
     <ThemeIcon />
   </div>
-  <div
-    class="mb-b w-full max-h-[65vh] overflow-hide top-8 card bg-base-100 shadow-xl p-4 menu"
-    id="content-box"
-  >
-    <div class="skeleton h-4 w-28"></div>
-    <br />
-    <div class="skeleton h-4 w-full"></div>
-    <br />
-    <div class="skeleton h-4 w-full"></div>
-    <br />
-    <div class="skeleton h-4 w-full"></div>
-    <br />
+  
+  <!-- Table of Contents -->
+  <div class="toc-card" id="content-box">
+    <div class="toc-header">
+      <h3>Table of Contents</h3>
+    </div>
+    <div class="toc-loading">
+      <div class="loading-item"></div>
+      <div class="loading-item"></div>
+      <div class="loading-item"></div>
+      <div class="loading-item"></div>
+    </div>
   </div>
 </div>
+
+<style>
+  .premium-content-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    position: sticky;
+    top: 2rem;
+  }
+  
+  .tools-card {
+    background: var(--retro-bg);
+    border: 1px solid var(--retro-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+  
+  .toc-card {
+    background: var(--retro-bg);
+    border: 1px solid var(--retro-border);
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-height: 70vh;
+  }
+  
+  .toc-header {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--retro-border);
+    background: var(--retro-bg-alt);
+  }
+  
+  .toc-header h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--retro-primary);
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .toc-loading {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .loading-item {
+    height: 12px;
+    background: var(--retro-border);
+    border-radius: 6px;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .loading-item:nth-child(1) { width: 70%; }
+  .loading-item:nth-child(2) { width: 100%; }
+  .loading-item:nth-child(3) { width: 85%; }
+  .loading-item:nth-child(4) { width: 60%; }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  /* TOC Content Styles (applied via JavaScript) */
+  :global(.toc-card ul) {
+    list-style: none;
+    margin: 0;
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: calc(70vh - 80px);
+  }
+  
+  :global(.toc-card ul::-webkit-scrollbar) {
+    width: 4px;
+  }
+  
+  :global(.toc-card ul::-webkit-scrollbar-track) {
+    background: var(--retro-bg-alt);
+  }
+  
+  :global(.toc-card ul::-webkit-scrollbar-thumb) {
+    background: var(--retro-accent-green);
+    border-radius: 2px;
+  }
+  
+  :global(.toc-card li) {
+    margin: 0;
+    padding: 0;
+  }
+  
+  :global(.toc-card a) {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--retro-text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    border-left: 3px solid transparent;
+  }
+  
+  :global(.toc-card a:hover) {
+    background: var(--retro-bg-alt);
+    color: var(--retro-accent-green);
+    border-left-color: var(--retro-accent-green);
+  }
+  
+  :global(.toc-card a.active) {
+    background: var(--retro-accent-green);
+    color: white;
+    border-left-color: var(--retro-accent-burgundy);
+  }
+  
+  :global(.toc-card .toc-number) {
+    display: inline-block;
+    min-width: 24px;
+    color: var(--retro-accent-gold);
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+  
+  :global(.toc-card a.active .toc-number) {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Level-specific indentation */
+  :global(.toc-card .level-2) { padding-left: 1.5rem; }
+  :global(.toc-card .level-3) { padding-left: 2rem; }
+  :global(.toc-card .level-4) { padding-left: 2.5rem; }
+  :global(.toc-card .level-5) { padding-left: 3rem; }
+  :global(.toc-card .level-6) { padding-left: 3.5rem; }
+  
+  /* Dark theme adjustments */
+  html[data-theme="retro-dark"] .tools-card,
+  html[data-theme="dracula"] .tools-card,
+  html[data-theme="retro-dark"] .toc-card,
+  html[data-theme="dracula"] .toc-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  html[data-theme="retro-dark"] .tools-card:hover,
+  html[data-theme="dracula"] .tools-card:hover,
+  html[data-theme="retro-dark"] .toc-card:hover,
+  html[data-theme="dracula"] .toc-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .premium-content-sidebar {
+      gap: 1rem;
+    }
+    
+    .tools-card,
+    .toc-card {
+      border-radius: 12px;
+    }
+    
+    .toc-header {
+      padding: 1rem;
+    }
+    
+    .toc-loading {
+      padding: 1rem;
+    }
+    
+    :global(.toc-card ul) {
+      padding: 1rem;
+    }
+  }
+</style>
 <script>
   function getCleanText(element: HTMLElement) {
     let text = "";

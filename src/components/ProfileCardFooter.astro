@@ -3,13 +3,13 @@ import { socialIcons } from "../consts.ts";
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="text-center bg-base-200 p-4 rounded-lg gap-4">
+<div class="premium-social">
   {
     socialIcons.map((icon) => (
       <a
         href={icon.href}
         target="_blank"
-        class="text-center rounded-[10px] inline-block m-[0_5px] leading-[30px] w-[30px] text-2xl no-underline"
+        class="social-link"
         aria-label={icon.ariaLabel}
         title={icon.title}
       >
@@ -18,3 +18,62 @@ import { Icon } from "astro-icon/components";
     ))
   }
 </div>
+
+<style>
+  .premium-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid var(--retro-border);
+    color: var(--retro-text-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.125rem;
+  }
+  
+  .social-link:hover {
+    background: var(--retro-accent-green);
+    border-color: var(--retro-accent-green);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(53, 94, 59, 0.3);
+  }
+  
+  .social-link:active {
+    transform: translateY(0);
+  }
+  
+  /* Dark theme adjustments */
+  html[data-theme="retro-dark"] .social-link:hover,
+  html[data-theme="dracula"] .social-link:hover {
+    box-shadow: 0 4px 12px rgba(197, 164, 109, 0.3);
+    background: var(--retro-accent-gold);
+    border-color: var(--retro-accent-gold);
+    color: var(--retro-primary);
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .premium-social {
+      gap: 0.75rem;
+    }
+    
+    .social-link {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+  }
+</style>

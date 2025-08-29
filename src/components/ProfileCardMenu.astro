@@ -20,54 +20,187 @@ interface MenuItem {
 }
 ---
 
-<ul
-  class="menu bg-base-100 w-full m-0 flex flex-col items-center lg:items-start transition-colors"
->
+<nav class="premium-nav">
   {menuItems.map((item: MenuItem) => (
-    <li class="w-full relative">
+    <div class="nav-item-wrapper">
       {item.subItems ? (
-        <details class="menu-item">
-          <summary class="justify-center lg:justify-start items-center text-center text-lg md:text-xl lg:text-lg font-medium p-3">
-            <span class="justify-center">
+        <details class="nav-dropdown">
+          <summary class="nav-link nav-dropdown-trigger">
+            <span class="nav-icon">
               <Icon name={`menu/${item.svg}`} />
             </span>
-            <span class="hidden lg:inline ml-2">{item.text}</span>
+            <span class="nav-text">{item.text}</span>
+            <span class="dropdown-arrow">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M6 8L2 4h8L6 8z"/>
+              </svg>
+            </span>
           </summary>
-          <ul>
+          <div class="nav-submenu">
             {item.subItems.map((subItem: SubItem) => (
-              <li>
-                <a
-                  tabindex="0"
-                  class="menu-item text-lg font-medium p-3"
-                  id={`header-${subItem.id}`}
-                  href={subItem.href}
-                  target={subItem.target || "_self"}
-                  aria-label={subItem.text}
-                >
-                  <span class="inline-flex justify-center">
-                    <Icon name={`menu/${subItem.svg}`} />
-                  </span>
-                  <span class="hidden lg:inline ml-2">{subItem.text}</span>
-                </a>
-              </li>
+              <a
+                class="nav-link nav-sublink"
+                href={subItem.href}
+                target={subItem.target || "_self"}
+                aria-label={subItem.text}
+              >
+                <span class="nav-icon">
+                  <Icon name={`menu/${subItem.svg}`} />
+                </span>
+                <span class="nav-text">{subItem.text}</span>
+              </a>
             ))}
-          </ul>
+          </div>
         </details>
       ) : (
         <a
-          tabindex="0"
-          class="flex justify-center lg:justify-start items-center text-center text-lg md:text-xl lg:text-lg font-medium p-3"
-          id={item.id}
-          title={item.id}
+          class="nav-link"
           href={item.href}
           target={item.target || "_self"}
+          aria-label={item.text}
         >
-          <span class="inline-flex justify-center">
+          <span class="nav-icon">
             <Icon name={`menu/${item.svg}`} />
           </span>
-          <span class="hidden lg:inline ml-2">{item.text}</span>
+          <span class="nav-text">{item.text}</span>
         </a>
       )}
-    </li>
+    </div>
   ))}
-</ul>
+</nav>
+
+<style>
+  .premium-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+  }
+  
+  .nav-item-wrapper {
+    width: 100%;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--retro-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    width: 100%;
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    background: var(--retro-bg-alt);
+    color: var(--retro-accent-green);
+    transform: translateX(4px);
+  }
+  
+  .nav-link:active {
+    transform: translateX(2px);
+  }
+  
+  .nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+  
+  .nav-link:hover .nav-icon {
+    opacity: 1;
+  }
+  
+  .nav-text {
+    flex: 1;
+    text-align: left;
+    letter-spacing: 0.01em;
+  }
+  
+  .nav-dropdown {
+    width: 100%;
+  }
+  
+  .nav-dropdown-trigger {
+    justify-content: space-between;
+  }
+  
+  .dropdown-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+  }
+  
+  .nav-dropdown[open] .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .nav-submenu {
+    margin-top: 0.25rem;
+    margin-left: 1rem;
+    border-left: 2px solid var(--retro-border);
+    padding-left: 0.5rem;
+  }
+  
+  .nav-sublink {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.75rem;
+    color: var(--retro-text-light);
+  }
+  
+  .nav-sublink:hover {
+    color: var(--retro-accent-green);
+    background: var(--retro-bg-alt);
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .nav-link {
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .nav-text {
+      display: none;
+    }
+    
+    .nav-icon {
+      margin-right: 0;
+      width: 24px;
+      height: 24px;
+    }
+    
+    .dropdown-arrow {
+      display: none;
+    }
+    
+    .nav-submenu {
+      margin-left: 0;
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+  
+  /* Dark theme adjustments */
+  html[data-theme="retro-dark"] .nav-link:hover,
+  html[data-theme="dracula"] .nav-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+</style>

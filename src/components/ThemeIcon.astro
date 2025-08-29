@@ -2,15 +2,14 @@
 
 ---
 
-<button
-  class="flex justify-center card bg-base-100 btn btn-ghost w-auto h-10"
-  id="themeToggle"
->
-  <label for="themeToggle1" id="themeLabel1" class="hidden"
-    ><span class="sr-only">Theme Toggle</span>
-    <input type="checkbox" id="themeToggle1" />
+<div class="premium-tools">
+  <button
+    class="tool-btn theme-toggle-btn"
+    id="sidebarThemeToggle"
+    aria-label="Toggle theme"
+  >
     <svg
-      class="swap-on fill-current w-10 h-10"
+      class="theme-icon sun"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
@@ -19,100 +18,182 @@
       ></path>
     </svg>
     <svg
-      class="swap-off fill-current w-10 h-10"
+      class="theme-icon moon hidden"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
       <path
-        d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
+        d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1-.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"
       ></path>
     </svg>
-  </label>
-</button>
+  </button>
 
-<button
-  class="flex justify-center card bg-base-100 btn btn-ghost w-auto h-10"
-  id="backToTop"
-  ><span class="sr-only">To Top Button</span><svg
-    viewBox="0 0 24 24"
-    fill="fill-current w-10 h-10"
-    xmlns="http://www.w3.org/2000/svg"
-    ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
-      id="SVGRepo_tracerCarrier"
-      stroke-linecap="round"
-      stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+  <button
+    class="tool-btn"
+    id="backToTop"
+    aria-label="Back to top"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M12 5V19M12 5L6 11M12 5L18 11"
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"
-        stroke-linejoin="round"></path>
-    </g></svg
-  ></button
->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const setTheme = (theme: string) => {
+        stroke-linejoin="round"
+        fill="none"
+      ></path>
+    </svg>
+  </button>
+</div>
+<script is:inline>
+  (function() {
+    function setTheme(theme) {
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
-    };
+      updateSidebarThemeIcon(theme);
+    }
 
-    const themeToggle = document.getElementById("themeToggle");
-    const themeLabel1 = document.getElementById(
-      "themeLabel1",
-    ) as HTMLLabelElement;
-    const themeToggle1 = document.getElementById(
-      "themeToggle1",
-    ) as HTMLInputElement;
-    const themeLabel2 = document.getElementById(
-      "themeLabel2",
-    ) as HTMLLabelElement;
-    const themeToggle2 = document.getElementById(
-      "themeToggle2",
-    ) as HTMLInputElement;
-
-    const syncThemeToggle = () => {
-      const currentTheme = localStorage.getItem("theme");
-      if (themeLabel1 && themeLabel2 && themeToggle1 && themeToggle2) {
-        const isDark = currentTheme === "dracula";
-        themeLabel1.classList.toggle("active", isDark);
-        themeLabel2.classList.toggle("active", !isDark);
-        themeToggle1.checked = isDark;
-        themeToggle2.checked = isDark;
+    function updateSidebarThemeIcon(theme) {
+      const sidebarThemeToggle = document.getElementById("sidebarThemeToggle");
+      if (!sidebarThemeToggle) return;
+      
+      const sunIcon = sidebarThemeToggle.querySelector(".sun");
+      const moonIcon = sidebarThemeToggle.querySelector(".moon");
+      
+      if (theme === "retro-dark" || theme === "dracula") {
+        if (sunIcon) sunIcon.classList.add("hidden");
+        if (moonIcon) moonIcon.classList.remove("hidden");
+      } else {
+        if (sunIcon) sunIcon.classList.remove("hidden");
+        if (moonIcon) moonIcon.classList.add("hidden");
       }
-    };
+    }
 
-    syncThemeToggle();
+    function initThemeToggle() {
+      const sidebarThemeToggle = document.getElementById("sidebarThemeToggle");
+      if (sidebarThemeToggle && !sidebarThemeToggle.hasAttribute('data-theme-initialized')) {
+        // Mark as initialized to prevent duplicate listeners
+        sidebarThemeToggle.setAttribute('data-theme-initialized', 'true');
+        
+        // Initialize theme icon
+        const currentTheme = localStorage.getItem("theme") || "retro";
+        updateSidebarThemeIcon(currentTheme);
 
-    [themeLabel1, themeLabel2].forEach((label) => {
-      if (label) {
-        label.classList.remove("hidden");
-        label.classList.add("swap", "swap-rotate");
+        sidebarThemeToggle.addEventListener("click", function() {
+          const currentTheme = localStorage.getItem("theme") || "retro";
+          const newTheme = currentTheme === "retro" ? "retro-dark" : "retro";
+          setTheme(newTheme);
+        });
       }
-    });
 
-    const handleToggleClick = () => {
-      const currentTheme = localStorage.getItem("theme");
-      const newTheme = currentTheme === "winter" ? "dracula" : "winter";
-      setTheme(newTheme);
-      syncThemeToggle();
-    };
-
-    if (themeToggle1 && themeToggle) {
-      themeToggle1.disabled = true;
-      themeToggle.addEventListener("click", handleToggleClick);
+      // Back to top functionality
+      const backToTopButton = document.getElementById("backToTop");
+      if (backToTopButton && !backToTopButton.hasAttribute('data-scroll-initialized')) {
+        backToTopButton.setAttribute('data-scroll-initialized', 'true');
+        backToTopButton.addEventListener("click", function() {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
     }
 
-    if (themeToggle2) {
-      themeToggle2.addEventListener("click", handleToggleClick);
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initThemeToggle);
+    } else {
+      initThemeToggle();
     }
 
-    const backToTopButton = document.getElementById("backToTop");
-
-    if (backToTopButton) {
-      backToTopButton.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    }
-  });
+    // Re-initialize on page changes (for SPA behavior)
+    document.addEventListener('astro:page-load', initThemeToggle);
+    document.addEventListener('swup:page:view', initThemeToggle);
+  })();
 </script>
+
+<style>
+  .premium-tools {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  
+  .tool-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid var(--retro-border);
+    color: var(--retro-text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .tool-btn:hover {
+    background: var(--retro-accent-green);
+    border-color: var(--retro-accent-green);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(53, 94, 59, 0.3);
+  }
+  
+  .tool-btn:active {
+    transform: translateY(0);
+  }
+  
+  .theme-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+    position: absolute;
+  }
+  
+  .theme-icon.hidden {
+    opacity: 0;
+    transform: scale(0.8) rotate(180deg);
+  }
+  
+  .theme-icon:not(.hidden) {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  
+  .tool-btn svg:not(.theme-icon) {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Dark theme adjustments */
+  html[data-theme="retro-dark"] .tool-btn:hover,
+  html[data-theme="dracula"] .tool-btn:hover {
+    background: var(--retro-accent-gold);
+    border-color: var(--retro-accent-gold);
+    color: var(--retro-primary);
+    box-shadow: 0 4px 12px rgba(197, 164, 109, 0.3);
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .premium-tools {
+      gap: 0.5rem;
+    }
+    
+    .tool-btn {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .theme-icon,
+    .tool-btn svg:not(.theme-icon) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style>

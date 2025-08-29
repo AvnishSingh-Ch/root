@@ -83,11 +83,19 @@ const { title, image, includeSidebar = true } = Astro.props;
           }
         }
       });
+    }, {
+      rootMargin: '50px' // Load images 50px before they come into view
     });
 
     document.querySelectorAll('img[data-src]').forEach(img => {
       imageObserver.observe(img);
     });
+  }
+
+  // Optimize animations for better performance
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (prefersReducedMotion.matches) {
+    document.documentElement.style.setProperty('--animation-duration', '0s');
   }
 </script>
 
@@ -100,16 +108,26 @@ const { title, image, includeSidebar = true } = Astro.props;
   
   .layout-grid {
     display: grid;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 1rem;
+    grid-template-columns: 1fr;
+  }
+  
+  /* Remove top margin on desktop since header is hidden */
+  @media (min-width: 768px) {
+    .layout-grid {
+      margin-top: 2rem;
+    }
   }
   
   .sidebar {
     display: none;
+    order: 2;
   }
   
   .main-content {
     width: 100%;
+    order: 1;
   }
   
   @media (min-width: 768px) {
